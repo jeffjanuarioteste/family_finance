@@ -4,21 +4,29 @@ repos:
     hooks:
       - id: ruff
         args: [--fix]
+        files: ^finance_family_backend/
   - repo: https://github.com/psf/black
     rev: 24.8.0
     hooks:
       - id: black
+        files: ^finance_family_backend/
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.11.1
     hooks:
       - id: mypy
+        files: ^finance_family_backend/app/
         additional_dependencies:
           [pydantic>=2.7, pydantic-settings, motor, "beanie>=1.26,<2", fastapi, httpx, pytest, pytest-asyncio, mongomock-motor]
-        args: [--config-file=pyproject.toml]
+        args:
+          - --config-file=finance_family_backend/pyproject.toml
+          - --explicit-package-bases
+          - --python-executable=python
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
     hooks:
       - id: check-added-large-files
       - id: detect-private-key
       - id: end-of-file-fixer
+        files: ^finance_family_backend/
       - id: trailing-whitespace
+        files: ^finance_family_backend/

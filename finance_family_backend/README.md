@@ -16,6 +16,11 @@ uvicorn app.main:app --reload
 
 ```
 ruff check . ; black --check . ; mypy app ; pytest
+```
+
+O pre-commit fica na raiz do monorepo (`.pre-commit-config.yaml`). Instale uma vez, a partir da raiz:
+
+```
 pre-commit install
 ```
 
