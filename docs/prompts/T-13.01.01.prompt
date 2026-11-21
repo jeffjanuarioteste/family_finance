@@ -1,0 +1,12 @@
+TAREFA: T-13.01.01 – CRUD /cenarios com ajustes e horizonte 1–120 meses
+ÉPICO/ESTÓRIA: EP-13 / US-13.01 | Prioridade: Could | Depende de: EP-05 a EP-10
+
+PASSOS
+1. Modelo Cenario: nome, horizonte_meses (1-120), ajustes[] {tipo (cortar_gasto|aumentar_renda|investir|aporte_meta), alvo_id (categoria/meta/receita/investimento), valor_centavos, periodo (mensal|unico|inicio/fim)}, resultado? (cache da última simulação), membro_id.
+2. CRUD (versao, soft delete); validar alvo_id por tipo e na mesma família, valor > 0, horizonte no intervalo.
+3. Limite de ajustes por cenário (ex.: 20).
+4. Cenários nunca alteram dados reais ao serem salvos.
+
+TESTES: CRUD, validações por tipo, isolamento.
+
+ACEITE: RF-MOD21-01 (cadastro).

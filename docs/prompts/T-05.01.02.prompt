@@ -1,0 +1,14 @@
+TAREFA: T-05.01.02 – Job de geração mensal sem duplicar (recorrencia_id + competencia, RN-015)
+ÉPICO/ESTÓRIA: EP-05 / US-05.01 | Prioridade: Must | Depende de: T-05.01.01, T-00.03.02
+
+PASSOS
+1. Job diário 00:05 (idempotente): para cada recorrência ativa gerar a ocorrência do mês seguinte (e do mês atual se faltar), com valor da última ocorrência (variável: estimado = última/média) e vencimento ajustado ao dia.
+2. Upsert com filtro {familia_id, recorrencia_id, competencia} usando $setOnInsert para nunca duplicar; capturar DuplicateKeyError como sucesso.
+3. Anuais: gerar apenas no mês correspondente.
+4. Fuso America/Sao_Paulo para determinar "hoje" e competência.
+5. Log por família com contagem de criadas/ignoradas; falha isolada por família.
+6. Respeitar recorrências encerradas e contas excluídas.
+
+TESTES: executar 2x gera o mesmo resultado; virada de mês/ano; dia 31; recorrência encerrada.
+
+ACEITE: critério "contas e itens mensais gerados automaticamente".

@@ -1,0 +1,13 @@
+TAREFA: T-11.03.01 – Regras por palavra-chave e aprendizado por correção
+ÉPICO/ESTÓRIA: EP-11 / US-11.03 | Prioridade: Should | Depende de: T-11.02.02, T-03.01.02
+
+PASSOS
+1. Modelo RegraCategoria: familia_id, padrao (palavra-chave/estabelecimento, normalizado sem acento e minúsculo), tipo_match (contem|igual|inicia), categoria_id, prioridade, origem (usuario|aprendida), ativa.
+2. Ordem de decisão ao importar: regras do usuário → regras aprendidas → categoria sugerida pelo agregador → "Sem categoria".
+3. Aprendizado: ao o usuário corrigir a categoria de um lançamento importado, oferecer "Aplicar a lançamentos semelhantes?" e salvar regra (padrão extraído da descrição); opção de reaplicar a existentes.
+4. CRUD /regras-categoria e tela de gerenciamento; regras não afetam lançamentos manualmente categorizados.
+5. Evitar regras genéricas demais (tamanho mínimo do padrão).
+
+TESTES: precedência, normalização, aprendizado, reaplicação, isolamento.
+
+ACEITE: lançamentos importados categorizados conforme regras.

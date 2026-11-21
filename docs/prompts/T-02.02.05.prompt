@@ -1,0 +1,13 @@
+TAREFA: T-02.02.05 – Aviso "nova versão disponível" e atualização do SW
+ÉPICO/ESTÓRIA: EP-02 / US-02.02 | Prioridade: Must | Depende de: T-02.02.01
+
+PASSOS
+1. registerSW com onNeedRefresh: exibir toast/banner "Nova versão disponível. Atualizar" com botão.
+2. Ao clicar: postMessage SKIP_WAITING, aguardar controllerchange e recarregar a página.
+3. Não forçar atualização enquanto houver formulário em edição ou fila sincronizando; adiar com lembrete.
+4. Checar atualizações periodicamente (a cada 1 h) e ao voltar o foco.
+5. Garantir que mudança de versão do SW não apague a fila IndexedDB; migrações de schema versionadas.
+
+TESTES: simular novo SW (Playwright) e verificar banner e atualização.
+
+ACEITE: usuário recebe a atualização sem perder dados pendentes.

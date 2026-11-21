@@ -1,0 +1,13 @@
+TAREFA: T-10.04.01 – Dashboard 3: patrimônio líquido (RN-009), snapshots e evolução; alertas de saldo desatualizado
+ÉPICO/ESTÓRIA: EP-10 / US-10.04 | Prioridade: Should | Depende de: T-04.02.02, T-10.01.02, T-10.02.01
+
+PASSOS
+1. GET /dashboards/patrimonio: RN-009 patrimonio_liquido = Σ contas (BRL) + Σ investimentos valor_atual (BRL) − Σ saldo_devedor; capital por conta e moeda, total investido, rentabilidade, dívidas, evolução mensal (snapshots de contas, investimentos e dívidas — estender o job de T-04.02.02) com fallback ao valor atual no mês corrente.
+2. Alertas: conta com saldo_atualizado_em > 7 dias; conexão Open Finance expirando (quando existir).
+3. Gráficos: linha de evolução, rosca da carteira, barras por moeda (tabelas alternativas).
+4. Filtros comuns; cotação atual para saldos (RN-017) com aviso de defasagem; <= 3 s.
+5. Notificação única por conta desatualizada por semana.
+
+TESTES: caso de referência (contas 10000 + invest. 5000 − dívidas 3000 = 12000); evolução; alertas.
+
+ACEITE: Dashboard 3 conforme análise.

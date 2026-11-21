@@ -1,0 +1,13 @@
+TAREFA: T-05.04.01 – CRUD /limites-gasto e vínculo de lançamentos (módulo 6 "Posso gastar")
+ÉPICO/ESTÓRIA: EP-05 / US-05.04 | Prioridade: Must | Depende de: T-05.03.01, T-03.02.02
+
+PASSOS
+1. Modelo LimiteGasto: descricao (ex.: "Corte de cabelo"), categoria_id, membro_id, limite_mensal_centavos (>0), ativo, vigencia. Índice {familia_id, membro_id}.
+2. Rotas CRUD com versao e soft delete.
+3. Vínculo: campo limite_gasto_id opcional em Lancamento (índice {familia_id, limite_gasto_id, data}); POST /limites-gasto/{id}/vincular {lancamento_ids} e desvincular; ao criar lançamento permitir informar limite_gasto_id; sugerir vínculo automático por categoria+membro.
+4. Um lançamento pertence a no máximo um limite; validar mesma família.
+5. Documentar relação com orçamentos (módulo 19) para não contar duas vezes no saldo livre (RN-001 usa soma dos limites).
+
+TESTES: CRUD, vínculo/desvínculo, unicidade do vínculo, isolamento.
+
+ACEITE: OpenAPI e testes ok.

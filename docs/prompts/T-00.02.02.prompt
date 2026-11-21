@@ -1,0 +1,16 @@
+TAREFA: T-00.02.02 – Deploy automático em homologação com HTTPS
+ÉPICO/ESTÓRIA: EP-00 / US-00.02 | Prioridade: Must | Depende de: T-00.01.01, T-00.02.01
+
+PASSOS
+1. Criar Dockerfile do backend (python:3.12-slim, usuário não root, uvicorn com workers conforme plano, healthcheck em /api/v1/saude).
+2. Configurar serviço de homologação no provedor definido (D-03) com deploy automático da branch develop após CI verde.
+3. Configurar variáveis/secrets no provedor (MONGODB_URI de banco de homologação separado, JWT_SECRET, AES_KEY, VAPID, CORS_ORIGINS com a origem do frontend de homologação).
+4. Frontend publicado em hospedagem estática com HTTPS; apontar VITE_API_URL para a API de homologação.
+5. Garantir redirecionamento HTTP->HTTPS e TLS 1.2+.
+6. Smoke test pós-deploy (script que chama /saude e falha o pipeline se não responder 200).
+7. Documentar rollback (reimplantar versão anterior).
+
+CRITÉRIOS DE ACEITE
+- Merge em develop publica automaticamente.
+- URL de homologação em HTTPS com certificado válido.
+- Banco de homologação isolado de produção.

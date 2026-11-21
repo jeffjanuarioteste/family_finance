@@ -1,0 +1,13 @@
+TAREFA: T-10.03.02 – POST /negocios-extra/{id}/resultados e GET /negocios-extra/{id}/analise
+ÉPICO/ESTÓRIA: EP-10 / US-10.03 | Prioridade: Should | Depende de: T-10.03.01
+
+PASSOS
+1. POST /resultados {ciclo (AAAA-MM ou índice), receita_centavos, custo_centavos}: lucro = receita − custo; único por ciclo (upsert/409); opcionalmente gerar lançamento de entrada com a receita (origem "negocio_extra") sem duplicar.
+2. GET /analise: esperado × realizado por ciclo (lucro, margem, receita), acumulado, desvio %, ponto de equilíbrio atingido, payback.
+3. Limite do array resultados[] e arquivamento.
+4. Telas: detalhe do negócio com cálculos, formulário de resultado, comparação esperado × realizado (gráfico + tabela).
+5. Seletor de membro, pt-BR, acessibilidade.
+
+TESTES: resultado único por ciclo, análise com 3 ciclos, idempotência, componentes.
+
+ACEITE: RF-MOD14-03.

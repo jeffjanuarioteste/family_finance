@@ -1,0 +1,13 @@
+TAREFA: T-12.01.02 – Relatório Extrato (Excel/PDF)
+ÉPICO/ESTÓRIA: EP-12 / US-12.01 | Prioridade: Should | Depende de: T-12.01.01
+
+PASSOS
+1. Dados: lançamentos filtrados (período, membro, categoria, conta) ordenados por data, com colunas data, descrição, categoria, conta, membro, moeda, valor, valor em BRL, status.
+2. Rodapé/aba de totais: entradas, saídas, saldo por moeda e em BRL.
+3. Excel (openpyxl, write-only): cabeçalho congelado, formatos numéricos pt-BR, largura de colunas, aba "Totais". PDF (reportlab/weasyprint): cabeçalho com família, período e filtros, paginação, totais.
+4. Fonte com suporte a acentos; tabelas quebram corretamente em várias páginas.
+5. Respeitar RN-019 para membros.
+
+TESTES: totais conferem com a listagem; 5 mil linhas; caracteres especiais; arquivo abre em Excel e leitor de PDF.
+
+ACEITE: extrato idêntico às listagens do app.

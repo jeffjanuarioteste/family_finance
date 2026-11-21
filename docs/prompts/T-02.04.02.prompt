@@ -1,0 +1,14 @@
+TAREFA: T-02.04.02 – POST /push/assinaturas e envio Web Push (VAPID)
+ÉPICO/ESTÓRIA: EP-02 / US-02.04 | Prioridade: Must | Depende de: T-02.04.01, T-00.01.04
+
+PASSOS
+1. Backend: POST /api/v1/push/assinaturas {endpoint, keys{p256dh,auth}, plataforma} (upsert por endpoint, vinculado à sessão); DELETE /push/assinaturas/{id}; GET /push/chave-publica (VAPID pública).
+2. Envio com pywebpush usando chaves VAPID das variáveis de ambiente; payload JSON {titulo, mensagem, link, tag}; TTL e urgência adequados; tratar 404/410 removendo a assinatura; retentativa limitada.
+3. Frontend: solicitar permissão só após ação do usuário (iOS exige app instalado e iOS >= 16.4); registrar PushManager.subscribe com applicationServerKey; enviar assinatura ao backend.
+4. Service worker: handlers 'push' (showNotification) e 'notificationclick' (abrir link no app).
+5. Configurações: ativar/desativar push por aparelho e por tipo de alerta.
+6. Não enviar dados sensíveis (valores) no corpo se o usuário optar por privacidade.
+
+TESTES: assinatura criada/atualizada; envio mockado; 410 remove assinatura.
+
+ACEITE: notificação recebida em Android Chrome e iOS instalado.

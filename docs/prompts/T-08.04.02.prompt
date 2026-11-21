@@ -1,0 +1,12 @@
+TAREFA: T-08.04.02 – Sugestão automática ao concluir prioridade, desejo, plano ou dívida
+ÉPICO/ESTÓRIA: EP-08 / US-08.04 | Prioridade: Should | Depende de: T-08.04.01
+
+PASSOS
+1. Serviço sugerir_conquista(origem, origem_id): chamado ao concluir prioridade, converter/concluir desejo, atingir 100% de plano ou quitar dívida; devolve proposta {titulo, data, valor, origem, origem_id} na resposta da operação (campo `sugestao_conquista`) e opcionalmente cria notificação.
+2. POST /conquistas/confirmar-sugestao: cria a conquista a partir da proposta; idempotente por {origem, origem_id} (índice único parcial) — nunca criar automaticamente sem confirmação.
+3. Frontend: toast/modal "Registrar como conquista?" com Sim/Não; lembrar recusa.
+4. Integração com módulos 8 (T-09.01.04) e 17 (T-10.02.03) via esse serviço.
+
+TESTES: sugestão por origem, confirmação idempotente, recusa.
+
+ACEITE: RF-MOD04-02.

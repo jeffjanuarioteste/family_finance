@@ -1,0 +1,13 @@
+TAREFA: T-04.01.02 – Tela de contas com total por moeda e convertido em BRL
+ÉPICO/ESTÓRIA: EP-04 / US-04.01 | Prioridade: Must | Depende de: T-04.01.01, T-04.02.03
+
+PASSOS
+1. Tela "Contas": cartão de topo com total por moeda e total convertido na moeda base (cotação atual, RN-017) com selo de cotação defasada, se houver.
+2. Lista agrupada por membro/tipo, com saldo (formato pt-BR), instituição, origem (manual/Open Finance), selo "desatualizado" se saldo_atualizado_em > 7 dias.
+3. Criar/editar conta (formulário), atualizar saldo rápido (ação direta), inativar.
+4. Respeitar o seletor global de membro (RN-019).
+5. Estados vazio (convite para cadastrar a primeira conta), erro, carregando.
+
+TESTES: componente (totais por moeda, selo desatualizado) e e2e de criação/atualização de saldo.
+
+ACEITE: critério "100% das contas cadastradas" suportado pela UX.

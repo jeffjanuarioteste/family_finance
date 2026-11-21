@@ -1,0 +1,12 @@
+TAREFA: T-01.02.02 – GET /auth/sessoes e DELETE /auth/sessoes/{id}
+ÉPICO/ESTÓRIA: EP-01 / US-01.02 | Prioridade: Must | Depende de: T-01.02.01
+
+PASSOS
+1. GET /api/v1/auth/sessoes: listar sessões ativas da família do token com id, dispositivo, plataforma, ip (mascarar último octeto), criado_em, ultimo_uso e flag `atual`. Nunca retornar hash.
+2. DELETE /api/v1/auth/sessoes/{id}: revogar sessão da própria família (filtrar por familia_id; outra família -> 404). Revogar a sessão atual equivale a logout.
+3. Opcional: DELETE /auth/sessoes (revogar todas exceto a atual).
+4. Access token de sessão revogada deixa de valer imediatamente (checagem por sid).
+
+TESTES: lista só da família; revogar sessão alheia 404; sessão revogada não consegue refresh nem acessar APIs; flag atual correta.
+
+ACEITE: OpenAPI atualizado; testes passando.

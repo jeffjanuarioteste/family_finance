@@ -1,0 +1,13 @@
+TAREFA: T-11.02.03 – Sugestão de mesclagem com lançamentos manuais
+ÉPICO/ESTÓRIA: EP-11 / US-11.02 | Prioridade: Should | Depende de: T-11.02.02, T-03.04.01
+
+PASSOS
+1. Ao importar, procurar lançamento manual da mesma conta, valor igual, data ±2 dias, ainda não vinculado a id_externo; se houver, registrar sugestão (coleção/flag) em vez de mesclar.
+2. Alimentar a tela de sugestões (T-03.04.02) com origem open_finance; nunca remover automaticamente.
+3. Ao confirmar, usar POST /lancamentos/{id}/mesclar mantendo id_externo do importado.
+4. Notificar o usuário quando houver novas sugestões (agrupado por sincronização).
+5. Evitar sugerir o mesmo par duas vezes (chave de dedup).
+
+TESTES: detecção por regra, múltiplos candidatos, ignorar, notificação agrupada.
+
+ACEITE: nenhum lançamento removido sem confirmação.

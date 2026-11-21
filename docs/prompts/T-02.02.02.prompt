@@ -1,0 +1,14 @@
+TAREFA: T-02.02.02 – Fila offline de lançamentos com UUID de cliente e Idempotency-Key
+ÉPICO/ESTÓRIA: EP-02 / US-02.02 | Prioridade: Must | Depende de: T-02.02.01, T-02.02.03
+
+PASSOS
+1. Armazenar fila em IndexedDB (idb): item {id_cliente (UUID v4), idempotency_key (UUID), payload, criado_em, tentativas, status(pendente|enviando|erro), erro}.
+2. Ao salvar lançamento offline (ou com falha de rede), gerar UUID no cliente e enfileirar; refletir na UI como "pendente" com ícone.
+3. Sincronização: ao voltar online, evento 'online', foco do app e Background Sync quando disponível (fallback para polling). Enviar em lote via POST /sync/lote com Idempotency-Key por item; processar resposta item a item (sucesso remove; erro de validação marca erro e permite editar/descartar; erro de rede mantém e reagenda com backoff exponencial).
+4. Garantir ordem por criado_em e ausência de duplicidade (reenvio com mesma chave não cria outro).
+5. Proteger dados da fila: limpar no logout, aviso ao usuário sobre pendências antes de sair.
+6. Limite de tamanho da fila e tratamento de quota.
+
+TESTES: offline cria 3 itens; reconexão sincroniza sem duplicar mesmo com reenvio; falha parcial; fila limpa no logout.
+
+ACEITE: critério do MVP "lançamentos offline sincronizam sem duplicidade".

@@ -1,0 +1,13 @@
+TAREFA: T-01.02.03 – Tela de sessões com revogação
+ÉPICO/ESTÓRIA: EP-01 / US-01.02 | Prioridade: Must | Depende de: T-01.02.02
+
+PASSOS
+1. Tela em Configurações > Segurança > Dispositivos conectados.
+2. Cartões por sessão: ícone da plataforma, nome, último acesso (dd/mm/aaaa HH:mm, America/Sao_Paulo), IP mascarado, selo "Este aparelho".
+3. Botão "Encerrar sessão" com confirmação (modal acessível); ao encerrar a atual, fazer logout local.
+4. Estados: carregando, vazio, erro; atualizar a lista após revogação.
+5. Alvos >= 44 px, contraste AA, textos pt-BR.
+
+TESTES: componente renderiza lista, confirma e chama DELETE, atualiza lista; e2e revogando outra sessão.
+
+ACEITE: funcional em iOS e Android.

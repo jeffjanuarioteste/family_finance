@@ -1,0 +1,14 @@
+TAREFA: T-05.01.04 – POST /contas-mes/{id}/pagar gerando lançamento de saída
+ÉPICO/ESTÓRIA: EP-05 / US-05.01 | Prioridade: Must | Depende de: T-05.01.01, T-03.02.02
+
+PASSOS
+1. POST /api/v1/contas-mes/{id}/pagar {valor_pago_centavos?, data_pagamento?, conta_id?} com Idempotency-Key.
+2. Em transação: marcar status "paga", gravar data_pagamento e valor_pago (padrão = valor previsto) e criar lançamento de saída via LancamentoService (origem "conta_mes", origem_id, categoria, membro, conta, competência) guardando lancamento_id.
+3. Pagar já paga é idempotente (retorna o mesmo resultado, sem novo lançamento).
+4. Permitir desfazer (POST /contas-mes/{id}/desfazer-pagamento) que exclui logicamente o lançamento e volta a pendente/atrasada.
+5. Se valor pago difere do estimado em conta variável, atualizar a estimativa da próxima ocorrência.
+6. Notificações de atraso/lembrete da conta pendentes são encerradas.
+
+TESTES: pagar, pagar duas vezes, desfazer, valor diferente, transação com falha reverte.
+
+ACEITE: nunca há lançamento duplicado por conta.

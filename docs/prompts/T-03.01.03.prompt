@@ -1,0 +1,13 @@
+TAREFA: T-03.01.03 – Tela de categorias
+ÉPICO/ESTÓRIA: EP-03 / US-03.01 | Prioridade: Must | Depende de: T-03.01.02
+
+PASSOS
+1. Tela em Configurações > Categorias com abas Saídas/Entradas, lista em árvore expansível.
+2. Criar/editar categoria e subcategoria: nome, ícone, cor, pai; categorias de sistema marcadas e bloqueadas.
+3. Inativar/excluir com confirmação e fluxo "mover lançamentos para…" quando em uso.
+4. Componente reutilizável SeletorCategoria (busca, recentes, árvore) para os formulários.
+5. Acessibilidade, alvos >= 44 px, pt-BR.
+
+TESTES: componentes e fluxo de exclusão com movimentação.
+
+ACEITE: usuário gerencia categorias sem erro em iOS e Android.

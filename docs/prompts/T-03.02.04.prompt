@@ -1,0 +1,14 @@
+TAREFA: T-03.02.04 – Formulário rápido de lançamento (valor, categoria, membro, conta, data)
+ÉPICO/ESTÓRIA: EP-03 / US-03.02 | Prioridade: Must | Depende de: T-03.02.02, T-02.02.02
+
+PASSOS
+1. Botão central "Lançar" abre folha inferior (bottom sheet) com: alternância Saída/Entrada, valor (teclado numérico, máscara em centavos, R$), categoria (recentes primeiro), membro (padrão = membro selecionado; opção Família), conta (última usada), data (hoje padrão, dd/mm/aaaa), descrição opcional, moeda (BRL padrão; exibir cotação se outra).
+2. Salvar em até 3 toques; foco automático no valor; botão "Salvar e novo".
+3. Online: chamar API com Idempotency-Key; offline ou falha de rede: enfileirar (T-02.02.02) e mostrar como pendente.
+4. Validação inline; erros do servidor exibidos; evitar duplo toque (desabilitar durante envio).
+5. Edição reutiliza o mesmo formulário com controle de versão (T-02.03.02).
+6. Acessibilidade, alvos >= 44 px, pt-BR.
+
+TESTES: componente (validações, máscara, offline) e e2e de lançamento.
+
+ACEITE: lançamento rápido funcional online e offline.

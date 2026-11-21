@@ -1,0 +1,17 @@
+TAREFA: T-10.03.01 – CRUD /negocios-extra, margem e ponto de equilíbrio (RN-005/006)
+ÉPICO/ESTÓRIA: EP-10 / US-10.03 | Prioridade: Should | Depende de: T-00.01.05
+
+FÓRMULAS
+- margem_pct = (preco − custo_unitario)/preco × 100
+- lucro_ciclo = (preco − custo)·unidades − custos_fixos
+- ponto_equilibrio = ceil(custos_fixos / (preco − custo))
+
+PASSOS
+1. Modelo NegocioExtra: nome, capital_inicial_centavos (>=0), custo_unitario_centavos (>0), preco_venda_centavos (> custo), unidades_por_ciclo (>0), custos_fixos_ciclo_centavos (>=0), status (ideia|em_andamento|encerrado), membro_id, resultados[] {ciclo, receita, custo, lucro}.
+2. Funções puras de cálculo (Decimal; centavos); preço <= custo rejeitado.
+3. CRUD com versao e soft delete; calculados retornados nas respostas.
+4. Payback do capital inicial = ceil(capital / lucro_ciclo) quando lucro > 0 (informativo).
+
+TESTES: custo 3000, preço 6000, 50 un., fixos 20000 → margem 50%, lucro 130000, equilíbrio 7; preço <= custo; fixos 0.
+
+ACEITE: RF-MOD14-01 e 02.

@@ -1,0 +1,12 @@
+TAREFA: T-05.03.04 – POST /orcamentos/copiar e GET /orcamentos/status
+ÉPICO/ESTÓRIA: EP-05 / US-05.03 | Prioridade: Must | Depende de: T-05.03.02
+
+PASSOS
+1. POST /orcamentos/copiar {origem:"AAAA-MM", destino:"AAAA-MM", membro_id?, sobrescrever:false}: copia limites e alerta_pcts; ignora existentes (ou sobrescreve se pedido); retorna {criados, ignorados}. Idempotente.
+2. GET /orcamentos/status?competencia=&membro_id=: lista cada orçamento com {limite, consumido, restante, percentual, status} e totais (limite total, consumido total, percentual de gastos cobertos por orçamento — meta >= 80%).
+3. Respeitar RN-019 para membros/Família.
+4. Desempenho: uma agregação por requisição (group por categoria) em vez de N consultas.
+
+TESTES: cópia sem sobrescrever, com sobrescrever, mês vazio; status batendo com T-05.03.02.
+
+ACEITE: resposta <= 500 ms P95.

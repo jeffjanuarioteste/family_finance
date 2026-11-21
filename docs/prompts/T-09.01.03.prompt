@@ -1,0 +1,13 @@
+TAREFA: T-09.01.03 – CRUD /metas, POST /metas/{id}/aportes, GET /metas/{id}/projecao
+ÉPICO/ESTÓRIA: EP-09 / US-09.01 | Prioridade: Must | Depende de: T-09.01.01, T-09.01.02
+
+PASSOS
+1. CRUD /metas (filtros tipo, status, membro; paginada; versao; soft delete). Resposta inclui progresso, aporte_necessario e data_prevista calculados.
+2. POST /metas/{id}/aportes {data, valor_centavos, observacao, gerar_lancamento?, conta_id?} com Idempotency-Key: $push do aporte e $inc do acumulado atômicos; opcionalmente gera lançamento (origem "aporte_meta"); remover aporte via DELETE /metas/{id}/aportes/{aporte_id} (reverte acumulado).
+3. Ao atingir 100% status passa a `concluida` (sugestão de conquista, T-08.04.02) e permanece consultável.
+4. GET /metas/{id}/projecao?aporte_mensal=: série mensal projetada até a conclusão com acumulado por mês (considerando rentabilidade), data prevista, indicador em_risco (data_prevista > prazo).
+5. Valores na moeda da meta; conversão para exibição pela cotação atual (RN-017).
+
+TESTES: CRUD, aporte idempotente, remoção, 100% conclui, projeção com casos de referência, isolamento.
+
+ACEITE: OpenAPI e testes ok.

@@ -1,0 +1,12 @@
+TAREFA: T-09.06.02 – Telas do Dashboard 4 (metas e planos)
+ÉPICO/ESTÓRIA: EP-09 / US-09.06 | Prioridade: Should | Depende de: T-09.06.01
+
+PASSOS
+1. Barras de progresso por meta, linha de projeção da meta selecionada, tabela de metas ordenável, cartão da reserva (cobertura em meses).
+2. Alertas de meta em risco no topo com link ao detalhe.
+3. Filtros do T-07.01.01; gráficos com lazy loading e alternativa em tabela.
+4. Estados de carregamento, vazio ("Crie seu primeiro plano") e erro; pt-BR; acessibilidade.
+
+TESTES: renderização com dados mock e alertas.
+
+ACEITE: Dashboard 4 completo em iOS e Android.

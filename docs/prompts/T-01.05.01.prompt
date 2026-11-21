@@ -1,0 +1,13 @@
+TAREFA: T-01.05.01 – Extrair familia_id do token em todas as consultas (middleware/dependência)
+ÉPICO/ESTÓRIA: EP-01 / US-01.05 | Prioridade: Must | Depende de: T-01.01.02
+
+PASSOS
+1. Dependência `contexto: ContextoFamilia = Depends(get_contexto)` que valida JWT e sessão e devolve familia_id (nunca ler do corpo/query).
+2. Repositório base `RepositorioFamilia(Modelo)` com métodos listar/obter/criar/atualizar/excluir que injetam familia_id e deletado_em=None; proibir acesso direto a Model.find fora do repositório (regra de lint/teste de arquitetura via grep em CI).
+3. Em criação, sobrescrever qualquer familia_id enviado no corpo; em referências (membro_id, categoria_id, conta_id) validar que pertencem à mesma família (400/404).
+4. Agregações MongoDB: $match inicial obrigatório com familia_id (helper).
+5. Retornar 404 (não 403) para recursos de outra família.
+
+TESTES: unitários do repositório; tentativa de enviar familia_id alheio é ignorada; referência cruzada rejeitada.
+
+ACEITE: nenhuma rota sem dependência de contexto (exceto auth/saúde); teste de arquitetura passa.

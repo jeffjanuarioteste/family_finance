@@ -1,0 +1,12 @@
+TAREFA: T-02.04.03 – Central de notificações e PATCH /notificacoes/{id}/lida
+ÉPICO/ESTÓRIA: EP-02 / US-02.04 | Prioridade: Must | Depende de: T-02.04.01
+
+PASSOS
+1. Backend: GET /notificacoes (paginada, filtro lida=true|false, tipo), GET /notificacoes/contagem-nao-lidas, PATCH /notificacoes/{id}/lida (idempotente), POST /notificacoes/marcar-todas-lidas. Filtro por familia_id.
+2. Frontend: ícone de sino com badge no cabeçalho; tela com lista agrupada por data, estado lida/não lida, toque abre o link interno e marca como lida.
+3. Atualização via polling de 60 s (T-02.03.01).
+4. Estados vazio/erro; textos pt-BR; acessibilidade.
+
+TESTES: API (paginação, filtro, idempotência, isolamento); componente da central.
+
+ACEITE: todo alerta aparece na central mesmo sem push (fallback para iOS).

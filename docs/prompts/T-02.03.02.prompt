@@ -1,0 +1,13 @@
+TAREFA: T-02.03.02 – Tratamento de conflito por versão com aviso
+ÉPICO/ESTÓRIA: EP-02 / US-02.03 | Prioridade: Must | Depende de: T-00.01.05
+
+PASSOS
+1. Backend: PATCH/PUT exigem `versao` (ou If-Match). Divergência -> 409 {codigo:"VERSAO_CONFLITANTE", atual:{...registro atual}}.
+2. Frontend: ao receber 409, abrir diálogo "Este registro foi alterado em outro aparelho" com opções: manter minha alteração (reenviar com versão atual, prevalece última gravação), usar a versão do servidor, ver diferenças dos campos críticos (valor, data, categoria).
+3. Lançamentos novos (UUID de cliente) nunca conflitam.
+4. Para campos não críticos, mesclar automaticamente quando não houver sobreposição de campos alterados.
+5. Registrar a decisão em auditoria.
+
+TESTES: duas edições concorrentes geram 409; reenvio com versão atual funciona; mesclagem sem sobreposição.
+
+ACEITE: nenhuma perda silenciosa de dados.

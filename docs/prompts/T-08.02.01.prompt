@@ -1,0 +1,12 @@
+TAREFA: T-08.02.01 – CRUD /desejos e total por membro (módulo 2)
+ÉPICO/ESTÓRIA: EP-08 / US-08.02 | Prioridade: Should | Depende de: T-08.01.01
+
+PASSOS
+1. Tipo "quero" em itens_planejamento: titulo, valor_estimado_centavos (>0, opcional) + moeda, prazo (futuro na criação), prioridade (nivel), status (+ convertido), meta_id?.
+2. Rotas /desejos CRUD com versao e soft delete.
+3. GET /desejos/total?membro_id=: soma por membro e moeda (convertida pela cotação atual, RN-017), ignorando convertidos e cancelados.
+4. Validação: prazo futuro apenas na criação.
+
+TESTES: CRUD, total por membro/moeda, validações.
+
+ACEITE: RF-MOD02-01 e RF-MOD02-03.

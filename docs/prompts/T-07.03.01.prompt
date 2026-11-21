@@ -1,0 +1,13 @@
+TAREFA: T-07.03.01 – GET /dashboards/gastos (categoria, membro, média diária, orçado × realizado)
+ÉPICO/ESTÓRIA: EP-07 / US-07.03 | Prioridade: Must | Depende de: T-07.01.02, T-05.03.02
+
+PASSOS
+1. Resposta: {total_gastos, por_categoria:[{categoria_id, nome, total, percentual}], por_membro:[...], serie_diaria:[{data,total}] (ou semanal conforme período), media_diaria, mercado_mes, orcado_x_realizado:[{categoria, limite, consumido, percentual}], alertas:[...]}.
+2. Considerar apenas saídas efetivadas; categorias agregadas ao nível pai com detalhe opcional (?nivel=sub).
+3. Alerta quando orçamento >= 80% e >= 100%.
+4. Média diária = total / dias do período decorridos.
+5. Reutilizar agregações e cache; membro conforme RN-019.
+
+TESTES: caso de referência; subcategorias; período personalizado; membro Família.
+
+ACEITE: <= 3 s com 50 mil lançamentos.

@@ -1,0 +1,12 @@
+TAREFA: T-10.02.03 – Registro de conquista ao quitar e telas de dívidas
+ÉPICO/ESTÓRIA: EP-10 / US-10.02 | Prioridade: Should | Depende de: T-10.02.02, T-08.04.02
+
+PASSOS
+1. Ao quitar, retornar `sugestao_conquista` via serviço T-08.04.02 (origem "divida"); confirmação do usuário cria a conquista (idempotente).
+2. Telas: lista de dívidas com saldo devedor, parcelas pagas/total (barra), próxima parcela, previsão de quitação; detalhe com histórico; formulário; ação "Pagar parcela".
+3. Total de dívidas e impacto no patrimônio líquido (RN-009) exibidos no topo.
+4. Seletor de membro, pt-BR, acessibilidade.
+
+TESTES: componentes e fluxo de quitação com sugestão.
+
+ACEITE: RF-MOD17-03 e 04.

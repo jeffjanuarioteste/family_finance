@@ -1,0 +1,12 @@
+TAREFA: T-05.02.03 – GET /mercado/resumo (total, restante, média diária, comparativo)
+ÉPICO/ESTÓRIA: EP-05 / US-05.02 | Prioridade: Must | Depende de: T-05.02.02
+
+PASSOS
+1. GET /api/v1/mercado/resumo?competencia=AAAA-MM: retorna {orcamento_centavos, total_gasto_centavos, restante_centavos (RN-007), percentual_consumido, media_diaria_centavos (total / dias decorridos), dias_restantes, media_diaria_permitida (restante / dias restantes), projecao_fim_mes, comparativo:[{competencia, total_centavos}] (últimos 3 meses)}.
+2. Dia decorrido: se mês corrente, usar dia atual no fuso America/Sao_Paulo; meses passados, dias do mês.
+3. Agregação por $match familia_id + categoria Mercado + competência, usando valor_base_centavos; excluir deletados.
+4. Restante pode ser negativo (indicar estouro).
+
+TESTES: caso de referência (orçamento 120000, gasto 45000 no dia 10 de 30); mês sem gastos; estouro.
+
+ACEITE: valores conferem com cálculo manual.

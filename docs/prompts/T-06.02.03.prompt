@@ -1,0 +1,12 @@
+TAREFA: T-06.02.03 – Comparativo previsto × realizado e telas de outras receitas
+ÉPICO/ESTÓRIA: EP-06 / US-06.02 | Prioridade: Must | Depende de: T-06.02.02
+
+PASSOS
+1. GET /receitas-extras/comparativo?periodo_inicio=&periodo_fim=&membro_id=: retorna totais previsto, realizado, diferença e % por tipo e por mês; considerar somente status prevista/recebida.
+2. Telas: lista por mês com status (prevista/recebida/cancelada), cartão de comparativo, formulário de criar/editar, ação "Marcar como recebida".
+3. Alerta (dashboard 5, futuro): realizado < 80% do previsto — expor flag no comparativo.
+4. Seletor de membro, pt-BR, acessibilidade.
+
+TESTES: cálculo do comparativo (previsto 100000, realizado 70000 = 70%); componentes.
+
+ACEITE: RF-MOD20-03 atendido.

@@ -1,0 +1,13 @@
+TAREFA: T-11.02.02 – Idempotência por id_externo (RN-022)
+ÉPICO/ESTÓRIA: EP-11 / US-11.02 | Prioridade: Should | Depende de: T-11.02.01, T-03.02.01
+
+PASSOS
+1. Usar índice único esparso {familia_id, id_externo}; importar via upsert com $setOnInsert (ou insert tolerando DuplicateKeyError como "duplicado").
+2. Reimportação do mesmo período é idempotente: resultado idêntico, sem novos lançamentos; alterações de status no banco (pendente→efetivado) atualizam o existente respeitando edições do usuário (categoria/descrição manuais não são sobrescritas).
+3. id_externo composto com a conexão/conta quando o agregador não garante unicidade global (conexao_id:transacao_id).
+4. Transações removidas/estornadas no banco: marcar, não excluir automaticamente.
+5. Teste de reimportação em massa.
+
+TESTES: reimportar 90 dias duas vezes, edição do usuário preservada, concorrência de duas sincronizações.
+
+ACEITE: critério "Open Finance idempotente" (M4).

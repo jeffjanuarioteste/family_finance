@@ -1,0 +1,16 @@
+TAREFA: T-07.04.02 – Sugestões de corte baseadas em dados (RN-021)
+ÉPICO/ESTÓRIA: EP-07 / US-07.04 | Prioridade: Must | Depende de: T-07.01.02, T-05.03.02
+
+REGRA (sem IA generativa)
+Listar categorias cujo gasto médio dos últimos 3 meses excede o orçamento OU cresceu > 20% vs. mês anterior. Economia potencial = excesso sobre o orçamento; sem orçamento: média − média do menor mês.
+
+PASSOS
+1. Serviço sugerir_cortes(familia_id, membro, competencia) retornando [{categoria, motivo (excede_orcamento|crescimento), media_3m, gasto_mes_anterior, gasto_atual, economia_potencial_centavos}] ordenado por economia potencial decrescente (limite 10).
+2. Ignorar categorias de sistema não cortáveis (dívidas, investimentos, contas fixas obrigatórias) por flag `cortavel`.
+3. Exigir mínimo de 2 meses de histórico; caso contrário, retornar lista vazia com mensagem.
+4. Funções puras e testáveis; valores em centavos.
+5. Economia potencial total para o dashboard.
+
+TESTES: casos de referência para cada motivo; sem orçamento; crescimento exatamente 20% (não inclui); histórico insuficiente.
+
+ACEITE: sugestões reproduzíveis e explicáveis.

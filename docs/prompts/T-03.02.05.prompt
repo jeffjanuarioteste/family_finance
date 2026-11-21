@@ -1,0 +1,12 @@
+TAREFA: T-03.02.05 – Listagem com filtros por membro, período, categoria, conta e status
+ÉPICO/ESTÓRIA: EP-03 / US-03.02 | Prioridade: Must | Depende de: T-03.02.02, T-01.04.03
+
+PASSOS
+1. Backend GET /lancamentos: filtros membro_id (RN-019), periodo_inicio, periodo_fim, categoria_id (inclui subcategorias), conta_id, status, tipo, moeda, busca (descricao), sort=-data; paginação page/page_size; resposta com totais do filtro (entradas, saídas, saldo) em BRL base.
+2. Usar índices (T-03.02.01); P95 <= 500 ms com 50 mil registros (verificar com explain).
+3. Frontend: lista infinita agrupada por dia, chips de filtro, folha de filtros, badge de pendente offline, deslizar para editar/excluir (com confirmação), estados vazio/erro.
+4. Valores "R$ 1.234,56", datas dd/mm/aaaa; cor por tipo sem depender apenas de cor (ícone/sinal).
+
+TESTES: combinações de filtros, totais corretos, paginação, desempenho com massa de dados.
+
+ACEITE: critério do MVP "filtros por membro e consolidado funcionam em todas as listagens".

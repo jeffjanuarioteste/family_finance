@@ -1,0 +1,13 @@
+TAREFA: T-09.05.03 – Conversão de saldos e metas pela cotação atual
+ÉPICO/ESTÓRIA: EP-09 / US-09.05 | Prioridade: Should | Depende de: T-09.05.02
+
+PASSOS
+1. Serviço único converter(valor_centavos, moeda_origem, moeda_destino, data=None) usando Decimal; data=None = cotação atual; triangulação via BRL quando não houver par direto.
+2. Aplicar em: patrimônio (T-04.02.03), metas (valor acumulado/alvo/aporte), investimentos, dashboards (moeda de exibição). Lançamentos continuam com cotacao_na_data (RN-017).
+3. Para cripto/ações: valor_atual = quantidade × preço × cotação (Análise 8.2).
+4. Retornar metadados (cotação usada, data, fallback) para exibir aviso.
+5. Cache por requisição para evitar múltiplas consultas.
+
+TESTES: USD→BRL, EUR→USD via BRL, cripto, arredondamento, fallback, mesma moeda.
+
+ACEITE: nenhum cálculo com float; avisos de defasagem presentes.

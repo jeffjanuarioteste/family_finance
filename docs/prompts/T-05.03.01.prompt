@@ -1,0 +1,13 @@
+TAREFA: T-05.03.01 – CRUD /orcamentos com índice único categoria/membro/competência
+ÉPICO/ESTÓRIA: EP-05 / US-05.03 | Prioridade: Must | Depende de: T-03.01.02
+
+PASSOS
+1. Modelo Orcamento: categoria_id, membro_id (null=Família), competencia (AAAA-MM), limite_centavos (>0), alerta_pcts (int[], padrão [80,100], valores 1-200 ordenados e únicos), moeda (base). Índice único {familia_id, categoria_id, membro_id, competencia}.
+2. Rotas GET (filtro competência, membro, categoria; paginada), POST, GET {id}, PATCH {id} (versao), DELETE (soft delete; liberar a chave única considerando deletado_em via índice parcial).
+3. Violação de unicidade -> 409 com mensagem pt-BR.
+4. Categoria e membro validados na família; subcategorias consomem o orçamento da categoria pai quando não houver orçamento próprio (documentar).
+5. Auditoria.
+
+TESTES: criação, duplicidade 409, recriação após exclusão, validação de alerta_pcts, isolamento.
+
+ACEITE: OpenAPI e testes ok.

@@ -1,0 +1,12 @@
+TAREFA: T-07.01.02 – Agregações MongoDB com índices e cache; teste de carga com 50 mil lançamentos (≤ 3 s)
+ÉPICO/ESTÓRIA: EP-07 / US-07.01 | Prioridade: Must | Depende de: T-03.02.01
+
+PASSOS
+1. Pacote app/services/agregacoes.py com pipelines reutilizáveis ($match inicial por familia_id + período + membro; $group por categoria, membro, dia, mês) usando valor_base_centavos.
+2. Verificar índices com explain() (sem COLLSCAN); criar índices adicionais se necessário (ex.: {familia_id, tipo, data}).
+3. Cache curto (30-60 s) em memória por chave (familia_id + filtros + versão de dados); invalidar ao gravar lançamento (contador de versão por família).
+4. Script scripts/gerar_massa.py que cria 50 mil lançamentos em 3 anos, 3 membros, 20 categorias.
+5. Teste de carga (locust/pytest-benchmark): dashboards <= 3 s e listagens P95 <= 500 ms com a massa; registrar resultados.
+6. Executar agregações em paralelo (asyncio.gather) quando independentes.
+
+ACEITE: metas de desempenho comprovadas e documentadas.

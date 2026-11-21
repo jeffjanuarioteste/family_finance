@@ -1,0 +1,13 @@
+TAREFA: T-05.03.02 – Cálculo de consumido/restante em tempo real (RN-007)
+ÉPICO/ESTÓRIA: EP-05 / US-05.03 | Prioridade: Must | Depende de: T-05.03.01, T-03.02.02
+
+PASSOS
+1. Serviço calcular_consumo(familia_id, orcamento): soma de valor_base_centavos dos lançamentos de saída, não excluídos, da categoria (e subcategorias) e membro (null=Família), com competência igual ao mês. restante = limite − consumido; percentual = consumido/limite (Decimal, 2 casas).
+2. Cálculo em tempo real por agregação ($match + $group) usando índice {familia_id, categoria_id, data}; sem cache desatualizável (se cache, invalidar a cada escrita).
+3. Retornar também status (ok|atencao|estourado) conforme alerta_pcts.
+4. Mês definido pela data do lançamento em America/Sao_Paulo.
+5. Incluir os lançamentos vinculados via módulo 6 apenas se pertencerem à categoria.
+
+TESTES: caso de referência (limite 50000, gasto 42000 = 84%); lançamento excluído; outro membro; virada de mês; estouro.
+
+ACEITE: RN-007 correto.

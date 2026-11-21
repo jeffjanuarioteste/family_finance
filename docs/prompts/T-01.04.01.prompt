@@ -1,0 +1,13 @@
+TAREFA: T-01.04.01 – GET/PATCH /familia (moeda base, configurações)
+ÉPICO/ESTÓRIA: EP-01 / US-01.04 | Prioridade: Must | Depende de: T-01.01.02
+
+PASSOS
+1. GET /api/v1/familia: nome, email, moeda_base, config (fuso, horário de lembretes, bloqueio), versao. Sem hashes.
+2. PATCH /api/v1/familia com controle otimista (campo versao; 409 em conflito): nome, moeda_base (ISO 4217 suportada; padrão BRL), config.
+3. Alterar moeda_base com dados existentes exige confirmação explícita e aviso (impacta valor_base_centavos); bloquear se houver lançamentos, ou documentar recálculo.
+4. Alterar e-mail exige senha atual e reverificação.
+5. Auditar alterações (T-03.05.01).
+
+TESTES: leitura; patch parcial; conflito de versão; moeda inválida 422; isolamento por familia_id.
+
+ACEITE: OpenAPI e testes ok.

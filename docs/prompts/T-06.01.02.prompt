@@ -1,0 +1,13 @@
+TAREFA: T-06.01.02 – Geração de receita prevista mensal
+ÉPICO/ESTÓRIA: EP-06 / US-06.01 | Prioridade: Must | Depende de: T-06.01.01, T-00.03.02
+
+PASSOS
+1. Modelo ReceitaPrevista (ou lançamento pendente do tipo entrada): membro_id, profissao_id, competencia, valor_previsto_centavos, data_prevista (dia_recebimento ajustado ao mês), status (prevista|recebida), valor_realizado_centavos?. Índice único {familia_id, profissao_id, competencia}.
+2. Job diário idempotente gera a receita prevista do mês (e seguinte) a partir da renda (variável usa média dos 6 meses se houver, senão a informada).
+3. Incluir também outras_receitas_centavos como linha separada.
+4. Esses valores alimentam receitas_previstas_mes de RN-001 e RN-013.
+5. Receita só vira lançamento de entrada ao ser confirmada (T-06.01.03).
+
+TESTES: geração única por competência, dia 31, atualização de renda, variável com histórico.
+
+ACEITE: receita prevista mensal disponível por membro.

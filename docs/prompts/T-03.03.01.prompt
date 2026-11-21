@@ -1,0 +1,14 @@
+TAREFA: T-03.03.01 – Serviço de cotações: PTAX diária e coleção `cotacoes`
+ÉPICO/ESTÓRIA: EP-03 / US-03.03 | Prioridade: Must | Depende de: T-00.03.02
+
+PASSOS
+1. Modelo Cotacao (global, sem familia_id): par ("USD/BRL"), data (dia), valor (Decimal128 com precisão de 6 casas), fonte ("PTAX"), obtido_em, tipo (compra|venda). Índice único {par, data}.
+2. Cliente httpx para a API Olinda do Banco Central (CotacaoMoedaDia / CotacaoMoedaPeriodo) com timeout, retentativas e parsing robusto; moedas iniciais USD, EUR.
+3. Job diário (após fechamento do PTAX, ex.: 14h e reexecução às 00:05) idempotente com upsert por {par, data}; dias sem PTAX (fim de semana/feriado) usam a última cotação disponível, marcando `derivada=true`.
+4. Função obter_cotacao(par, data) -> cotação do dia ou última anterior; conversão BRL==BRL retorna 1.
+5. Backfill dos últimos 30 dias na primeira execução.
+6. Endpoint GET /cotacoes?par=&data=.
+
+TESTES: parsing com resposta gravada, upsert idempotente, fallback de feriado, falha da API.
+
+ACEITE: cotações disponíveis para qualquer data recente.

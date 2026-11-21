@@ -1,0 +1,14 @@
+TAREFA: T-11.01.02 – POST /open-finance/conexoes (consentimento) e retorno
+ÉPICO/ESTÓRIA: EP-11 / US-11.01 | Prioridade: Should | Depende de: T-11.01.01
+
+PASSOS
+1. Modelo ConexaoOpenFinance: familia_id, membro_id, instituicao, item_id_externo, status (pendente|ativa|erro|expirada|revogada), consentimento_expira_em (padrão 12 meses), ultima_sincronizacao, token_cifrado, erro?. Índice {familia_id, status}.
+2. POST /open-finance/conexoes {membro_id, instituicao}: cria conexão pendente, obtém do agregador o token/URL do widget de consentimento e devolve ao frontend; `state` anti-CSRF aleatório vinculado à sessão.
+3. GET /open-finance/retorno (callback/validação do widget): validar state, confirmar conexão no agregador, ativar e guardar consentimento_expira_em.
+4. Escopos somente leitura; nunca coletar credenciais do banco.
+5. Frontend: tela "Conectar banco" (escolher membro e instituição, abrir widget, tratar retorno e erros).
+6. LGPD: registrar consentimento (data, escopos).
+
+TESTES: fluxo com agregador mockado, state inválido, retorno repetido.
+
+ACEITE: conexão ativa criada com consentimento registrado.

@@ -1,0 +1,13 @@
+TAREFA: T-10.01.01 – CRUD /investimentos com aportes e GET /investimentos/carteira
+ÉPICO/ESTÓRIA: EP-10 / US-10.01 | Prioridade: Should | Depende de: T-00.01.05
+
+PASSOS
+1. Modelo Investimento: ativo, classe (renda_fixa|acoes|cambio|cripto|outro), moeda, quantidade (Decimal, opcional), total_aportado_centavos, valor_atual_centavos, meta_aporte_mensal_centavos?, simbolo_cotacao?, membro_id, aportes[] {id, data, valor_centavos, quantidade?}. Índice {familia_id, membro_id}.
+2. CRUD (versao, soft delete); POST /investimentos/{id}/aportes (idempotente) que incrementa total_aportado e quantidade atomicamente; remoção de aporte reverte.
+3. GET /investimentos/carteira?membro_id=&moeda_exibicao=: lista, totais por classe e total convertido (RN-017), participação % de cada classe.
+4. Limite do array de aportes e documentação.
+5. Gerar lançamento de saída opcional (origem "aporte_investimento") sem duplicar.
+
+TESTES: CRUD, aporte atômico, totais por classe, multi-moeda, isolamento.
+
+ACEITE: RF-MOD11-01.

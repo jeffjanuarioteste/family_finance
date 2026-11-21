@@ -1,0 +1,112 @@
+ADR D-03 – Hospedagem e orçamento
+Status: PROPOSTA (aguardando confirmação do titular)
+Data: 2026-11-21
+Tarefa: T-00.01.01 | Épico: EP-00 / US-00.01 | Risco relacionado: RK-05
+
+NOTA: valores abaixo são estimativas de referência e DEVEM ser reconferidos nas
+páginas oficiais de preços de cada provedor antes de qualquer contratação.
+
+1. CONTEXTO
+Sistema de Controle Financeiro Familiar: backend FastAPI + MongoDB, frontend PWA
+mobile first (pt-BR). Requisitos: HTTPS/TLS 1.2+, backup diário com retenção de
+7 dias, disponibilidade 99%, job agendado (APScheduler) às 00:05
+America/Sao_Paulo, orçamento gratuito ou baixo custo, preferência por região
+São Paulo.
+
+2. OPÇÕES
+
+2.1 Backend (processo persistente com APScheduler)
+| Critério              | Render                  | Fly.io                      | Railway                    |
+|-----------------------|-------------------------|-----------------------------|----------------------------|
+| Plano gratuito        | Web service free        | Sem free tier relevante     | Trial/crédito limitado     |
+| Sleep / cold start    | Sim (free hiberna ~15min)| Não (máquina sempre ligada)| Não (enquanto há crédito)  |
+| Plano mínimo pago     | ~US$7/mês (Starter)     | ~US$3–6/mês (shared 256-512MB) | ~US$5/mês (Hobby, uso)|
+| CPU/RAM típicos       | 0,5 CPU / 512 MB        | shared-cpu-1x / 256-512 MB  | conforme uso               |
+| Região São Paulo      | Não (Oregon/Ohio/Frankfurt/Singapura) | Sim (gru) | Não (EUA/Europa/Ásia)    |
+| HTTPS automático      | Sim                     | Sim                         | Sim                        |
+| Processo persistente  | Só em plano pago        | Sim                         | Sim                        |
+
+2.2 Banco de dados
+| Critério        | Atlas M0 (free)                   | Atlas M10 (pago)                  |
+|-----------------|-----------------------------------|-----------------------------------|
+| Custo           | US$0                              | ~US$57/mês (referência; verificar)|
+| Armazenamento   | 512 MB, RAM compartilhada         | 10 GB+, 2 GB RAM                  |
+| Backup          | Sem backup automático (só export manual/mongodump) | Cloud Backup contínuo/snapshots |
+| Região          | AWS/GCP/Azure; São Paulo disponível em AWS (sa-east-1) | idem  |
+| TLS             | Sim                               | Sim                               |
+| Limites         | 100 ops/s, sem transações longas, 1 cluster free por projeto | sem limites relevantes |
+
+Consequência: M0 NÃO atende "backup diário/7 dias" nativamente; exige rotina
+própria (mongodump diário via job/GitHub Actions, enviado a armazenamento
+privado com retenção de 7 dias, ex.: Cloudflare R2/Backblaze B2).
+
+2.3 Frontend estático (PWA)
+| Critério           | Cloudflare Pages | Netlify        | Vercel          |
+|--------------------|------------------|----------------|-----------------|
+| Custo              | Gratuito         | Gratuito       | Gratuito (hobby)|
+| HTTPS              | Automático       | Automático     | Automático      |
+| Cabeçalhos custom. | Sim (_headers)   | Sim (_headers/netlify.toml) | Sim (vercel.json) |
+| CDN com borda no BR| Sim              | Parcial        | Sim             |
+Todos atendem. Preferência: Cloudflare Pages (sem limite de banda, _headers para
+CSP/HSTS, service worker servido corretamente).
+
+3. JOB ÀS 00:05 E HIBERNAÇÃO
+- Render free hiberna por inatividade: NÃO garante o job às 00:05. Descartado
+  para o scheduler.
+- Fly.io: máquina com auto_stop_machines=false e min_machines_running=1 mantém
+  o APScheduler ativo; fuso configurado no scheduler (America/Sao_Paulo), não
+  dependente do TZ do host.
+- Alternativa de contingência: cron externo (GitHub Actions schedule ou
+  cron-job.org) chamando endpoint protegido por token (idempotente) às 00:05 BRT
+  (03:05 UTC); tolera atraso de alguns minutos e serve também para acordar
+  o Render free.
+
+4. DECISÃO
+- Backend: Fly.io, região gru (São Paulo), 1 máquina shared 256–512 MB sempre
+  ligada, scheduler no mesmo processo.
+- Banco: MongoDB Atlas M0 (AWS sa-east-1) na fase inicial + backup diário via
+  mongodump agendado (retenção 7 dias). Migrar para M10 pelos gatilhos abaixo.
+- Frontend: Cloudflare Pages, com _headers (HSTS, CSP, X-Content-Type-Options).
+- Job 00:05: APScheduler no Fly.io; cron externo idempotente como redundância.
+
+5. ESTIMATIVA MENSAL (US$, referência)
+| Cenário                 | Backend    | Banco             | Front | Backup  | Total      |
+|-------------------------|------------|-------------------|-------|---------|------------|
+| Gratuito                | Render free + cron externo (sem garantia de 99%) | M0 | 0 | 0 (R2 free) | ~0 |
+| Básico (recomendado)    | Fly.io ~3–6| M0 = 0            | 0     | ~0–1    | ~4–7       |
+| Com Open Finance        | Fly.io ~6–12 (mais RAM) | M10 ~57 | 0   | incluso | ~65–70 + taxa do agregador (variável, a cotar) |
+
+6. VARIÁVEIS DE AMBIENTE (nomes apenas, sem valores)
+Comuns backend: APP_ENV, TZ_SCHEDULER=America/Sao_Paulo, MONGODB_URI,
+MONGODB_DB_NAME, JWT_SECRET, JWT_ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES,
+CORS_ORIGINS, CRON_TRIGGER_TOKEN.
+Fly.io: FLY_API_TOKEN (CI), secrets via "fly secrets set".
+Render: RENDER_DEPLOY_HOOK_URL (CI), PYTHON_VERSION.
+Railway: RAILWAY_TOKEN (CI), PORT.
+Atlas: ATLAS_PROJECT_ID, ATLAS_PUBLIC_KEY, ATLAS_PRIVATE_KEY (apenas se usar API).
+Backup: BACKUP_S3_ENDPOINT, BACKUP_BUCKET, BACKUP_ACCESS_KEY_ID,
+BACKUP_SECRET_ACCESS_KEY, BACKUP_RETENTION_DAYS=7.
+Frontend: VITE_API_BASE_URL. Cloudflare: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID (CI).
+Todos guardados em secret stores dos provedores/CI; nunca versionados.
+
+7. CONSEQUÊNCIAS
++ Custo baixo (~US$4–7/mês), baixa latência (gru), sem cold start.
++ HTTPS automático em todas as camadas.
+- M0 sem backup nativo: rotina própria obrigatória e teste de restauração.
+- M0 limitado a 512 MB e sem SLA; Fly.io exige cartão de crédito.
+- Lock-in moderado (Dockerfile padrão mitiga).
+
+8. GATILHOS DE MIGRAÇÃO (RK-05)
+- Dados > 400 MB (80% do M0) ou ops/s próximas de 100: migrar para Atlas M10
+  (ou Flex/M2-M5 se disponível).
+- Ativação de Open Finance / dados sensíveis de terceiros: migrar para M10
+  com backup gerenciado.
+- Disponibilidade medida < 99% por 2 meses ou RAM > 80% sustentada: subir
+  tamanho da máquina ou migrar para Render/Railway pago.
+- Aumento de preço > 30% em qualquer provedor: reavaliar alternativas.
+Plano: backend em Docker (portável); migração de banco via mongodump/mongorestore;
+DNS próprio com TTL baixo para troca sem indisponibilidade.
+
+9. PENDÊNCIAS
+- Titular confirmar orçamento e cartão para Fly.io (nenhum recurso pago provisionado).
+- Reconferir preços e disponibilidade de sa-east-1 nas páginas oficiais.

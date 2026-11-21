@@ -1,0 +1,13 @@
+TAREFA: T-09.02.01 – Metas tipo `viagem` com participantes e moeda estrangeira (módulo 13)
+ÉPICO/ESTÓRIA: EP-09 / US-09.02 | Prioridade: Should | Depende de: T-09.01.03, T-03.03.01
+
+PASSOS
+1. Tipo viagem: destino, custo_estimado_centavos (valor_alvo) em moeda estrangeira opcional, data_alvo (prazo), valor_guardado (acumulado), participantes[] (ids de membros da família validados).
+2. Cálculos: aporte necessário (RN-002) na moeda da meta e equivalente em BRL pela cotação atual (RN-017); aviso de cotação defasada (fallback).
+3. Aportes podem ser em BRL com conversão para a moeda da meta na data (guardar cotação usada no aporte) ou diretamente na moeda da meta.
+4. Rotas /lugares como alias/filtro tipo=viagem sobre /metas.
+5. Divisão por participante opcional (informativa).
+
+TESTES: viagem em USD, conversão, participantes inválidos, fallback de cotação.
+
+ACEITE: RF-MOD13-01 a RF-MOD13-03.

@@ -1,0 +1,12 @@
+TAREFA: T-08.03.01 – CRUD /necessidades ordenado por urgência (módulo 3)
+ÉPICO/ESTÓRIA: EP-08 / US-08.03 | Prioridade: Should | Depende de: T-08.01.01
+
+PASSOS
+1. Tipo "preciso": titulo, valor_estimado_centavos (>=0), urgencia (alta|media|baixa), status (pendente|comprado|cancelado), item_compra(bool), membro_id.
+2. Rotas /necessidades CRUD (versao, soft delete), ordenação padrão por urgência e depois criação.
+3. Marcar item_compra=true envia à lista de compras (flag usada pelo mercado/itens mensais, sem criar duplicatas).
+4. Totais por membro e por urgência.
+
+TESTES: CRUD, ordenação, totais, isolamento.
+
+ACEITE: RF-MOD03-01 e RF-MOD03-03.

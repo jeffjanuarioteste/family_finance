@@ -1,0 +1,13 @@
+TAREFA: T-08.05.01 – CRUD /economias e cálculo (RN-008)
+ÉPICO/ESTÓRIA: EP-08 / US-08.05 | Prioridade: Should | Depende de: T-03.02.01
+
+PASSOS
+1. Modelo Economia: titulo, meta_mensal_centavos (>0), categoria_id?, membro_id, ativa. Histórico em subdocumentos/coleção economias_historico {economia_id, competencia, economizado_centavos, percentual_meta, origem (manual|calculada)}.
+2. CRUD /economias (versao, soft delete).
+3. RN-008: economizado = max(0, media_categoria_3m − gasto_mes_atual), onde media_categoria_3m = média dos 3 meses anteriores completos; percentual = economizado / meta_mensal (limitado a 100% na barra, valor real exibido).
+4. Função pura calcular_economia(media_3m, gasto_mes) com testes.
+5. Permitir registrar economia manual para a competência.
+
+TESTES: casos de referência (média 100000, gasto 80000 = 20000; gasto > média = 0), sem histórico, manual.
+
+ACEITE: RF-MOD05-01 e RF-MOD05-02.

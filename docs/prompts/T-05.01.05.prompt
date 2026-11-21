@@ -1,0 +1,13 @@
+TAREFA: T-05.01.05 – GET /contas-mes/a-vencer e push de lembrete
+ÉPICO/ESTÓRIA: EP-05 / US-05.01 | Prioridade: Must | Depende de: T-05.01.01, T-02.04.02
+
+PASSOS
+1. GET /api/v1/contas-mes/a-vencer?dias=7&membro_id=: pendentes com vencimento entre hoje e hoje+dias, ordenadas por vencimento, com total em BRL.
+2. Job diário (ex.: 08:00 America/Sao_Paulo, configurável) que, para cada conta pendente com vencimento = hoje + lembrete_dias_antes, chama notificar(tipo "vencimento", chave_dedup "vencimento:{id}:{lembrete}") — uma vez por conta.
+3. Notificação também no dia do vencimento (chave distinta). Mensagem pt-BR: "Aluguel vence em 3 dias (R$ 1.500,00)".
+4. Respeitar preferências de canal e horário de silêncio.
+5. Link da notificação abre a conta no app.
+
+TESTES: listagem por janela, dedup do lembrete, fuso, conta paga não notifica.
+
+ACEITE: critério "alertas de vencimento disparados".

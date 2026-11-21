@@ -1,0 +1,13 @@
+TAREFA: T-10.02.01 – CRUD /dividas e previsão de quitação (RN-011)
+ÉPICO/ESTÓRIA: EP-10 / US-10.02 | Prioridade: Should | Depende de: T-00.01.05
+
+PASSOS
+1. Modelo Divida: descricao, credor, valor_original_centavos, saldo_devedor_centavos, taxa_juros_mensal_pct?, parcela_centavos, parcelas_total, parcelas_pagas, vencimento_dia (1-31), proxima_parcela (data), moeda, membro_id, status (ativa|quitada).
+2. CRUD (versao, soft delete); validar parcelas_pagas <= parcelas_total e valores >= 0.
+3. RN-011: parcelas_restantes = total − pagas; previsao_quitacao = proxima_parcela + (restantes − 1) meses (fim de mês respeitado).
+4. Parcelas de dívidas ativas entram em RN-001 (parcelas_dividas) e RN-009 (saldo devedor).
+5. Campos calculados nas respostas.
+
+TESTES: previsão (12 parcelas, 3 pagas, próxima 05/12 → quitação 05/08 do ano seguinte), quitada, validações.
+
+ACEITE: RF-MOD17-01 e 03 (cálculo).

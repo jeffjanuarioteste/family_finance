@@ -1,0 +1,13 @@
+TAREFA: T-09.01.04 – Telas de planos (cartões, progresso, projeção) e sugestão de "Consegui" ao 100%
+ÉPICO/ESTÓRIA: EP-09 / US-09.01 | Prioridade: Must | Depende de: T-09.01.03, T-08.04.02
+
+PASSOS
+1. Tela "Planos futuros": cartões com título, barra de progresso (valor + % em texto), aporte necessário, data prevista, selo "Em risco" (texto + ícone).
+2. Detalhe: histórico de aportes, gráfico de projeção (com tabela alternativa), simulação de aporte mensal alternativo (chama /projecao).
+3. Ações: novo plano, editar, registrar aporte (folha rápida), excluir aporte.
+4. Ao chegar a 100%, modal "Registrar como conquista?" (T-08.04.02).
+5. Seletor de membro, offline leitura, acessibilidade, pt-BR.
+
+TESTES: componentes e e2e (criar plano, aportar, ver 100%).
+
+ACEITE: critério "metas com aporte e data prevista" operável no celular.

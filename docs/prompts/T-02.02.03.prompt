@@ -1,0 +1,14 @@
+TAREFA: T-02.02.03 – POST /sync/lote no backend
+ÉPICO/ESTÓRIA: EP-02 / US-02.02 | Prioridade: Must | Depende de: T-00.01.05, T-03.02.01
+
+PASSOS
+1. POST /api/v1/sync/lote {itens:[{id_cliente, idempotency_key, tipo:"lancamento", operacao:"criar", payload}]} (máx. 100 itens).
+2. Coleção `idempotencia` {familia_id, chave, resposta, criado_em} com índice único {familia_id, chave} e TTL de 7 dias. Se a chave já existir, devolver a resposta original sem recriar.
+3. Para lançamentos usar id_cliente como _id/identificador externo de cliente com índice único {familia_id, id_cliente} (segunda barreira contra duplicidade).
+4. Resposta por item: {id_cliente, status: criado|duplicado|erro, id, erro{codigo,mensagem}}; HTTP 200 mesmo com erros parciais; um erro não impede os demais; transação por item.
+5. Validar todos os campos como em POST /lancamentos reutilizando o serviço (sem duplicar regra); filtrar por familia_id do token.
+6. Documentar no OpenAPI.
+
+TESTES: reenvio do mesmo lote não duplica; lote com item inválido; limite de 100; concorrência com mesma chave.
+
+ACEITE: idempotência comprovada.

@@ -1,0 +1,11 @@
+TAREFA: T-14.03.05 – Teste de restauração de backup trimestral
+ÉPICO/ESTÓRIA: EP-14 / US-14.03 | Prioridade: Must | Depende de: T-00.02.03 | Recorrente: a cada trimestre
+
+PASSOS
+1. Agendar lembrete trimestral (calendário/issue recorrente).
+2. Executar o checklist docs/restauracao.txt em ambiente isolado: obter o backup mais recente, restaurar, validar contagens e integridade (amostra de famílias, lançamentos, índices), subir a API apontando ao banco restaurado e rodar smoke tests.
+3. Medir RTO (meta <= 4 h) e RPO (<= 24 h) e registrar data, responsável, resultado e correções.
+4. Destruir dados restaurados ao final (contêm dados reais).
+5. Atualizar o checklist com aprendizados.
+
+ACEITE: relatório trimestral com RTO/RPO dentro da meta.

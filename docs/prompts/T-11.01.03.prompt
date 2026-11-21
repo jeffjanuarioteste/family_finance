@@ -1,0 +1,13 @@
+TAREFA: T-11.01.03 – Armazenar tokens criptografados (AES-256)
+ÉPICO/ESTÓRIA: EP-11 / US-11.01 | Prioridade: Should | Depende de: T-11.01.02, T-00.01.04
+
+PASSOS
+1. Usar app/core/crypto.py (AES-256-GCM) para cifrar tokens/identificadores sensíveis do agregador antes de gravar em `conexoes_open_finance.token_cifrado`; decifrar apenas no momento do uso.
+2. Chave versionada (prefixo "v1:") e rotina de rotação que recifra os registros (script idempotente).
+3. Nunca retornar token em respostas, logs ou auditoria (mascarar campo na auditoria).
+4. Teste de que o valor em banco não contém o texto original e que adulteração falha.
+5. Documentar a política de retenção e exclusão (ao revogar, apagar o token).
+
+TESTES: ida e volta, adulteração, rotação de chave, ausência em logs/respostas.
+
+ACEITE: nenhum token em texto puro no banco.

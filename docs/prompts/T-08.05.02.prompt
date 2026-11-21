@@ -1,0 +1,12 @@
+TAREFA: T-08.05.02 – GET /economias/{id}/historico e telas
+ÉPICO/ESTÓRIA: EP-08 / US-08.05 | Prioridade: Should | Depende de: T-08.05.01
+
+PASSOS
+1. GET /economias/{id}/historico?meses=12: série mensal {competencia, economizado, meta, percentual, cumprida(bool)} + média de cumprimento.
+2. Job mensal idempotente (dia 1º 00:05) que fecha a competência anterior gravando o histórico calculado (upsert por economia_id + competencia).
+3. Telas: lista de regras de economia com progresso do mês, detalhe com histórico (gráfico simples + tabela alternativa), criar/editar, registrar economia manual.
+4. Seletor de membro, acessibilidade, pt-BR.
+
+TESTES: fechamento idempotente, histórico, componentes.
+
+ACEITE: RF-MOD05-03.

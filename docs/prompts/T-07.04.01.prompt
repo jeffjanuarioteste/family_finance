@@ -1,0 +1,16 @@
+TAREFA: T-07.04.01 – Cálculo do saldo livre (RN-001) e por dia restante
+ÉPICO/ESTÓRIA: EP-07 / US-07.04 | Prioridade: Must | Depende de: T-05.01.01, T-05.02.01, T-05.04.02, T-05.05.01, T-06.01.02, T-06.02.01
+
+FÓRMULA (RN-001, tudo em BRL base)
+saldo_livre = receitas_previstas_mes − contas_fixas − parcelas_dividas − limites_posso_gastar − orcamento_mercado − itens_todo_mes − aportes_metas − aportes_investimento − reserva_lazer
+
+PASSOS
+1. Função pura calcular_saldo_livre(componentes) em app/services/saldo_livre.py, com cada componente obtido por função própria (receitas previstas de profissão + extras; contas_fixas do mês; limites; orçamento de mercado; estimado dos itens mensais). Componentes de módulos futuros (dívidas, metas, investimentos, lazer) retornam 0 por enquanto via interface/registro de provedores para não alterar a fórmula depois.
+2. saldo_livre_por_dia = saldo_livre / dias_restantes_no_mes (mínimo 1; no último dia, igual ao saldo).
+3. Todos os valores inteiros em centavos; conversão com Decimal; resultado pode ser negativo.
+4. Respeitar filtro de membro/Família/consolidado (RN-019).
+5. Retornar o detalhamento de cada componente (base da cascata).
+
+TESTES: casos de referência (R$ 8.000 receitas − fixas 3.500 − mercado 1.200 − limites 300 − itens 200 = 2.800; por dia com 14 dias = 200); componentes zerados; saldo negativo.
+
+ACEITE: confere com RN-001 em todos os casos.

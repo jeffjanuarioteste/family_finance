@@ -1,0 +1,12 @@
+TAREFA: T-12.01.05 – Relatórios Patrimônio (PDF) e Metas e planos (PDF/Excel)
+ÉPICO/ESTÓRIA: EP-12 / US-12.01 | Prioridade: Should | Depende de: T-12.01.01, T-10.04.01, T-09.06.01
+
+PASSOS
+1. Patrimônio (PDF, data de referência): contas por membro/moeda, investimentos, dívidas, patrimônio líquido (RN-009), cotações usadas e data.
+2. Metas e planos (PDF/Excel; filtros status e membro): progresso, acumulado, alvo, aporte necessário, data prevista, prazo, indicador em risco.
+3. Reutilizar serviços existentes; conversão pela cotação atual com nota de rodapé informando.
+4. Formatação pt-BR, paginação, acentuação.
+
+TESTES: totais conferem com dashboards 3 e 4; meta em risco sinalizada.
+
+ACEITE: dois relatórios fiéis aos dashboards.

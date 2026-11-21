@@ -1,0 +1,14 @@
+TAREFA: T-01.01.05 – Recuperação de senha por e-mail (RK-09)
+ÉPICO/ESTÓRIA: EP-01 / US-01.01 | Prioridade: Must | Depende de: T-01.01.01
+
+PASSOS
+1. POST /auth/recuperar-senha {email}: sempre responder 202 com mensagem genérica (sem revelar se o e-mail existe).
+2. Gerar token aleatório de 32+ bytes, guardar apenas hash e expiração de 30 min em `tokens_recuperacao` (uso único, TTL).
+3. Enviar e-mail pt-BR via SMTP/provedor (serviço app/services/email.py com interface substituível por mock) contendo link para a tela de redefinição.
+4. POST /auth/redefinir-senha {token, nova_senha}: validar token (hash, expiração, não usado), aplicar mesmas regras de senha, gravar novo hash Argon2id, invalidar o token e TODAS as sessões ativas, notificar por e-mail a alteração.
+5. Rate limit por IP e e-mail; limite de 3 solicitações/hora.
+6. Não logar tokens.
+
+TESTES: e-mail inexistente retorna 202; token expirado/usado falha; sessões revogadas após redefinição; senha fraca 422.
+
+ACEITE: fluxo ponta a ponta com e-mail simulado; sem enumeração de contas.

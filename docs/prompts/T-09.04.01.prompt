@@ -1,0 +1,13 @@
+TAREFA: T-09.04.01 – CRUD /lazer, reserva mensal (RN-018) e avanço de ciclo
+ÉPICO/ESTÓRIA: EP-09 / US-09.04 | Prioridade: Should | Depende de: T-09.01.01, T-03.02.02
+
+PASSOS
+1. Meta tipo lazer: descricao, periodicidade_meses (>=1), valor_ciclo_centavos (>0), proximo_ciclo (data), acumulado.
+2. RN-018: reserva_mensal = valor_ciclo / periodicidade_meses (inteiro em centavos, resto distribuído no último mês do ciclo). Entra em RN-001 (reserva_lazer).
+3. Provisionamento: job mensal idempotente que acumula a reserva do mês (upsert por lazer_id + competencia) sem gerar lançamento real.
+4. POST /lazer/{id}/realizar {valor_centavos, data, conta_id}: cria lançamento de saída (origem "lazer"), zera/abate o acumulado, avança proximo_ciclo em periodicidade_meses (respeitando fim de mês); idempotente.
+5. CRUD com versao e soft delete.
+
+TESTES: reserva (60000/4 = 15000), resto de centavos, avanço de ciclo, realizar 2x.
+
+ACEITE: RF-MOD12-01 a 03.

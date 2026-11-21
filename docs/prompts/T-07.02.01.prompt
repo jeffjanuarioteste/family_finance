@@ -1,0 +1,14 @@
+TAREFA: T-07.02.01 – GET /dashboards/fluxo-caixa (entradas, saídas, saldo, projetado RN-013, vencimentos)
+ÉPICO/ESTÓRIA: EP-07 / US-07.02 | Prioridade: Must | Depende de: T-07.01.01, T-07.01.02, T-05.01.01
+
+PASSOS
+1. Parâmetros: filtros comuns (T-07.01.01).
+2. Resposta: {entradas_centavos, saidas_centavos, saldo_mes (E−S), serie_mensal:[{competencia, entradas, saidas}], saldo_atual (soma de contas), saldo_projetado, contas_a_vencer_7d:[...], contas_atrasadas:[...], alertas:[...]}.
+3. RN-013: saldo_projetado = saldo_atual + entradas_previstas − saídas_previstas (contas do mês pendentes/recorrências e receitas previstas) até o fim do período.
+4. Alertas: saldo projetado < 0; existência de conta atrasada.
+5. Considerar apenas lançamentos efetivados no realizado; valores em valor_base convertidos para a moeda de exibição.
+6. Usar cache e agregações de T-07.01.02.
+
+TESTES: caso de referência calculado manualmente; período sem dados; membro vs consolidado; projeção negativa gera alerta.
+
+ACEITE: <= 3 s com 50 mil lançamentos.

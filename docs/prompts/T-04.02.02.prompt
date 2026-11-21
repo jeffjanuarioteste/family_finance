@@ -1,0 +1,13 @@
+TAREFA: T-04.02.02 – Snapshot mensal em `saldos_historico`
+ÉPICO/ESTÓRIA: EP-04 / US-04.02 | Prioridade: Must | Depende de: T-04.02.01, T-00.03.02
+
+PASSOS
+1. Modelo SaldoHistorico: familia_id, conta_id, data, competencia (AAAA-MM), saldo_centavos, moeda, cotacao_base?, tipo (diario|mensal). Índice único {familia_id, conta_id, data, tipo}.
+2. Job idempotente no último dia do mês (ou dia 1º às 00:05 para o mês anterior) gravando snapshot de cada conta ativa com o último saldo conhecido; guardar também a cotação do dia para análise.
+3. Também snapshot de investimentos e dívidas quando existirem (EP-10) via ponto de extensão.
+4. Reexecução não duplica (upsert).
+5. GET /contas/{id}/historico?de=&ate=.
+
+TESTES: job idempotente, múltiplas famílias, conta sem movimentação mantém saldo anterior.
+
+ACEITE: evolução mensal do patrimônio disponível para o dashboard 3.

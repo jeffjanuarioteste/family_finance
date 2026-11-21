@@ -1,0 +1,12 @@
+TAREFA: T-05.05.01 – CRUD /itens-mensais com checklist embutido (módulo 7 "Todo mês")
+ÉPICO/ESTÓRIA: EP-05 / US-05.05 | Prioridade: Must | Depende de: T-03.01.02
+
+PASSOS
+1. Modelo ItemMensal: item (<=100), valor_estimado_centavos (>=0), categoria_id?, membro_id, ativo, checklist[] embutido {competencia AAAA-MM, comprado(bool), valor_real_centavos?, data_compra?, lancamento_id?}. Unicidade de competencia dentro do array (validar e usar $addToSet/filtro).
+2. Rotas CRUD com versao e soft delete; inativar item para de gerar checklist futuro mas mantém histórico.
+3. Ao criar, gerar a entrada da competência atual.
+4. Limitar tamanho do array (ex.: manter últimos 24 meses; arquivar mais antigos) para respeitar o limite do documento.
+
+TESTES: CRUD, unicidade de competência, limite do array.
+
+ACEITE: OpenAPI e testes ok.

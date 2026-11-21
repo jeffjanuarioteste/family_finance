@@ -1,0 +1,13 @@
+TAREFA: T-05.01.03 – Job que marca `atrasada` (RN-016)
+ÉPICO/ESTÓRIA: EP-05 / US-05.01 | Prioridade: Must | Depende de: T-05.01.01, T-00.03.02
+
+PASSOS
+1. Job diário 00:05 (após a geração): update_many com filtro {status:"pendente", vencimento < hoje (America/Sao_Paulo), deletado_em:null} -> status "atrasada". Idempotente.
+2. Conta paga posteriormente (atrasada -> paga) é permitida em T-05.01.04.
+3. Para cada conta que virou atrasada, criar notificação com chave_dedup "atrasada:{id}" (uma vez).
+4. Garantir que a verificação também ocorra em leitura (consulta calcula status efetivo) para evitar janela entre meia-noite e o job.
+5. Índice {familia_id, vencimento, status} utilizado.
+
+TESTES: vencimento ontem vira atrasada; vencimento hoje continua pendente; paga não muda; dupla execução; fuso (23:59 vs 00:01).
+
+ACEITE: critério "status atrasada correto".

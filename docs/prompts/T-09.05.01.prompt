@@ -1,0 +1,14 @@
+TAREFA: T-09.05.01 – Definir fonte de cripto/ações (D-02)
+ÉPICO/ESTÓRIA: EP-09 / US-09.05 | Prioridade: Should | Bloqueia: T-09.05.02
+
+OBJETIVO
+Escolher e documentar o provedor gratuito de cotações de cripto e ações B3.
+
+PASSOS
+1. Comparar CoinGecko (cripto) e brapi (ações/FII B3) e alternativas: limites de requisições, necessidade de chave, termos de uso, latência, cobertura (ex.: BTC, ETH, PETR4, IVVB11), estabilidade, licença para uso em app pessoal.
+2. Testar chamadas reais e medir limites com 15 min de frequência e cache.
+3. Definir símbolos/ids suportados, moeda de cotação (converter para BRL via PTAX quando necessário) e estratégia de fallback.
+4. Registrar decisão em docs/decisoes/D-02-cotacoes.txt (opções, decisão, limites, riscos RK-06, plano B).
+5. Definir interface ProvedorCotacao (obter(ativo, moeda)) para troca futura.
+
+ACEITE: decisão registrada, chaves (se houver) só em secrets.

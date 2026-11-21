@@ -1,0 +1,14 @@
+TAREFA: T-02.04.04 – Fallback por e-mail e alertas dentro do app (iOS)
+ÉPICO/ESTÓRIA: EP-02 / US-02.04 | Prioridade: Must | Depende de: T-02.04.02, T-01.01.05
+
+PASSOS
+1. Política de canais no serviço notificar(): sempre in-app; push se houver assinatura ativa; e-mail como fallback para alertas críticos (vencimento, saldo projetado negativo, Open Finance expirando) quando não houver push ativo ou o envio falhar.
+2. Configuração por família/tipo: e-mail on/off, horário de silêncio, resumo diário opcional.
+3. Template de e-mail pt-BR (HTML + texto) com link ao app, sem dados sensíveis excessivos; rodapé de descadastro.
+4. Limite de frequência (anti-spam): no máximo 1 e-mail por chave_dedup; agrupar alertas no mesmo dia.
+5. Banner in-app no iOS não instalado explicando limitações de push e como instalar (link para T-02.01.04).
+6. Registrar canais usados em notificacoes.canais_enviados.
+
+TESTES: sem push -> e-mail enviado; com push -> sem e-mail; dedup respeitada.
+
+ACEITE: alerta chega por ao menos um canal em todos os cenários.

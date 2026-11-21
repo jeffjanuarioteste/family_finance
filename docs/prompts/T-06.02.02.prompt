@@ -1,0 +1,12 @@
+TAREFA: T-06.02.02 – POST /receitas-extras/{id}/receber gerando lançamento de entrada
+ÉPICO/ESTÓRIA: EP-06 / US-06.02 | Prioridade: Must | Depende de: T-06.02.01, T-03.02.02
+
+PASSOS
+1. POST {valor_realizado_centavos?, data_recebimento?, conta_id?} com Idempotency-Key: em transação, status "recebida", gravar realizado (padrão = previsto) e data, criar lançamento de entrada (origem "receita_extra", origem_id, membro, categoria de entrada).
+2. Já recebida: idempotente (sem novo lançamento); POST /receitas-extras/{id}/desfazer reverte e exclui o lançamento logicamente.
+3. Cancelada não pode ser recebida (409).
+4. Auditoria e notificação opcional.
+
+TESTES: receber, receber 2x, desfazer, cancelada, valor diferente do previsto.
+
+ACEITE: um lançamento por receita, sem duplicidade.

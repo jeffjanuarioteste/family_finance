@@ -1,0 +1,13 @@
+TAREFA: T-10.02.02 – POST /dividas/{id}/pagar-parcela gerando conta do mês
+ÉPICO/ESTÓRIA: EP-10 / US-10.02 | Prioridade: Should | Depende de: T-10.02.01, T-05.01.04
+
+PASSOS
+1. POST {valor_pago_centavos?, data?, conta_id?} com Idempotency-Key: em transação incrementa parcelas_pagas, reduz saldo_devedor (se houver juros, abater apenas a amortização conforme configuração; padrão: saldo − parcela, não negativo), avança proxima_parcela em 1 mês e registra o pagamento.
+2. Gerar/atualizar a ContaMes correspondente à parcela (origem "divida", vínculo divida_id + competencia, upsert único) e pagá-la pelo fluxo T-05.01.04 criando o lançamento de saída.
+3. Idempotência por {divida_id, numero_parcela}: não pagar a mesma parcela duas vezes.
+4. Ao completar todas as parcelas ou saldo 0: status "quitada" e sugestão de conquista (T-10.02.03).
+5. Desfazer último pagamento.
+
+TESTES: pagar parcela, repetição, última parcela quita, transação com falha, desfazer.
+
+ACEITE: RF-MOD17-02.

@@ -1,0 +1,13 @@
+TAREFA: T-09.03.02 – Vínculo de contas/investimentos e telas da reserva
+ÉPICO/ESTÓRIA: EP-09 / US-09.03 | Prioridade: Should | Depende de: T-09.03.01, T-04.01.01
+
+PASSOS
+1. Backend: validar vínculos (mesma família, ativos), impedir duplicidade de uma conta em duas reservas; investimentos vinculados só quando EP-10 existir (aceitar lista vazia).
+2. Tela: cartão de cobertura em meses (grande), progresso para a meta, valor atual × meta, composição por conta, projeção de data.
+3. Seleção de contas que compõem a reserva (multi-seleção com saldos e moeda).
+4. Configuração de meta em meses (3, 6, 12 ou personalizado).
+5. Acessibilidade, pt-BR, estados de erro.
+
+TESTES: vínculo inválido, duplicidade, componentes.
+
+ACEITE: RF-MOD18-03.

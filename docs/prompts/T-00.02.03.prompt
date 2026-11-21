@@ -1,0 +1,16 @@
+TAREFA: T-00.02.03 – Backup diário MongoDB (retenção 7 dias) e checklist de restauração
+ÉPICO/ESTÓRIA: EP-00 / US-00.02 | Prioridade: Must | Metas: RPO 24 h, RTO 4 h
+
+PASSOS
+1. Se Atlas com backup nativo (M10+), habilitar snapshot diário com retenção 7 dias. Se M0 (sem backup nativo), criar job diário (GitHub Actions agendado ou cron) com mongodump --gzip --archive.
+2. Criptografar o dump (age/gpg ou AES) antes de enviar a armazenamento externo (S3/R2/Backblaze) e aplicar política de ciclo de vida de 7 dias.
+3. Script scripts/backup.sh (ou .ps1) com: dump, criptografia, upload, verificação de tamanho > 0, notificação em falha.
+4. Criar docs/restauracao.txt com checklist: localizar backup, baixar, descriptografar, mongorestore para banco temporário, validar contagem de coleções críticas (familias, lancamentos), trocar a URI, validar /saude, registrar data/tempo (RTO).
+5. Executar uma restauração de teste em homologação e registrar o resultado.
+6. Agendar teste de restauração trimestral (liga com T-14.03.05).
+
+CRITÉRIOS DE ACEITE
+- Backup diário comprovado por 3 dias consecutivos.
+- Backups com mais de 7 dias removidos.
+- Restauração testada, dentro de 4 h.
+- Credenciais só em secrets.

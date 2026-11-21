@@ -1,0 +1,13 @@
+TAREFA: T-09.05.02 – Job de cotações (15 min com cache) e GET /cotacoes
+ÉPICO/ESTÓRIA: EP-09 / US-09.05 | Prioridade: Should | Depende de: T-09.05.01, T-03.03.01
+
+PASSOS
+1. Job a cada 15 min (apenas para ativos em uso por alguma família: contas cripto, investimentos) usando ProvedorCotacao; cache em memória/coleção com TTL de 15 min; respeitar limites do provedor (agrupar chamadas).
+2. Coleção `cotacoes`: um valor por par/dia mantido para histórico (upsert do último valor do dia) + cache de última cotação com timestamp.
+3. Falha: manter última cotação válida e marcar defasada (RK-06); backoff exponencial.
+4. GET /api/v1/cotacoes?pares=USD/BRL,BTC/BRL&data=: retorna {par, valor, data_referencia, atualizado_em, fallback}.
+5. Horário de consulta de ações limitado ao pregão (fora dele manter último fechamento).
+
+TESTES: job idempotente, limites, falha do provedor, endpoint.
+
+ACEITE: cotações atualizadas ou marcadas como defasadas.

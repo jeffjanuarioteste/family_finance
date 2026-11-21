@@ -1,0 +1,15 @@
+TAREFA: T-00.03.01 – Scheduler (APScheduler) com execução às 00:05
+ÉPICO/ESTÓRIA: EP-00 / US-00.03 | Prioridade: Must | Depende de: T-00.01.03
+
+PASSOS
+1. Adicionar apscheduler (AsyncIOScheduler) com timezone America/Sao_Paulo.
+2. app/jobs/scheduler.py: criar, registrar e iniciar o scheduler no lifespan do FastAPI; desligar no shutdown (wait=False).
+3. Registrar job diário CronTrigger(hour=0, minute=5) que chama o orquestrador de jobs diários (T-00.03.02).
+4. Evitar execução duplicada com múltiplas instâncias: lock distribuído em coleção `locks_jobs` (índice único em nome + janela, TTL) ou variável SCHEDULER_ENABLED=true apenas em uma instância.
+5. misfire_grace_time=3600 e coalesce=True para recuperar execução perdida (ex.: hibernação do plano gratuito); max_instances=1.
+6. Endpoint interno protegido (admin/token de serviço) para disparar o job manualmente em homologação.
+
+TESTES
+Scheduler registra o job com cron 00:05 e fuso correto; segunda instância não executa quando o lock existe.
+
+CRITÉRIOS DE ACEITE: job executa no horário em homologação; logs de início/fim; sem duplicidade.

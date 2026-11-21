@@ -1,0 +1,12 @@
+TAREFA: T-10.01.03 – Meta mensal × realizado e telas de investimentos
+ÉPICO/ESTÓRIA: EP-10 / US-10.01 | Prioridade: Should | Depende de: T-10.01.02
+
+PASSOS
+1. GET /investimentos/aportes-mes?competencia=: aporte realizado do mês (soma de aportes) × meta_aporte_mensal por ativo e total (entra em RN-001 como aportes_investimento).
+2. Telas: carteira (rosca por classe com tabela alternativa), lista de ativos com valor atual, rentabilidade e atualização, detalhe com aportes, formulário de ativo e de aporte.
+3. Indicador de meta mensal atingida (barra com texto).
+4. Seletor de membro, pt-BR, acessibilidade, aviso de cotação defasada.
+
+TESTES: componentes e e2e.
+
+ACEITE: RF-MOD11-04.

@@ -1,0 +1,13 @@
+TAREFA: T-02.03.01 – Atualização ao voltar o foco e polling de 60 s
+ÉPICO/ESTÓRIA: EP-02 / US-02.03 | Prioridade: Must | Depende de: T-02.02.01
+
+PASSOS
+1. Hook useAtualizacaoAutomatica: refetch das consultas ativas em 'visibilitychange' (visible) e 'focus'; polling a cada 60 s apenas com a aba visível e online.
+2. Usar TanStack Query (refetchInterval=60000, refetchOnWindowFocus) ou equivalente; pausar em segundo plano.
+3. Backend: suportar If-None-Match/ETag ou parâmetro `atualizado_apos` para respostas leves (304) e reduzir custo.
+4. Evitar sobrescrever formulário em edição; mostrar aviso "dados atualizados".
+5. Respeitar rate limit (100 req/min/IP).
+
+TESTES: relógio simulado dispara refetch a cada 60 s; sem polling em segundo plano.
+
+ACEITE: mudança feita em outro aparelho aparece em até 60 s ou ao focar o app.

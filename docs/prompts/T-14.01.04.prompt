@@ -1,0 +1,14 @@
+TAREFA: T-14.01.04 – Criptografia de campos sensíveis
+ÉPICO/ESTÓRIA: EP-14 / US-14.01 | Prioridade: Must | Depende de: T-00.01.04
+
+PASSOS
+1. Inventariar campos sensíveis: tokens Open Finance, identificadores externos de contas, (avaliar) observações sensíveis, segredos de integração.
+2. Tipo/serializador CampoCifrado para Beanie/Pydantic que cifra com AES-256-GCM (crypto.py) ao gravar e decifra ao ler; excluir de logs e auditoria.
+3. Migração para cifrar dados existentes (script idempotente) e suporte a rotação de chave versionada.
+4. Campos cifrados não são pesquisáveis: usar hash determinístico (HMAC) separado quando for necessária busca exata.
+5. Documentar o que é e o que não é cifrado (senha e PIN usam hash, não cifra).
+6. Criptografia em repouso do MongoDB Atlas habilitada.
+
+TESTES: dado cifrado em banco, leitura transparente, rotação, falha com chave errada.
+
+ACEITE: nenhum campo sensível em texto puro.

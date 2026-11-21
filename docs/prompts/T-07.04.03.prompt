@@ -1,0 +1,13 @@
+TAREFA: T-07.04.03 – GET /dashboards/saldo-livre, cascata e alerta de saldo ≤ 0
+ÉPICO/ESTÓRIA: EP-07 / US-07.04 | Prioridade: Must | Depende de: T-07.04.01, T-07.04.02
+
+PASSOS
+1. Endpoint GET /api/v1/dashboards/saldo-livre?competencia=&membro_id=: retorna {receitas_previstas, componentes:[{rotulo, valor}], saldo_livre, saldo_livre_por_dia, dias_restantes, sugestoes_corte, economia_potencial, alertas}.
+2. Alerta SALDO_LIVRE_NEGATIVO quando saldo_livre <= 0, com notificação única por mês (chave_dedup).
+3. Frontend: gráfico em cascata (receita → fixas → mercado → limites → itens → aportes → livre), cartão grande com saldo livre e por dia, lista de sugestões, atalho ao simulador (apenas link/placeholder até EP-13).
+4. Acessibilidade (tabela alternativa), pt-BR, skeletons, erros.
+5. <= 3 s com 50 mil lançamentos.
+
+TESTES: API (caso de referência, alerta), componente da cascata.
+
+ACEITE: critério "saldo livre confere com RN-001" e "Dashboard 6 em <= 3 s".

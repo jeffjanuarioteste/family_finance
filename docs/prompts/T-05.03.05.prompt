@@ -1,0 +1,14 @@
+TAREFA: T-05.03.05 – Telas de orçamento
+ÉPICO/ESTÓRIA: EP-05 / US-05.03 | Prioridade: Must | Depende de: T-05.03.04
+
+PASSOS
+1. Tela Orçamento: navegação por mês, resumo geral, lista de categorias com barra de progresso (valor e %, cor + texto/ícone para estados atenção/estourado).
+2. Criar/editar limite por categoria e membro/Família, definir alertas (80/100 padrão).
+3. Botão "Copiar mês anterior" com pré-visualização e confirmação.
+4. Detalhe da categoria: lançamentos do mês que compõem o consumo (abre listagem filtrada).
+5. Seletor global de membro; offline em modo leitura.
+6. Acessibilidade, pt-BR, alvos >= 44 px.
+
+TESTES: componentes e e2e (criar, copiar, ver estouro).
+
+ACEITE: usuário define orçamento cobrindo >= 80% dos gastos com poucos toques.

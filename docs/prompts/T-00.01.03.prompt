@@ -1,0 +1,25 @@
+TAREFA: T-00.01.03 – Configurar FastAPI + Pydantic + Beanie/Motor e conexão MongoDB Atlas
+ÉPICO/ESTÓRIA: EP-00 / US-00.01 | Prioridade: Must | Depende de: T-00.01.02
+
+CONTEXTO GLOBAL
+API REST em /api/v1, assíncrona, OpenAPI automática. Valores monetários em centavos (int) + moeda. Datas em UTC no banco; fuso America/Sao_Paulo na apresentação.
+
+OBJETIVO
+Aplicação FastAPI iniciando com conexão MongoDB (Motor) e Beanie inicializado, com health check.
+
+PASSOS
+1. Dependências: fastapi, uvicorn[standard], pydantic v2, pydantic-settings, motor, beanie, httpx, pytest, pytest-asyncio, mongomock-motor ou mongodb de teste.
+2. app/core/config.py: classe Settings (pydantic-settings) lendo MONGODB_URI, MONGODB_DB, ENV, CORS_ORIGINS; sem valores padrão sensíveis.
+3. app/core/db.py: função init_db() criando AsyncIOMotorClient e chamando init_beanie(database, document_models=[...]); fechar cliente no shutdown.
+4. app/main.py: usar lifespan para init_db; montar APIRouter prefixo /api/v1; título "Financeiro Familiar", versão, docs em /docs.
+5. Rota GET /api/v1/saude retornando {status:"ok", banco:"ok|erro"} (ping no Mongo).
+6. Tratar falha de conexão com erro claro no startup e timeout (serverSelectionTimeoutMS).
+7. Criar fixture de teste que sobe app com banco de teste isolado e limpa entre testes.
+
+ENTREGÁVEIS
+app/main.py, app/core/config.py, app/core/db.py, tests/integration/test_saude.py.
+
+CRITÉRIOS DE ACEITE
+- `uvicorn app.main:app` sobe e /saude retorna ok com Atlas.
+- /openapi.json válido.
+- Teste de saúde passa no CI.

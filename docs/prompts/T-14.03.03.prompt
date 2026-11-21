@@ -1,0 +1,10 @@
+TAREFA: T-14.03.03 – Testes em Safari/iOS ≥ 16.4 e Chrome/Android
+ÉPICO/ESTÓRIA: EP-14 / US-14.03 | Prioridade: Must | Depende de: M1 concluído
+
+PASSOS
+1. Matriz de dispositivos: iPhone real (Safari e PWA instalado, iOS >= 16.4), Android real (Chrome e instalado), mais emulação (BrowserStack/Playwright WebKit).
+2. Roteiro: instalação, login, sessões, PIN/WebAuthn, lançar online/offline e sincronizar sem duplicar, push (iOS instalado) e fallback, atualização do SW, safe areas e teclado, formatação pt-BR, exportação/compartilhamento.
+3. Registrar resultados por item (passou/falhou, versão do SO, evidências) e corrigir falhas; reteste.
+4. Automatizar o que for possível em Playwright (Chromium e WebKit).
+
+ACEITE: roteiro 100% aprovado nos dois sistemas.

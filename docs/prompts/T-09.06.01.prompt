@@ -1,0 +1,12 @@
+TAREFA: T-09.06.01 – GET /dashboards/metas e alerta de meta em risco
+ÉPICO/ESTÓRIA: EP-09 / US-09.06 | Prioridade: Should | Depende de: T-09.01.03, T-09.03.01
+
+PASSOS
+1. Resposta: {metas:[{id, titulo, tipo, progresso_pct, acumulado, alvo, aporte_necessario, aporte_mensal_atual, data_prevista, prazo, em_risco}], reserva:{cobertura_meses, progresso_pct}, total_aporte_mensal, alertas:[...]}.
+2. Em risco: data_prevista > prazo (ou sem previsão com prazo definido); alerta com notificação única por meta/mês (chave_dedup).
+3. Filtros comuns (membro, período, moeda de exibição); valores convertidos pela cotação atual.
+4. Ordenar por risco e prazo; agregação eficiente (<= 3 s).
+
+TESTES: meta em risco vs no prazo; sem aportes; multi-moeda; alerta único.
+
+ACEITE: dashboard 4 correto.

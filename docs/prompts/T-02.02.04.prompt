@@ -1,0 +1,13 @@
+TAREFA: T-02.02.04 – Indicador de pendências de sincronização
+ÉPICO/ESTÓRIA: EP-02 / US-02.02 | Prioridade: Must | Depende de: T-02.02.02
+
+PASSOS
+1. Store reativa com contagem de itens por status (pendente, enviando, erro) e estado de rede.
+2. Componente no cabeçalho: ícone com badge "3 pendentes"; estados: online sincronizado, offline, sincronizando, erro.
+3. Tela "Pendências": listar itens com valor, data e erro; ações: tentar novamente, editar, descartar (confirmação).
+4. Aviso ao tentar sair com pendências; aviso persistente no iOS sobre risco de limpeza do armazenamento.
+5. Acessibilidade: aria-live para mudanças de estado; textos pt-BR.
+
+TESTES: contagem atualiza ao enfileirar/sincronizar; ações da tela.
+
+ACEITE: usuário sempre sabe o que não foi enviado.

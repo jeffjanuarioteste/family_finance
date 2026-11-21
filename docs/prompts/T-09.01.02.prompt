@@ -1,0 +1,17 @@
+TAREFA: T-09.01.02 – Funções RN-002, RN-003 e RN-004 com testes unitários
+ÉPICO/ESTÓRIA: EP-09 / US-09.01 | Prioridade: Must | Depende de: nenhuma (funções puras)
+
+FÓRMULAS
+- RN-002: sem juros aporte = (alvo − acumulado)/meses_restantes. Com taxa mensal i: PMT = (alvo − acumulado·(1+i)^n) · i / ((1+i)^n − 1).
+- RN-003: n = ceil(log((alvo·i + aporte)/(acumulado·i + aporte)) / log(1+i)); se i=0, n = ceil((alvo − acumulado)/aporte); aporte=0 → "sem previsão"; data = hoje + n meses.
+- RN-004: progresso = acumulado/alvo×100, limitado a 100%.
+
+PASSOS
+1. app/services/metas_calculos.py com aporte_necessario(alvo, acumulado, meses, i), previsao_meses(alvo, acumulado, aporte, i), data_prevista(hoje, n), progresso_pct(acumulado, alvo). Usar Decimal (precisão 28), centavos inteiros e arredondamento half-up para cima no aporte (ceil em centavos para não subestimar).
+2. Casos de borda: meses_restantes <= 0 (aporte = restante), acumulado >= alvo (aporte 0, previsão 0), alvo <= 0 erro, i negativo rejeitado, n grande (>1200 meses → "sem previsão razoável"), prazo no mesmo mês.
+3. Adição de meses respeitando fim de mês (31 jan + 1 mês = 28/29 fev).
+4. Meses restantes entre hoje e prazo contados de forma consistente (documentar: meses inteiros, mínimo 1 se prazo futuro).
+
+TESTES: casos de referência (alvo 60000 em 144 meses sem juros = 416,67→41667 cents; com i=0,5%), propriedade: aplicar aporte calculado por n meses atinge o alvo; i=0; aporte=0; arredondamento.
+
+ACEITE: critério do MVP "aporte necessário e data prevista conferem com RN-002 e RN-003".

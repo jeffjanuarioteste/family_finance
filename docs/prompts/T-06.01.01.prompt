@@ -1,0 +1,13 @@
+TAREFA: T-06.01.01 – CRUD /profissoes por membro (renda fixa/variável)
+ÉPICO/ESTÓRIA: EP-06 / US-06.01 | Prioridade: Must | Depende de: T-01.04.02
+
+PASSOS
+1. Decisão de modelagem: profissão embutida em `membros.profissao[]` (T-01.04.02); expor rotas /profissoes que operam sobre esse array (subdocumento com id próprio).
+2. Campos: profissao, tipo_renda (fixa|variavel), renda_mensal_centavos (fixa=valor; variável=média informada), dia_recebimento (1-31), outras_receitas_centavos, investimento_trabalho_mensal_centavos, ativa.
+3. Rotas GET (por membro), POST, PATCH {id} (versao do membro), DELETE (soft).
+4. Um membro pode ter mais de uma profissão/vínculo.
+5. Validações: valores inteiros >= 0, dia 1-31.
+
+TESTES: CRUD, múltiplos vínculos, validações, isolamento.
+
+ACEITE: renda disponível para receitas previstas.

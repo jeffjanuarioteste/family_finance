@@ -1,0 +1,12 @@
+TAREFA: T-12.01.04 – Relatório Orçamento × realizado (Excel/PDF)
+ÉPICO/ESTÓRIA: EP-12 / US-12.01 | Prioridade: Should | Depende de: T-12.01.01, T-05.03.04
+
+PASSOS
+1. Dados de /orcamentos/status (mês, membro): categoria, limite, consumido, restante, percentual, status.
+2. Totais gerais e % de gastos cobertos por orçamento.
+3. Excel: formatação condicional por status (com texto, não só cor); PDF com tabela e barras de progresso.
+4. Incluir limites "posso gastar" como seção opcional.
+
+TESTES: valores batem com a tela; categorias sem orçamento listadas à parte.
+
+ACEITE: relatório fiel ao módulo 19.

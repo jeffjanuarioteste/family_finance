@@ -1,0 +1,12 @@
+TAREFA: T-06.01.04 – Telas de profissão e renda
+ÉPICO/ESTÓRIA: EP-06 / US-06.01 | Prioridade: Must | Depende de: T-06.01.03
+
+PASSOS
+1. Tela "Renda" por membro: lista de profissões, tipo, renda, dia de recebimento, previsto × realizado do mês, média de 6 meses (renda variável) com mini gráfico.
+2. Formulário de criar/editar profissão/vínculo; ação "Registrar renda recebida" (valor, data, conta).
+3. Destaque para renda variável com histórico mensal.
+4. Seletor de membro, offline em leitura/fila, acessibilidade, pt-BR.
+
+TESTES: componentes e e2e (registrar renda e ver média).
+
+ACEITE: cônjuge com renda variável registra recebimentos facilmente no Android.

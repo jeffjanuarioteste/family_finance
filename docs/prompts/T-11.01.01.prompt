@@ -1,0 +1,11 @@
+TAREFA: T-11.01.01 – Decidir agregador Open Finance e custo (D-01); POC
+ÉPICO/ESTÓRIA: EP-11 / US-11.01 | Prioridade: Should | Bloqueia: demais tarefas do EP-11
+
+PASSOS
+1. Comparar Pluggy e Belvo (e alternativas reguladas): custo por conexão/plano, nível gratuito/sandbox, bancos cobertos (os da família), escopos (contas, saldos, transações), validade do consentimento (12 meses), webhooks, SDK Python, conformidade LGPD.
+2. POC em sandbox: criar conexão, listar contas, saldos e transações; medir latência e formato de `id` de transação (para id_externo).
+3. Estimar custo mensal para a família e decidir se Open Finance entra no MVP (PRD 15).
+4. Documentar em docs/decisoes/D-01-open-finance.txt (opções, decisão, custos, riscos RK-03, plano B manual).
+5. Definir a interface AgregadorOpenFinance (criar_conexao, listar_contas, listar_transacoes, revogar) para isolar o provedor.
+
+ACEITE: decisão aprovada pelo titular; segredos só em secrets; nunca armazenar credenciais bancárias.

@@ -1,0 +1,14 @@
+TAREFA: T-01.01.03 – Bloqueio após 5 falhas por 15 min
+ÉPICO/ESTÓRIA: EP-01 / US-01.01 | Prioridade: Must | Depende de: T-01.01.02
+
+PASSOS
+1. Em `familias` (ou coleção `tentativas_login`) guardar falhas_consecutivas, bloqueado_ate.
+2. No login: se agora < bloqueado_ate retornar 429/423 com mensagem "Muitas tentativas. Tente novamente em X minutos" e cabeçalho Retry-After; não validar a senha durante o bloqueio.
+3. Cada falha incrementa o contador; ao atingir 5 definir bloqueado_ate = agora + 15 min; sucesso zera o contador.
+4. Contar também por IP+e-mail para não permitir bloquear contas alheias indefinidamente (usar chave composta) e evitar enumeração (comportamento idêntico para e-mail inexistente).
+5. Operações atômicas ($inc/findOneAndUpdate) para evitar corrida.
+6. Registrar evento de segurança em log (sem senha).
+
+TESTES: 5 falhas bloqueiam; 6ª tentativa com senha correta durante bloqueio é negada; após 15 min (relógio simulado) volta a funcionar; sucesso zera contador.
+
+ACEITE: comportamento idêntico para e-mail inexistente; testes passando.

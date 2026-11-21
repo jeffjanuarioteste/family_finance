@@ -1,0 +1,12 @@
+TAREFA: T-08.01.02 – Ordenação, destaque de atrasadas e telas de prioridades
+ÉPICO/ESTÓRIA: EP-08 / US-08.01 | Prioridade: Should | Depende de: T-08.01.01
+
+PASSOS
+1. Ordenação padrão: atrasadas primeiro, depois nível (alta>média>baixa) e prazo mais próximo; suportar sort customizado com whitelist.
+2. Tela: lista com filtros (membro, nível, status), selo "Atrasada" (texto + ícone), marcar concluída com um toque, criar/editar.
+3. Ao concluir, oferecer "Registrar em Já consegui".
+4. Seletor global de membro; acessibilidade; pt-BR.
+
+TESTES: ordenação, destaque, componente e e2e.
+
+ACEITE: RF-MOD01-02 atendido.

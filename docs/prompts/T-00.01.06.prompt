@@ -1,0 +1,20 @@
+TAREFA: T-00.01.06 – Paginação, filtros, ordenação e formato padrão de erros (Análise seção 9.1)
+ÉPICO/ESTÓRIA: EP-00 / US-00.01 | Prioridade: Must | Depende de: T-00.01.05
+
+PADRÕES
+- Paginação: ?page=1&page_size=20 (máx. 100). Resposta {items, page, page_size, total}.
+- Filtros: membro_id, periodo_inicio, periodo_fim, status, categoria_id, moeda. membro_id=familia = Família; omitido = consolidado (RN-019).
+- Ordenação: ?sort=-data (prefixo - = decrescente), apenas campos permitidos por rota (whitelist).
+
+PASSOS
+1. app/core/paginacao.py: dependência ParametrosPaginacao (page>=1, page_size 1..100) e schema genérico Pagina[T].
+2. Função paginar(query, params, sort_permitidos) para Beanie retornando Pagina com total via count().
+3. app/core/filtros.py: dependência FiltrosComuns (membro_id, periodo_inicio, periodo_fim, status) e construtor de filtro Mongo que sempre inclui familia_id e deletado_em=None.
+4. Parser de sort com whitelist; campo inválido -> 422.
+5. Erro padronizado: {"erro":{"codigo":"STRING_MAIUSCULA","mensagem":"texto pt-BR","detalhes":[{"campo":"","motivo":""}],"requisicao_id":"uuid"}}. Handlers para HTTPException, RequestValidationError (422), ConflitoVersaoError (409), erro não tratado (500 sem vazar stack). Middleware que gera requisicao_id e o devolve no cabeçalho X-Request-ID.
+6. Mensagens em pt-BR; documentar respostas de erro no OpenAPI.
+
+TESTES
+page_size=101 -> 422; sort inválido -> 422; total correto; formato de erro em 404/409/422/500; ids de requisição presentes.
+
+CRITÉRIOS DE ACEITE: reutilizável por qualquer router; testes passam; OpenAPI mostra modelos de erro.

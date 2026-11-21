@@ -1,0 +1,12 @@
+TAREFA: T-06.02.01 – CRUD /receitas-extras (módulo 20)
+ÉPICO/ESTÓRIA: EP-06 / US-06.02 | Prioridade: Must | Depende de: T-00.01.05
+
+PASSOS
+1. Modelo ReceitaExtra: descricao, tipo (extra|13o|bonus|freela|outro), valor_previsto_centavos (>0), valor_realizado_centavos?, moeda, data_prevista, data_recebimento?, status (prevista|recebida|cancelada), membro_id, lancamento_id?. Índice {familia_id, data_prevista, status}.
+2. Rotas GET (filtros período, membro, status, tipo), POST, GET {id}, PATCH {id} (versao), DELETE (soft).
+3. Receitas previstas e não canceladas entram na projeção (RN-013) e em receitas_previstas (RN-001) pela data_prevista.
+4. Não permitir editar valor realizado fora do fluxo de receber (T-06.02.02), exceto correção auditada.
+
+TESTES: CRUD, filtros, transição de status, isolamento.
+
+ACEITE: OpenAPI e testes ok.

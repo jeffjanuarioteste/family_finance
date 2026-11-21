@@ -1,0 +1,14 @@
+TAREFA: T-03.05.01 – Registrar criação/edição/exclusão em `auditoria`
+ÉPICO/ESTÓRIA: EP-03 / US-03.05 | Prioridade: Must | Depende de: T-00.01.05
+
+PASSOS
+1. Modelo Auditoria: familia_id, entidade (coleção), entidade_id, acao (criar|editar|excluir|mesclar|restaurar), antes (JSON), depois (JSON), usuario_sessao_id, dispositivo, ip, criado_em. Índices {familia_id, entidade, entidade_id, criado_em:-1}, {familia_id, criado_em:-1}.
+2. Implementar via hook central da DocumentoBase (T-00.01.05) para toda coleção de negócio, usando state management (diff dos campos alterados).
+3. Mascarar/omitir campos sensíveis (senha_hash, pin_hash, tokens, chaves).
+4. Contexto da requisição (sessão, dispositivo, IP) via contextvars.
+5. Gravação não pode quebrar a operação principal: falha é logada e reprocessada; preferir mesma transação quando possível.
+6. GET /auditoria?entidade=&entidade_id= (paginado, família do token).
+
+TESTES: create/update/delete geram registros com antes/depois; campos sensíveis ausentes; isolamento.
+
+ACEITE: todas as alterações rastreáveis.

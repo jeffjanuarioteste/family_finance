@@ -1,0 +1,13 @@
+TAREFA: T-09.01.01 – Modelo `metas` com `tipo` e `aportes[]`
+ÉPICO/ESTÓRIA: EP-09 / US-09.01 | Prioridade: Must | Depende de: T-00.01.05
+
+PASSOS
+1. Modelo Meta (coleção única): tipo (plano|viagem|reserva|lazer), titulo (<=120), valor_alvo_centavos (>0), moeda, prazo (data futura na criação), valor_acumulado_centavos (>=0, padrão 0), rentabilidade_mensal_pct (Decimal, padrão 0), status (em_andamento|concluida|cancelada), origem_id?, membro_id (null=Família), aportes[] embutido {id, data, valor_centavos, observacao}. Índice {familia_id, membro_id, tipo, status}.
+2. Campos específicos por tipo em subdocumento opcional `detalhes` (viagem: destino, participantes[]; reserva: meta_meses, contas_vinculadas[]; lazer: periodicidade_meses, proximo_ciclo) validado por discriminador.
+3. valor_acumulado = soma dos aportes + valor inicial; manter consistente a cada aporte (operação atômica $push + $inc).
+4. Limitar aportes[] (ex.: 1000; arquivar além disso) e documentar.
+5. Campos calculados (aporte_necessario, data_prevista, progresso) não persistidos; expostos pelas rotas.
+
+TESTES: validações por tipo, consistência do acumulado, limite de aportes.
+
+ACEITE: modelo reutilizado por módulos 8, 12, 13 e 18.

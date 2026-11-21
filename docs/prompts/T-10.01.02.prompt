@@ -1,0 +1,13 @@
+TAREFA: T-10.01.02 – Rentabilidade (RN-010) e atualização por cotação
+ÉPICO/ESTÓRIA: EP-10 / US-10.01 | Prioridade: Should | Depende de: T-10.01.01, T-09.05.03
+
+PASSOS
+1. RN-010: rentabilidade_pct = (valor_atual − total_aportado) / total_aportado × 100 (Decimal, 2 casas); total_aportado=0 → null.
+2. Ativos com cotação (cripto, câmbio, ações): valor_atual = quantidade × preço × cotação para BRL; atualizado pelo job de cotações (15 min) e na leitura quando defasado; guardar atualizado_em e flag de defasagem.
+3. Ativos sem cotação: valor_atual manual via PATCH.
+4. Retornar rentabilidade absoluta e percentual por ativo e na carteira.
+5. Comparação em mesma moeda (converter aportes pela moeda base na data do aporte para rentabilidade em BRL, documentando a convenção).
+
+TESTES: caso de referência (aportado 100000, atual 112000 = 12%); cripto com quantidade; sem cotação; zero aportes.
+
+ACEITE: RF-MOD11-02 e 03.

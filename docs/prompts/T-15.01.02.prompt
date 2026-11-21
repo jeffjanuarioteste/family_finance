@@ -1,0 +1,11 @@
+TAREFA: T-15.01.02 – Conta Play (US$ 25), ficha, Data Safety e teste fechado
+ÉPICO/ESTÓRIA: EP-15 / US-15.01 | Prioridade: Won't (MVP) | Depende de: T-15.01.01
+
+PASSOS
+1. Criar conta de desenvolvedor Google Play (taxa única de US$ 25; confirmar valor vigente).
+2. Preencher ficha: descrição pt-BR, ícone 512, capturas de tela, classificação de conteúdo, política de privacidade pública.
+3. Formulário Data Safety: declarar dados coletados (e-mail, dados financeiros), finalidade, criptografia em trânsito, opção de exclusão.
+4. Teste fechado com o número mínimo de testadores pelo período exigido para contas pessoais novas; coletar feedback.
+5. Promover para produção após aprovação.
+
+ACEITE: app aprovado e publicado ou em teste fechado conforme decisão do titular.

@@ -1,0 +1,13 @@
+TAREFA: T-14.02.02 – Exportação e exclusão de dados da família
+ÉPICO/ESTÓRIA: EP-14 / US-14.02 | Prioridade: Must | Depende de: T-14.02.01
+
+PASSOS
+1. GET /familia/exportar-dados: gera arquivo (ZIP com JSON por coleção) de todos os dados da família, sem hashes/tokens; exige reautenticação por senha; streaming; também serve como backup (RK-09).
+2. DELETE /familia (exclusão): exige senha e confirmação textual; fluxo com carência de 7 dias (cancelável) e depois exclusão definitiva de todas as coleções por familia_id (inclusive sessões, push, conexões — revogando Open Finance no agregador), mantendo apenas registro mínimo de que a exclusão ocorreu.
+3. Job idempotente de exclusão definitiva; verificar ausência de dados residuais por teste que varre todas as coleções.
+4. Backups: documentar prazo de expiração (7 dias) dos dados excluídos.
+5. E-mail de confirmação.
+
+TESTES: exportação completa e sem segredos, carência/cancelamento, exclusão total, isolamento.
+
+ACEITE: direitos LGPD de acesso e exclusão atendidos.

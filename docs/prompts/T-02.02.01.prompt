@@ -1,0 +1,14 @@
+TAREFA: T-02.02.01 – Service worker: cache do shell e leitura de dados recentes
+ÉPICO/ESTÓRIA: EP-02 / US-02.02 | Prioridade: Must | Depende de: T-02.01.01
+
+PASSOS
+1. Usar Workbox (vite-plugin-pwa, strategy injectManifest). Precache do shell (HTML/JS/CSS/ícones) com versionamento por hash.
+2. Runtime cache: GET /api/v1/** de leitura com NetworkFirst (timeout 3 s) e fallback ao cache; limite de entradas e expiração (ex.: 50 entradas/24 h); cache separado por família (chave inclui hash do familia_id) e limpo no logout.
+3. NUNCA cachear: /auth/**, respostas com tokens, métodos não GET.
+4. Navegação offline: fallback para shell (NavigationRoute) e página offline amigável.
+5. Considerar que iOS pode limpar cache: dados definitivos sempre no servidor.
+6. Registrar o SW apenas em produção e HTTPS.
+
+TESTES: Workbox/Playwright simulando offline: shell abre, dados recentes aparecem, /auth não é cacheado.
+
+ACEITE: app abre offline com último dado visto; Lighthouse PWA >= 90.

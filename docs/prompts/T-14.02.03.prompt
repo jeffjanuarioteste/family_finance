@@ -1,0 +1,11 @@
+TAREFA: T-14.02.03 – Definir tratamento de dados de menores (D-04)
+ÉPICO/ESTÓRIA: EP-14 / US-14.02 | Prioridade: Must | Bloqueia: lançamento do MVP
+
+PASSOS
+1. Analisar LGPD art. 14 (dados de crianças e adolescentes): membros filhos são cadastrados apenas pelo titular (responsável legal), sem login próprio.
+2. Definir minimização: coletar apenas nome/apelido, papel, cor e dados financeiros estritamente necessários; sem data de nascimento completa, documentos, foto ou localização.
+3. Definir consentimento específico do responsável legal no cadastro de membro menor, registro (T-14.02.01) e texto na política de privacidade.
+4. Definir retenção/exclusão: exclusão do membro menor sob demanda e incluída na exportação/exclusão da família.
+5. Documentar em docs/decisoes/D-04-menores.txt com revisão jurídica e implementar o campo `menor` e o aceite no formulário de membro.
+
+ACEITE: decisão registrada, aceite do responsável implementado e testado.

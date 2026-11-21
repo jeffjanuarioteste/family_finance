@@ -1,0 +1,11 @@
+TAREFA: T-02.01.02 – Metatags iOS e viewport-fit=cover com safe areas
+ÉPICO/ESTÓRIA: EP-02 / US-02.01 | Prioridade: Must | Depende de: T-02.01.01
+
+PASSOS
+1. index.html: <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">; apple-mobile-web-app-capable=yes; apple-mobile-web-app-status-bar-style=black-translucent (ou default, validar contraste); apple-mobile-web-app-title="Financeiro".
+2. CSS global: variáveis --safe-top/right/bottom/left = env(safe-area-inset-*); aplicar padding no cabeçalho, barra de navegação inferior e modais.
+3. Evitar zoom indesejado em inputs no iOS (font-size >= 16px nos campos).
+4. Usar 100dvh em vez de 100vh; tratar teclado virtual.
+5. Testar em iPhone com notch (Safari instalado na Tela de Início).
+
+ACEITE: nenhum conteúdo coberto pelo notch ou barra home; testes manuais registrados.

@@ -1,0 +1,14 @@
+TAREFA: T-04.02.01 – POST /contas/{id}/saldo (manual)
+ÉPICO/ESTÓRIA: EP-04 / US-04.02 | Prioridade: Must | Depende de: T-04.01.01
+
+PASSOS
+1. POST /api/v1/contas/{id}/saldo {saldo_centavos, data_referencia?, observacao?} (autenticado; Idempotency-Key opcional).
+2. Atualiza conta.saldo_centavos e saldo_atualizado_em; bloqueia para contas open_finance (409).
+3. Registra ponto em `saldos_historico` {familia_id, conta_id, data, saldo_centavos, moeda, origem:"manual"} (um por conta/dia: upsert).
+4. Controle otimista de versão da conta.
+5. Auditoria da alteração.
+6. Retornar conta atualizada e variação em relação ao saldo anterior.
+
+TESTES: atualização, upsert no mesmo dia, conta Open Finance rejeitada, isolamento.
+
+ACEITE: histórico preservado a cada atualização.

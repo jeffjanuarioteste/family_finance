@@ -1,0 +1,13 @@
+TAREFA: T-05.02.01 – Configuração de orçamento mensal de mercado
+ÉPICO/ESTÓRIA: EP-05 / US-05.02 | Prioridade: Must | Depende de: T-03.01.02
+
+PASSOS
+1. Modelo ConfigMercado (um por família/membro?): orcamento_mensal_centavos, categoria_id (padrão: categoria de sistema "Mercado"), alerta_pcts=[80,100], vigencia a partir de competencia.
+2. Rotas GET/PUT /mercado/config e histórico de mudanças por competência (valor vigente do mês é o último com vigencia <= mês).
+3. Alternativa de modelagem: usar `orcamentos` (módulo 19) para a categoria Mercado — decidir uma única fonte da verdade e documentar para não duplicar o alerta (RN-014).
+4. Validação: valor > 0, inteiro em centavos.
+5. Auditoria.
+
+TESTES: leitura, atualização, vigência por mês.
+
+ACEITE: orçamento de mercado entra no saldo livre (RN-001).

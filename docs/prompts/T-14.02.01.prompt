@@ -1,0 +1,13 @@
+TAREFA: T-14.02.01 – Política de privacidade e registro de consentimento
+ÉPICO/ESTÓRIA: EP-14 / US-14.02 | Prioridade: Must | Depende de: T-01.01.01
+
+PASSOS
+1. Redigir (com revisão jurídica) política de privacidade e termos em pt-BR: dados coletados, finalidade, base legal (consentimento/execução de contrato), compartilhamento (agregador Open Finance, hospedagem), retenção, direitos do titular, contato do encarregado.
+2. Páginas públicas /privacidade e /termos com versão e data.
+3. Registro de consentimento: familia_id, tipo (termos|privacidade|open_finance|notificacoes), versao, aceito_em, ip, user_agent; nova versão exige novo aceite (tela de reaceite).
+4. Consentimento do Open Finance separado e revogável; histórico imutável.
+5. Endpoint GET /consentimentos e POST /consentimentos.
+
+TESTES: aceite obrigatório no cadastro, reaceite por versão, histórico.
+
+ACEITE: consentimento comprovável por usuário e versão.

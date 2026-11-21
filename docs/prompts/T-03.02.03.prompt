@@ -1,0 +1,13 @@
+TAREFA: T-03.02.03 – POST /lancamentos/lote
+ÉPICO/ESTÓRIA: EP-03 / US-03.02 | Prioridade: Must | Depende de: T-03.02.02
+
+PASSOS
+1. POST /api/v1/lancamentos/lote {itens:[...]} máx. 100, cada item com id_cliente (UUID) obrigatório e idempotency_key opcional.
+2. Reutilizar LancamentoService por item; resultado por item {indice, status: criado|duplicado|erro, id, erro}. HTTP 207-like via 200 com resumo {criados, duplicados, erros}.
+3. Opção `atomico=true` (tudo ou nada via transação, requer replica set do Atlas) e padrão parcial.
+4. Duplicidade por {familia_id, id_cliente}.
+5. Documentar diferença para /sync/lote.
+
+TESTES: lote misto, reenvio idempotente, limite 100, atômico faz rollback.
+
+ACEITE: nenhum duplicado em reenvios.

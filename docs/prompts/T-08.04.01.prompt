@@ -1,0 +1,12 @@
+TAREFA: T-08.04.01 – CRUD /conquistas e linha do tempo por membro (módulo 4)
+ÉPICO/ESTÓRIA: EP-08 / US-08.04 | Prioridade: Should | Depende de: T-08.01.01
+
+PASSOS
+1. Tipo "consegui": titulo, data_conquista (não futura), valor_centavos? + moeda, origem (manual|prioridade|desejo|plano|divida), origem_id?, membro_id.
+2. Rotas /conquistas CRUD (versao, soft delete).
+3. GET /conquistas/linha-do-tempo?membro_id=&ano=: itens ordenados por data desc agrupados por ano/mês e total_conquistado_no_ano.
+4. Tela: linha do tempo por membro, criação manual, filtros por ano.
+
+TESTES: CRUD, validação de data futura, linha do tempo e total do ano.
+
+ACEITE: RF-MOD04-01 e RF-MOD04-03.

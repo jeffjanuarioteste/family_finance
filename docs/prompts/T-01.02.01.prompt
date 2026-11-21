@@ -1,0 +1,13 @@
+TAREFA: T-01.02.01 – Coleção `sessoes` com TTL e limite de 5 sessões
+ÉPICO/ESTÓRIA: EP-01 / US-01.02 | Prioridade: Must | Depende de: T-00.01.05
+
+PASSOS
+1. Modelo Sessao: familia_id, refresh_hash, dispositivo{nome, plataforma}, ip, user_agent, criado_em, ultimo_uso, expira_em, revogada(bool), cadeia_id.
+2. Índices: TTL em expira_em (expireAfterSeconds=0); {familia_id, revogada}; único em refresh_hash.
+3. No login: contar sessões ativas da família; se já houver 5, rejeitar com 409 "Limite de 5 dispositivos" OU revogar a mais antiga (decisão: revogar a de menor ultimo_uso e informar na resposta). Documentar a escolha.
+4. Operação atômica para evitar passar de 5 em logins simultâneos.
+5. Atualizar ultimo_uso no refresh.
+
+TESTES: 6º login respeita a política; TTL index existente; corrida de logins não excede 5.
+
+ACEITE: índices criados na inicialização; testes passando.

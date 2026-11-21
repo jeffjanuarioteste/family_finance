@@ -1,0 +1,13 @@
+TAREFA: T-04.02.03 – GET /contas/patrimonio
+ÉPICO/ESTÓRIA: EP-04 / US-04.02 | Prioridade: Must | Depende de: T-04.01.01, T-03.03.01
+
+PASSOS
+1. GET /api/v1/contas/patrimonio?membro_id=&moeda_exibicao=BRL: retorna {por_moeda:[{moeda, total_centavos}], total_base_centavos, cotacoes_usadas:[{par, valor, data, fallback}], contas_desatualizadas:[ids]}.
+2. Conversão pela cotação ATUAL (RN-017); Decimal e arredondamento half-up; sem float.
+3. Respeitar filtro de membro (RN-019) e excluir contas inativas.
+4. Agregação MongoDB com $match por familia_id; resposta em <= 3 s.
+5. Se faltar cotação, retornar aviso e total parcial marcado.
+
+TESTES: múltiplas moedas, membro/consolidado, cotação defasada, caso de referência calculado manualmente.
+
+ACEITE: totais conferem com cálculo manual.

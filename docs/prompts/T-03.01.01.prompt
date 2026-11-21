@@ -1,0 +1,13 @@
+TAREFA: T-03.01.01 – Definir categorias padrão (D-05)
+ÉPICO/ESTÓRIA: EP-03 / US-03.01 | Prioridade: Must | Bloqueia: T-03.01.02
+
+OBJETIVO
+Definir a lista inicial de categorias (hierárquica) usada no seed de cada nova família.
+
+PASSOS
+1. Propor lista em pt-BR com tipo (entrada|saida), ícone e cor. Saídas: Moradia (Aluguel, Condomínio, Luz, Água, Internet), Mercado (obrigatória: usada pelo módulo 15), Transporte, Saúde, Educação, Lazer, Vestuário, Cuidados pessoais, Dívidas e financiamentos, Investimentos, Assinaturas, Outros. Entradas: Salário, Renda variável, Negócio extra, 13º, Bônus, Freela, Outros.
+2. Marcar categorias de sistema (não excluíveis, flag `sistema=true`): Mercado, Contas do mês, Dívidas, Investimentos, Transferência.
+3. Registrar em app/seeds/categorias_padrao.json (estrutura: nome, tipo, pai, icone, cor, sistema).
+4. Submeter ao titular para validação (D-05) antes de fechar.
+
+ACEITE: arquivo JSON válido, sem nomes duplicados no mesmo nível, validado pelo titular.

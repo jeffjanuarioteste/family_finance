@@ -1,0 +1,12 @@
+TAREFA: T-08.02.02 – POST /desejos/{id}/converter (RN-020)
+ÉPICO/ESTÓRIA: EP-08 / US-08.02 | Prioridade: Should | Depende de: T-08.02.01, T-09.01.01
+
+PASSOS
+1. POST /desejos/{id}/converter {valor_acumulado_centavos?, rentabilidade_mensal_pct?, prazo?}: em transação cria meta tipo "plano" com titulo, valor_alvo, moeda e prazo do desejo (prazo obrigatório: se ausente, exigir no corpo), mantém origem_id = desejo, e marca desejo como `convertido` com meta_id.
+2. Idempotente: desejo já convertido retorna a meta existente (409 ou 200 com a mesma meta, definir e documentar).
+3. Desejo sem valor estimado: exigir valor no corpo.
+4. Auditoria; frontend botão "Converter em plano" com confirmação e navegação à meta criada.
+
+TESTES: conversão, duplicidade, dados faltantes, transação.
+
+ACEITE: RF-MOD02-02. Depende do modelo de metas (T-09.01.01): implementar após ele.

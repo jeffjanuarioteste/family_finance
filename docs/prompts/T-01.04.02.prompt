@@ -1,0 +1,13 @@
+TAREFA: T-01.04.02 – CRUD /membros (nome, papel, cor, profissão embutida)
+ÉPICO/ESTÓRIA: EP-01 / US-01.04 | Prioridade: Must | Depende de: T-00.01.05, T-01.01.01
+
+PASSOS
+1. Modelo Membro: nome (<=80), papel (enum titular|conjuge|filho|outro), cor (#RRGGBB), avatar?, ativo, profissao[] embutida {profissao, tipo_renda(fixa|variavel), renda_mensal_centavos, dia_recebimento 1-31, outras_receitas_centavos, investimento_trabalho_mensal_centavos} (módulo 10). Índice {familia_id, nome}.
+2. Rotas GET (paginada) / POST / GET {id} / PATCH {id} (com versao) / DELETE {id} (soft delete). Não excluir membro com lançamentos: apenas inativar (409 com mensagem).
+3. Criar membro titular padrão no registro.
+4. Todas as consultas filtradas por familia_id do token.
+5. Validar cor e limites; no máximo 20 membros por família.
+
+TESTES: CRUD completo; exclusão bloqueada com dados; acesso cruzado 404; validação de cor e renda (centavos int >= 0).
+
+ACEITE: OpenAPI e testes ok.

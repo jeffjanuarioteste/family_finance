@@ -1,0 +1,13 @@
+TAREFA: T-04.01.01 – CRUD /contas (tipo, moeda, instituição, origem de dados)
+ÉPICO/ESTÓRIA: EP-04 / US-04.01 | Prioridade: Must | Depende de: T-00.01.05, T-01.04.02
+
+PASSOS
+1. Modelo Conta: nome (<=80), tipo (corrente|poupanca|carteira|global|cripto|outro), instituicao?, moeda, saldo_centavos (int, pode ser negativo), origem_dados (manual|open_finance), conexao_id?, saldo_atualizado_em, membro_id (null=Família), ativa. Índice {familia_id, membro_id}.
+2. Rotas GET (paginada; filtro membro, tipo, moeda), POST, GET {id}, PATCH {id} (versao), DELETE (soft delete; bloqueado se houver lançamentos — inativar).
+3. Saldo só via POST /contas/{id}/saldo (T-04.02.01), não pelo PATCH, para manter histórico; no POST inicial aceitar saldo_inicial e gerar o primeiro registro de histórico.
+4. Conta open_finance: campos de saldo somente leitura para edição manual.
+5. Moeda ISO/cripto validada; membro e conexão da mesma família.
+
+TESTES: CRUD, validações, exclusão bloqueada, isolamento.
+
+ACEITE: OpenAPI e testes ok.

@@ -1,0 +1,13 @@
+TAREFA: T-05.02.04 – Tela de mercado e alertas 80%/100%
+ÉPICO/ESTÓRIA: EP-05 / US-05.02 | Prioridade: Must | Depende de: T-05.02.03, T-02.04.01
+
+PASSOS
+1. Backend: serviço de alerta após cada lançamento de mercado: ao cruzar 80% e 100% do orçamento, notificar uma vez por limite/mês (chave_dedup "mercado:{AAAA-MM}:80|100", RN-014); recalcular se lançamento for excluído e cruzar novamente.
+2. Tela Mercado: barra de progresso (com texto, não só cor), total, restante, média diária, comparativo com meses anteriores, lista de compras do mês, botão grande "Registrar compra".
+3. Configuração do orçamento na própria tela.
+4. Alertas visíveis no app e via push/e-mail (T-02.04.04).
+5. pt-BR, acessibilidade, alvos >= 44 px.
+
+TESTES: cruzamento de 80% e 100% dispara uma única vez; reabrir mês seguinte reinicia; componente da tela.
+
+ACEITE: critério "alertas 80% e 100% disparados" para mercado.

@@ -1,0 +1,13 @@
+TAREFA: T-13.01.02 – POST /cenarios/{id}/simular sem alterar dados reais
+ÉPICO/ESTÓRIA: EP-13 / US-13.01 | Prioridade: Could | Depende de: T-13.01.01, T-07.04.01, T-09.01.02
+
+PASSOS
+1. Simulação puramente em memória: carregar estado base (componentes do saldo livre, metas, orçamentos), aplicar ajustes sobre cópias e projetar mês a mês até o horizonte.
+2. Regras: cortar_gasto reduz o consumo/limite da categoria; aumentar_renda soma à receita prevista; investir adiciona aporte mensal; aporte_meta aumenta o aporte da meta (recalcular RN-002/RN-003 com rentabilidade).
+3. Saída: série de saldo livre por mês, saldo acumulado projetado, data prevista de cada meta (base e cenário), orçamento resultante.
+4. Garantir que nenhuma escrita ocorra (usar repositórios somente leitura; teste que compara contagem/hash de coleções antes e depois). Salvar apenas `resultado` no cenário se solicitado.
+5. Limite de tempo/complexidade (<= 3 s).
+
+TESTES: caso de referência de cortar R$ 200/mês; nenhum dado real alterado; metas antecipadas.
+
+ACEITE: RF-MOD21-01 e invariante "não grava dados reais".

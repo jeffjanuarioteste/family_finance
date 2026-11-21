@@ -1,0 +1,12 @@
+TAREFA: T-07.04.04 – Testes com casos de referência (RN-001 a RN-003)
+ÉPICO/ESTÓRIA: EP-07 / US-07.04 | Prioridade: Must | Depende de: T-07.04.01
+
+PASSOS
+1. Criar tests/referencia/ com fixtures JSON de casos calculados à mão e documentados (entradas, saída esperada, memória de cálculo).
+2. Saldo livre: ao menos 5 casos (saldo positivo, zero, negativo, dia 1, último dia do mês, sem receitas).
+3. RN-002 (aporte necessário): sem juros e com juros (ex.: alvo 60000, acumulado 0, i=0,5%, n=36); validar a fórmula PMT e i=0.
+4. RN-003 (previsão): casos com i>0, i=0, aporte=0 ("sem previsão"), acumulado >= alvo.
+5. Tolerância: comparar inteiros em centavos (arredondamento half-up documentado) e meses com ceil.
+6. Rodar no CI como suíte obrigatória; cada caso com ID e referência à regra.
+
+ACEITE: todos os casos passam; critério do MVP "conferem com RN-001 a RN-003".

@@ -1,0 +1,13 @@
+TAREFA: T-05.03.03 – Serviço de alertas por alerta_pcts, uma vez por limite/mês (RN-014)
+ÉPICO/ESTÓRIA: EP-05 / US-05.03 | Prioridade: Must | Depende de: T-05.03.02, T-02.04.01
+
+PASSOS
+1. Após criar/editar/excluir lançamento de saída, enfileirar tarefa assíncrona que recalcula o consumo dos orçamentos afetados.
+2. Para cada pct em alerta_pcts com consumo >= pct, chamar notificar(tipo "orcamento", chave_dedup "orcamento:{orcamento_id}:{competencia}:{pct}"); a chave única impede repetição no mês mesmo após múltiplos lançamentos.
+3. Mensagem pt-BR: "Alimentação atingiu 80% do orçamento (R$ 400,00 de R$ 500,00)".
+4. Edição do limite não reenvia alertas já enviados; mês novo reinicia.
+5. Falha no alerta não deve falhar o lançamento.
+
+TESTES: cruzar 80% e 100% em lançamentos sucessivos gera 2 notificações; novo lançamento acima não repete; mês seguinte reinicia; falha de envio isolada.
+
+ACEITE: critério "alertas 80% e 100% disparados".

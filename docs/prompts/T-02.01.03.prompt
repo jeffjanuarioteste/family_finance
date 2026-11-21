@@ -1,0 +1,14 @@
+TAREFA: T-02.01.03 – Layout mobile first, alvos ≥ 44 px, contraste AA
+ÉPICO/ESTÓRIA: EP-02 / US-02.01 | Prioridade: Must | Depende de: T-02.01.02
+
+PASSOS
+1. Definir design tokens (cores, espaçamento, tipografia) com contraste >= 4.5:1 (texto) e 3:1 (componentes); suporte a modo escuro opcional.
+2. Layout base: cabeçalho com seletor de membro, conteúdo rolável, navegação inferior (Início, Lançar, Contas do mês, Orçamento, Mais) com alvos >= 44x44 px e espaçamento mínimo de 8 px.
+3. Componentes base acessíveis: Botão, Campo de texto, Campo monetário (máscara R$ 1.234,56 sobre centavos), Seletor de data (dd/mm/aaaa), Modal, Toast, Lista, Cartão.
+4. Formatadores pt-BR centralizados (Intl.NumberFormat, Intl.DateTimeFormat com America/Sao_Paulo).
+5. Foco visível, aria-labels, ordem de tabulação e prefers-reduced-motion.
+6. Breakpoints: móvel primeiro, adaptar para tablet/desktop.
+
+TESTES: axe-core automatizado nas telas base; teste de formatadores.
+
+ACEITE: zero violações críticas no axe; Lighthouse Acessibilidade >= 90.

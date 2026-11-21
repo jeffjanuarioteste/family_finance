@@ -1,0 +1,25 @@
+TAREFA: T-00.01.02 – Criar repositórios e convenções de branch/commit
+ÉPICO/ESTÓRIA: EP-00 / US-00.01 | Prioridade: Must | Depende de: T-00.01.01
+
+CONTEXTO GLOBAL
+Backend FastAPI (Python 3.12) e frontend PWA em repositórios separados (ou monorepo apps/api e apps/web, conforme decisão). pt-BR na UI; código em inglês ou português de forma consistente (usar nomes de domínio em português: lancamentos, membros).
+
+OBJETIVO
+Criar a estrutura inicial dos repositórios com convenções e ferramentas de qualidade.
+
+PASSOS
+1. Backend: estrutura
+   app/{main.py, core/(config.py, security.py, db.py), models/, schemas/, routers/, services/, jobs/, utils/}, tests/{unit,integration}, pyproject.toml, .env.example, Dockerfile, README.md, .gitignore.
+2. Frontend: estrutura PWA (Vite + TypeScript; framework a escolher e registrar) com src/{app,components,pages,services,store,sw}, public/, tsconfig, eslint, prettier, .env.example.
+3. Backend: configurar ruff, black, mypy, pytest, pytest-asyncio, pre-commit.
+4. Convenções: branches main/develop/feature/*/fix/*; Conventional Commits (feat, fix, chore, docs, test, refactor); PR template com checklist do DoD (revisão, testes, filtro familia_id, pt-BR, OpenAPI).
+5. Proteger a branch main (revisão obrigatória, CI verde) – documentar em CONTRIBUTING.md.
+6. .gitignore deve excluir .env, __pycache__, node_modules, dist.
+
+ENTREGÁVEIS
+Repositórios inicializados, README com como rodar, CONTRIBUTING, PR template, pre-commit funcionando.
+
+CRITÉRIOS DE ACEITE
+- `pytest` e `npm test` executam (mesmo vazios) sem erro.
+- Lint passa em ambos.
+- Nenhum segredo versionado.

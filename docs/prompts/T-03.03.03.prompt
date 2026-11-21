@@ -1,0 +1,13 @@
+TAREFA: T-03.03.03 – Fallback para última cotação com aviso
+ÉPICO/ESTÓRIA: EP-03 / US-03.03 | Prioridade: Must | Depende de: T-03.03.02
+
+PASSOS
+1. obter_cotacao retorna {valor, data_referencia, fallback: bool}. Se a API falhar ou não houver cotação do dia, usar a última registrada e marcar fallback=true.
+2. Se não existir nenhuma cotação para o par, retornar erro 503 claro (COTACAO_INDISPONIVEL) e permitir cotação manual.
+3. Lançamento criado com fallback guarda `cotacao_aviso=true` e data_referencia; resposta da API inclui `avisos:[{codigo:"COTACAO_DEFASADA", mensagem}]`.
+4. Frontend: exibir aviso "Usada cotação de dd/mm/aaaa" no formulário e na listagem (ícone de atenção).
+5. Alertar (log + notificação ao titular) se cotação defasada > 3 dias úteis.
+
+TESTES: simular falha da API; aviso presente; erro sem nenhuma cotação; cotação manual.
+
+ACEITE: nenhum lançamento perdido por falha de cotação (RK-06).

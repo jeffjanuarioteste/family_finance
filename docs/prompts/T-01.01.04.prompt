@@ -1,0 +1,12 @@
+TAREFA: T-01.01.04 – POST /auth/refresh e POST /auth/logout
+ÉPICO/ESTÓRIA: EP-01 / US-01.01 | Prioridade: Must | Depende de: T-01.01.02
+
+PASSOS
+1. POST /api/v1/auth/refresh {refresh_token}: localizar sessão pelo hash; validar não expirada e não revogada; rotacionar (novo refresh + novo access); atualizar ultimo_uso. Refresh já usado -> 401 e revogar sessão (reuso).
+2. POST /api/v1/auth/logout (autenticado): revogar a sessão atual (excluir ou marcar revogada); idempotente (204 mesmo se já revogada).
+3. Garantir que o access token de sessão revogada seja recusado (checar sessão pelo sid em get_familia_atual, com cache curto de 30 s opcional).
+4. Respostas de erro no formato padrão (T-00.01.06).
+
+TESTES: refresh ok gera novo par; refresh antigo falha; logout invalida access e refresh; logout duplo retorna 204.
+
+ACEITE: fluxo completo login->refresh->logout funcionando; testes passando.

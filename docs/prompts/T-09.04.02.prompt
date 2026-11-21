@@ -1,0 +1,12 @@
+TAREFA: T-09.04.02 – Telas de lazer
+ÉPICO/ESTÓRIA: EP-09 / US-09.04 | Prioridade: Should | Depende de: T-09.04.01
+
+PASSOS
+1. Lista com cartões: descrição, valor do ciclo, reserva mensal, acumulado e barra até o próximo ciclo, data do próximo ciclo.
+2. Formulário criar/editar; ação "Realizar gasto" (valor, data, conta) com confirmação e avanço de ciclo.
+3. Resumo no topo: total da reserva mensal de lazer (impacto no saldo livre).
+4. Seletor de membro, acessibilidade, pt-BR.
+
+TESTES: componentes e e2e.
+
+ACEITE: módulo 12 operável.

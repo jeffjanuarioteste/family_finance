@@ -1,0 +1,15 @@
+TAREFA: T-00.02.01 – Pipeline de lint, testes e build (backend e frontend)
+ÉPICO/ESTÓRIA: EP-00 / US-00.02 | Prioridade: Must | Depende de: T-00.01.02
+
+PASSOS
+1. Criar workflow (GitHub Actions: .github/workflows/ci.yml) disparado em push e pull_request.
+2. Job backend: setup Python 3.12 com cache pip; instalar dependências; ruff check; black --check; mypy; pytest --cov com serviço MongoDB (mongo:7) ou mongomock; falhar se cobertura < 80% (ajustável).
+3. Job frontend: setup Node LTS com cache; npm ci; eslint; tsc --noEmit; vitest; npm run build; anexar dist como artefato.
+4. Job segurança: pip-audit e npm audit --audit-level=high; detecção de segredos (gitleaks).
+5. Jobs paralelos; branch main protegida exigindo checks verdes.
+6. Badge de status no README.
+
+CRITÉRIOS DE ACEITE
+- PR com erro de lint ou teste falha no CI.
+- Tempo total razoável (cache funcionando).
+- Nenhum segredo exposto em logs.

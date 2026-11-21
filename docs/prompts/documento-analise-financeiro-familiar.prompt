@@ -1,0 +1,152 @@
+# PROMPT: Documento de Análise – Sistema de Controle Financeiro Familiar
+
+> Cole o conteúdo abaixo (a partir de "PAPEL") em uma IA. O resultado será um documento de análise que servirá de base para um PRD e para implementação via vibe coding.
+
+---
+
+## PAPEL
+
+Você é um Analista de Sistemas / Product Analyst sênior, especialista em finanças pessoais e familiares, modelagem de dados (MongoDB), APIs REST e PWA. Seu trabalho é produzir um **Documento de Análise** enxuto, objetivo e sem ambiguidades, que será usado como insumo direto para a criação de um PRD e para implementação assistida por IA (vibe coding) de um sistema complexo.
+
+## OBJETIVO DO SISTEMA
+
+Sistema de **controle financeiro familiar** para registrar e acompanhar gastos, ganhos, prioridades, metas e planos de ação, permitindo saber: quanto tenho, quanto posso gastar, onde economizar, como ganhar mais e quando conseguirei realizar meus planos.
+
+## DECISÕES JÁ TOMADAS (tratar como requisitos fixos)
+
+| Tema | Decisão |
+|---|---|
+| Plataforma | Web responsivo, instalável como PWA (mobile first), **usado no navegador e como aplicativo instalado em Android e iPhone (iOS/Safari)**: o titular usa iPhone e a esposa usa Android. A plataforma web deve funcionar completa em ambos. Ver seção "DISTRIBUIÇÃO E INSTALAÇÃO MOBILE" |
+| Custo de distribuição | **Distribuição gratuita**, sem custo recorrente de publicação. A solução deve priorizar a opção sem custo e indicar claramente qualquer custo inevitável |
+| Backend | API REST em Python (FastAPI ou Django REST; recomendar um com justificativa curta, considerando afinidade com MongoDB) |
+| Banco de dados | MongoDB |
+| Frontend | Web (SPA/PWA) consumindo a API REST |
+| Usuários | **Login único** por família (uma conta). **Perfis de membros são apenas cadastro** (sem login individual): marido, esposa, filho(a), etc. |
+| Entrada de dados | Manual (principal) + integração bancária via **Open Finance** (importação de contas, saldos e transações) |
+| Moeda | **Multi-moeda** (BRL como base; USD, EUR, cripto etc.) com cotação e conversão para a moeda base |
+| Idioma | pt-BR |
+| Extras aprovados | Dívidas e financiamentos; reserva de emergência e metas com progresso; orçamento por categoria com alertas; outras receitas (extras, 13º, bônus); contas recorrentes com vencimento e lembretes; simulador de cenários; exportação de relatórios (PDF/Excel) |
+
+## REGRA TRANSVERSAL
+
+**Todo módulo é segmentado por membro da família.** Cada registro deve poder ser atribuído a um membro específico ou ao grupo "Família" (compartilhado). Todos os dashboards e filtros devem permitir visão por membro e visão consolidada.
+
+## MÓDULOS FUNCIONAIS (escopo obrigatório)
+
+Para cada módulo, o documento deve trazer: finalidade, campos (tabela), regras de negócio, e telas/ações principais.
+
+| # | Módulo | Descrição e exemplos |
+|---|---|---|
+| 1 | Prioridades | Prioridades por membro. Ex.: guardar roupas, organizar documentos. Com nível (alta/média/baixa), status e prazo. |
+| 2 | Coisas que quero | Desejos por membro, com valor estimado e prazo. Ex.: comprar casa. Pode ser convertido em meta/plano. |
+| 3 | Coisas que preciso | Necessidades por membro, com valor e urgência. Ex.: um caderno. Pode virar item de compra. |
+| 4 | Coisas que já consegui | Conquistas/histórico por membro, com data e valor. Ex.: quitei um financiamento. |
+| 5 | Economizar | Regras e hábitos de economia, com meta de economia (valor/mês) e acompanhamento. Ex.: não gastar com besteiras. |
+| 6 | Posso gastar por mês | Gastos variáveis permitidos por membro/categoria, com limite mensal. Ex.: cortar cabelo. |
+| 7 | O que preciso todo mês | Itens recorrentes de consumo por membro. Ex.: shampoo, sabonete. Valor estimado e checklist mensal. |
+| 8 | Planos futuros | Objetivos de médio/longo prazo por membro, com valor-alvo, prazo e aporte mensal necessário. Ex.: faculdade do filho. |
+| 9 | Capital atual | Saldos e patrimônio líquido por conta/banco/membro. Alimentado manualmente ou via Open Finance. |
+| 10 | Profissão | Por membro: profissão, salário/renda, outras receitas, e quanto pode investir no trabalho. Ex.: marido programador, esposa nail designer. |
+| 11 | Investir | Carteira por membro: CDB, ações/bolsa, dólar, cripto etc. Aportes, valor atual, rentabilidade, meta de aporte mensal. |
+| 12 | Lazer | Orçamento de lazer com periodicidade configurável. Ex.: a cada 4 meses comprar roupas, com valor específico por ciclo. |
+| 13 | Lugares que quero ir | Viagens/destinos com custo estimado, data-alvo, valor já guardado e aporte mensal necessário. |
+| 14 | Planos de negócio extra | Ideias de renda extra com capital inicial, custos, preço de venda, margem, lucro esperado e ponto de equilíbrio. Ex.: comprar roupas na Shopee e revender. |
+| 15 | Mercado | Gastos de supermercado por mês ou por dia, independente, com orçamento mensal e comparativo. |
+| 16 | Contas do mês | Contas fixas e variáveis (aluguel, luz, água etc.) com valor, vencimento, status (pendente/paga/atrasada) e recorrência. |
+| 17 | Dívidas e financiamentos (extra) | Parcelas, saldo devedor, juros, previsão de quitação. |
+| 18 | Reserva de emergência e metas (extra) | Meta em meses de despesas, progresso e projeção. |
+| 19 | Orçamento por categoria (extra) | Limites por categoria e membro, com alertas de estouro (ex.: 80% e 100%). |
+| 20 | Outras receitas (extra) | Extras, 13º, bônus, freelas, previstas e realizadas. |
+| 21 | Simulador de cenários (extra) | "E se eu cortar X?" / "E se eu investir Y?": projeta saldo, prazo para atingir metas e impacto no orçamento. |
+
+## DASHBOARDS (obrigatórios)
+
+Para cada dashboard, descrever: objetivo, KPIs/fórmulas, gráficos sugeridos, filtros (período e membro) e alertas.
+
+1. **Saldo e fluxo de caixa:** entradas x saídas, saldo do mês, saldo projetado, contas a vencer.
+2. **Gastos:** por categoria, por membro, por dia/semana/mês, mercado, comparativo com orçamento.
+3. **Capital e patrimônio:** capital atual por conta/moeda, evolução, patrimônio líquido (ativos menos dívidas), carteira de investimentos.
+4. **Metas e planos:** progresso de planos futuros, viagens, desejos e reserva de emergência, com aporte necessário e data prevista.
+5. **Ganhar mais:** receitas por membro, renda extra, desempenho dos planos de negócio, margem e lucro.
+6. **Quanto posso gastar e como gastar menos:** saldo livre após fixas, metas e aportes; sugestões de corte baseadas nos dados e economia potencial; simulador.
+
+## DISTRIBUIÇÃO E INSTALAÇÃO MOBILE (explicar de forma detalhada)
+
+O sistema deve funcionar **100% pelo navegador (plataforma web)** e também como **aplicativo instalado** nos celulares da família, com ícone na tela inicial, abertura em tela cheia e funcionamento básico offline. **O titular usa iPhone (iOS) e a esposa usa Android**, então a solução deve atender os dois sistemas, com a mesma conta e os mesmos dados. O documento deve explicar passo a passo, em linguagem acessível, as opções de distribuição **sem custo**:
+
+| Opção | O que o documento deve detalhar |
+|---|---|
+| A. PWA instalado direto pelo navegador (Android: Chrome; iPhone: Safari) | Requisitos técnicos (HTTPS, manifest, service worker, ícones, ícone `apple-touch-icon` e metatags para iOS), passo a passo de instalação em cada sistema (Android: "Instalar app"; iPhone: Safari > Compartilhar > "Adicionar à Tela de Início"), limitações. **Custo zero. Opção recomendada para o MVP e a única gratuita que atende iPhone.** |
+| B. Publicação na Google Play Store como app Android (PWA empacotado via TWA/Bubblewrap/PWABuilder) | Pré-requisitos (conta de desenvolvedor, assinatura do app, Digital Asset Links, política de privacidade, ícones e capturas de tela), etapas de publicação e atualização. **Informar o custo da conta de desenvolvedor do Google Play (taxa única, não é totalmente gratuito) e se há alternativa sem custo. Vale apenas para Android.** |
+| C. Distribuição privada sem custo (alternativas) | Android: instalação de APK direto ou teste interno/fechado, apenas para a família. iPhone: não há equivalente gratuito simples. Detalhar vantagens, riscos de segurança e limitações. |
+| D. Publicação na App Store (iOS) | Informar custo anual do Apple Developer Program, exigências da Apple (app empacotado, ex.: Capacitor, e regras de revisão), e esforço. Tratar como opcional/futuro e **não recomendado no MVP** por causa do custo e da complexidade. |
+
+O documento deve:
+- Comparar as opções A, B, C e D em uma tabela, **separando Android e iPhone** (custo, esforço, experiência do usuário, atualizações, notificações push, acesso offline, risco) e **recomendar** uma estratégia por fase (MVP e futuro).
+- Detalhar as **limitações do PWA no iOS** (ex.: notificações push só com o app adicionado à Tela de Início e iOS 16.4 ou superior, possibilidade de o iOS limpar dados locais, ausência de instalação por prompt automático, diferenças de comportamento do Safari) e como mitigá-las (ex.: dados sempre no servidor, cache apenas como apoio).
+- Definir requisitos para uma boa experiência instalada: mobile first, testada em Safari/iOS e Chrome/Android, notificações de vencimento e orçamento (push, quando suportado), cache/offline para consulta e lançamento, sincronização ao voltar online, bloqueio por PIN/biometria opcional e atualização automática da versão.
+- Explicar como a mesma conta (login único) será usada em mais de um celular ao mesmo tempo, incluindo sessões simultâneas, sincronização e segurança.
+- Incluir passo a passo de instalação para o usuário final, **um para iPhone e outro para Android**, em no máximo 10 linhas cada.
+- Registrar como requisitos verificáveis (`RNF-MOB-xx`) e como riscos na seção 12 (ex.: limitações do iOS, políticas da Play Store).
+
+## INTEGRAÇÕES E REGRAS ESPECIAIS (analisar e detalhar)
+
+- **Open Finance:** fluxo de consentimento, vincular contas a membros, sincronização, deduplicação com lançamentos manuais, categorização automática, tratamento de falhas e renovação de consentimento. Indicar a abordagem (agregador/API) e riscos regulatórios/LGPD.
+- **Multi-moeda:** moeda base (BRL), fonte e frequência de cotações, histórico de câmbio, conversão no momento do lançamento versus na visualização, cripto e ações.
+- **Perfis sem login:** como o login único gerencia membros, dados sensíveis e eventual PIN/privacidade entre membros.
+- **Recorrência e alertas:** geração automática de contas e itens mensais, lembretes de vencimento, alertas de estouro de orçamento.
+- **Exportação:** relatórios em PDF e Excel (quais, filtros e conteúdo).
+
+## ESTRUTURA OBRIGATÓRIA DO DOCUMENTO DE SAÍDA
+
+Limite máximo: **20 páginas** (aprox. 9.000 a 10.000 palavras). Seja sucinto, use tabelas e listas, e evite texto corrido e redundância. Siga exatamente esta estrutura e o orçamento de páginas:
+
+| Seção | Conteúdo | Páginas |
+|---|---|---|
+| 1. Visão geral | Problema, objetivo, escopo (dentro/fora), premissas, glossário | 1 |
+| 2. Personas e perfis | Titular da conta e perfis de membros; casos de uso por perfil | 1 |
+| 3. Mapa de módulos | Visão geral dos módulos, relações entre eles e jornada principal | 1 |
+| 4. Especificação dos módulos | Para cada módulo: finalidade, tabela de campos (nome, tipo, obrigatório, regra), regras de negócio, ações/telas | 7 |
+| 5. Modelo de dados (MongoDB) | Coleções, campos principais, relacionamentos (referência x embutido), índices, exemplos de documento JSON dos 3 principais | 2 |
+| 6. Regras de negócio e cálculos | Fórmulas: saldo livre, aporte necessário, previsão de meta, margem, patrimônio líquido, orçamento restante | 1 |
+| 7. Dashboards | Conforme seção de dashboards acima | 1,5 |
+| 8. Integrações e distribuição mobile | Open Finance, cotações multi-moeda, exportação, comparativo de opções de instalação (PWA, Play Store, APK, App Store) e recomendação | 1,5 |
+| 9. API REST | Lista de recursos/endpoints por módulo (método, rota, finalidade), padrões de erro, paginação e filtros | 1 |
+| 10. Requisitos não funcionais | Segurança (autenticação, criptografia, LGPD), desempenho, PWA/offline, requisitos de app instalado (`RNF-MOB-xx`), auditoria, backup | 1 |
+| 11. Roadmap sugerido | Fases/MVP com priorização (MoSCoW) e dependências | 1 |
+| 12. Riscos, dúvidas e premissas | Riscos, pontos em aberto e decisões pendentes | 0,5 |
+| 13. Critérios de aceite gerais | Checklist de validação do MVP | 0,5 |
+
+## REGRAS DE ESCRITA
+
+- Idioma: português do Brasil. Tom técnico e direto.
+- Prefira tabelas para campos, endpoints e regras. Use nomes de campos em `snake_case` e entidades em português claro.
+- Cada requisito deve ser **verificável** e identificado (ex.: `RF-MOD08-03`, `RN-012`, `RNF-005`) para rastreabilidade no PRD.
+- Não invente funcionalidades fora do escopo. Sugestões adicionais vão apenas na seção 12, marcadas como "Sugestão".
+- Quando algo não estiver definido, registre como **Premissa** (com sua escolha padrão) ou **Dúvida** na seção 12. Não interrompa a geração para perguntar.
+- Não inclua código de implementação, exceto exemplos de JSON de documentos e rotas.
+- Use o mesmo vocabulário em todo o documento (ex.: "membro", "titular", "meta", "plano").
+- Inclua um diagrama Mermaid de relacionamento entre coleções (seção 5) e um fluxograma da jornada principal (seção 3).
+
+## EXEMPLOS DE DADOS PARA CALIBRAR A ESPECIFICAÇÃO
+
+- Prioridade (filho): "Guardar roupas", prioridade média, prazo semanal.
+- Quero (família): "Comprar casa", R$ 350.000, prazo 8 anos.
+- Preciso (filho): "Caderno", R$ 25, urgência alta.
+- Já consegui (marido): "Quitei financiamento do carro", data, valor.
+- Economizar (família): "Reduzir gastos supérfluos", meta R$ 300/mês.
+- Posso gastar (marido): "Corte de cabelo", R$ 50/mês.
+- Todo mês (família): shampoo, sabonete, R$ 80/mês.
+- Plano futuro (filho): "Faculdade", R$ 60.000, em 12 anos.
+- Capital atual: R$ 12.500 no banco X (esposa); US$ 300 em conta global.
+- Profissão: marido programador (salário R$ X, pode investir R$ Y em cursos); esposa nail designer (renda variável).
+- Investir: CDB, bolsa, dólar, cripto, com aporte mensal planejado.
+- Lazer (família): roupas a cada 4 meses, R$ 600 por ciclo.
+- Lugar que quero ir: viagem internacional, R$ 25.000, daqui a 2 anos.
+- Negócio extra: comprar roupas na Shopee, revender; capital R$ 1.000, margem 40%, lucro esperado por ciclo.
+- Mercado: R$ 1.200/mês, registro por dia.
+- Contas do mês: aluguel R$ 1.500 (dia 5), luz, água, internet.
+
+## ENTREGA
+
+Gere o documento completo em Markdown, seguindo a estrutura e o limite de 20 páginas. Ao final, inclua uma tabela de **rastreabilidade** (módulo, requisitos, coleções e endpoints) para facilitar a criação do PRD.

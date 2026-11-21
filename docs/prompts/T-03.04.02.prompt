@@ -1,0 +1,13 @@
+TAREFA: T-03.04.02 – Tela de sugestão de mesclagem (conta, valor igual, data ±2 dias)
+ÉPICO/ESTÓRIA: EP-03 / US-03.04 | Prioridade: Must | Depende de: T-03.04.01
+
+PASSOS
+1. Backend GET /lancamentos/sugestoes-mesclagem: pares com mesma conta, valor igual e data ±2 dias, onde ao menos um é manual e outro importado (ou ambos manuais); excluir pares já ignorados.
+2. POST /lancamentos/sugestoes-mesclagem/ignorar {id_a, id_b} para não sugerir de novo.
+3. Frontend: tela lado a lado comparando campos; ações Mesclar (escolher qual manter), Não é duplicado, Ver depois; contador de sugestões em Mais.
+4. Confirmação explícita; desfazer por 10 s (reverte via auditoria) se viável.
+5. Acessibilidade e pt-BR.
+
+TESTES: geração de sugestões, ignorar, fluxo de mesclagem e2e.
+
+ACEITE: usuário resolve duplicatas sem remoção automática.

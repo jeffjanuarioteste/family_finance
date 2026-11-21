@@ -1,0 +1,26 @@
+TAREFA: T-00.01.01 – Definir provedor de hospedagem e orçamento (D-03)
+ÉPICO/ESTÓRIA: EP-00 / US-00.01 | Prioridade: Must | Bloqueia: todas as demais tarefas de infraestrutura
+
+CONTEXTO GLOBAL
+Sistema de Controle Financeiro Familiar. Backend FastAPI + MongoDB (Atlas), frontend PWA mobile first, pt-BR. Orçamento: camada gratuita ou baixo custo. Exigências: HTTPS/TLS 1.2+, backup diário (retenção 7 dias), disponibilidade 99%, jobs agendados às 00:05 (fuso America/Sao_Paulo).
+
+OBJETIVO
+Produzir a decisão documentada de hospedagem (backend, frontend, banco) com custo mensal estimado.
+
+PASSOS
+1. Comparar ao menos Render, Fly.io e Railway (backend) e MongoDB Atlas M0 vs M10 (banco) em: custo, limites (CPU/RAM/armazenamento), sleep/cold start, região (preferir São Paulo), HTTPS automático, suporte a processo persistente (APScheduler), backups.
+2. Verificar se o plano gratuito suporta job às 00:05 sem hibernação; se não, propor alternativa (plano pago mínimo ou cron externo).
+3. Verificar hospedagem estática do frontend (Cloudflare Pages/Netlify/Vercel) com HTTPS e cabeçalhos customizáveis.
+4. Estimar custo mensal em 3 cenários (gratuito, básico, com Open Finance).
+5. Registrar decisão em docs/decisoes/D-03-hospedagem.txt (ADR: contexto, opções, decisão, consequências, gatilhos de migração – RK-05).
+
+ENTREGÁVEIS
+- docs/decisoes/D-03-hospedagem.txt
+- Tabela de custos e limites; lista de variáveis de ambiente necessárias por provedor.
+
+CRITÉRIOS DE ACEITE
+- Decisão explícita, com orçamento mensal e plano de migração se limites forem excedidos.
+- Atende backup diário/7 dias e HTTPS.
+- Nenhum segredo registrado no documento.
+
+NÃO FAZER: não provisionar recursos pagos sem confirmação do titular.

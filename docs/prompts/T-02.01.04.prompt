@@ -1,0 +1,15 @@
+TAREFA: T-02.01.04 – Tela de ajuda com passo a passo de instalação (iPhone/Android)
+ÉPICO/ESTÓRIA: EP-02 / US-02.01 | Prioridade: Must | Depende de: T-02.01.01
+
+PASSOS
+1. Rota /ajuda/instalar acessível sem login e dentro de Configurações.
+2. Detectar plataforma (iOS/Android) e destacar a aba correspondente; abas iPhone e Android.
+3. iPhone (Safari): abrir no Safari; login; Compartilhar; Adicionar à Tela de Início; Adicionar; abrir pelo ícone; login novamente; Permitir notificações (iOS 16.4+); opcional PIN.
+4. Android (Chrome): abrir no Chrome; login; Instalar app (aviso) ou menu ⋮ > Instalar app/Adicionar à tela inicial; Instalar; abrir pelo ícone; Permitir notificações; opcional PIN.
+5. Android: capturar beforeinstallprompt e oferecer botão "Instalar app"; ocultar a ajuda se display-mode for standalone.
+6. Incluir ilustrações com texto alternativo; textos em pt-BR.
+7. Banner no iOS não instalado sugerindo instalação (dispensável, lembrar escolha).
+
+TESTES: renderização por plataforma (user agent simulado); botão de instalação.
+
+ACEITE: passos idênticos aos da Análise 8.4.

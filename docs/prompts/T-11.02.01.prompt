@@ -1,0 +1,13 @@
+TAREFA: T-11.02.01 – Job de sincronização a cada 6 h e POST /conexoes/{id}/sincronizar
+ÉPICO/ESTÓRIA: EP-11 / US-11.02 | Prioridade: Should | Depende de: T-11.01.04, T-00.03.02
+
+PASSOS
+1. Job a cada 6 h por conexão ativa (idempotente, com lock por conexão): atualizar saldos e importar transações desde ultima_sincronizacao (primeira: 90 dias); paginar respostas do agregador.
+2. POST /open-finance/conexoes/{id}/sincronizar (manual, com rate limit de 1 a cada 5 min).
+3. Atualizar ultima_sincronizacao somente após sucesso completo; cursor para retomar em falhas parciais.
+4. Mapear transações para lançamentos (tipo, valor em centavos, moeda, data, descrição, conta, membro da conta, origem "open_finance", id_externo).
+5. Registrar execução e métricas (importados, duplicados, erros).
+
+TESTES: primeira sincronização de 90 dias, incremental, falha parcial com retomada, lock concorrente.
+
+ACEITE: sync automática e manual funcionando.

@@ -1,0 +1,13 @@
+TAREFA: T-09.02.02 – Telas de "Lugares que quero ir"
+ÉPICO/ESTÓRIA: EP-09 / US-09.02 | Prioridade: Should | Depende de: T-09.02.01
+
+PASSOS
+1. Lista de destinos em cartões: destino, data alvo, custo na moeda original e em BRL, progresso, aporte mensal necessário.
+2. Formulário: destino, custo e moeda, data alvo, participantes (chips de membros), valor já guardado.
+3. Detalhe com aportes, projeção, cotação usada e aviso quando defasada.
+4. Aporte rápido; marcar como realizada (gera sugestão de conquista).
+5. pt-BR, acessibilidade, alvos >= 44 px.
+
+TESTES: componentes e e2e.
+
+ACEITE: telas do módulo 13 funcionais.

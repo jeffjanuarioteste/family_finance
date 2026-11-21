@@ -1,0 +1,11 @@
+TAREFA: T-14.01.01 – HTTPS/TLS 1.2+, HSTS e cabeçalhos de segurança
+ÉPICO/ESTÓRIA: EP-14 / US-14.01 | Prioridade: Must | Depende de: T-00.02.02
+
+PASSOS
+1. Forçar HTTPS (redirecionamento) e TLS >= 1.2 no provedor/CDN.
+2. Middleware/configuração de cabeçalhos: Strict-Transport-Security (max-age >= 1 ano, includeSubDomains), X-Content-Type-Options: nosniff, X-Frame-Options: DENY (ou frame-ancestors), Referrer-Policy, Permissions-Policy, Content-Security-Policy restritiva no frontend (default-src 'self'; connect-src com a API; sem inline sem nonce), Cache-Control: no-store em respostas autenticadas.
+3. Cookies (se usados) Secure, HttpOnly, SameSite.
+4. Validar com scanners (securityheaders, SSL Labs) e registrar nota.
+5. Testes automatizados verificando cabeçalhos.
+
+ACEITE: nota A ou superior; sem conteúdo misto.

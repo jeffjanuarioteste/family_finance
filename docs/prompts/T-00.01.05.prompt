@@ -1,0 +1,24 @@
+TAREFA: T-00.01.05 – Camada base: modelo com campos comuns, soft delete e versão otimista
+ÉPICO/ESTÓRIA: EP-00 / US-00.01 | Prioridade: Must | Depende de: T-00.01.03
+
+CONTEXTO
+Todo documento tem: _id, familia_id, membro_id (null = Família), criado_em, atualizado_em, deletado_em, observacao. Controle otimista via campo `versao`. Isolamento por familia_id é obrigatório (RNF-007).
+
+OBJETIVO
+Implementar classe base Beanie reutilizável por todas as coleções.
+
+PASSOS
+1. app/models/base.py: class DocumentoBase(Document) com campos: familia_id: PydanticObjectId (indexado), membro_id: Optional[PydanticObjectId], criado_em/atualizado_em (datetime UTC), deletado_em: Optional[datetime], observacao: Optional[str] (máx. 500), versao: int = 1. Settings.use_state_management=True.
+2. Hooks before_event(Insert) define criado_em/atualizado_em; before_event(Replace/Update/Save) atualiza atualizado_em e incrementa versao.
+3. Atualização otimista: método async atualizar_com_versao(dados, versao_esperada) usando update_one com filtro {_id, familia_id, versao} e $inc; se matched_count==0 lançar ConflitoVersaoError (HTTP 409 com código VERSAO_CONFLITANTE).
+4. Soft delete: método excluir_logico() define deletado_em; classmethod `ativos(familia_id)` e helper `buscar(familia_id, **filtros)` que SEMPRE inclui familia_id e deletado_em=None. Proibir consultas sem familia_id (função de repositório única).
+5. Mixin de valor monetário: valor_centavos:int, moeda:str(ISO 4217/cripto), validação > 0 quando aplicável; nunca float.
+6. Registrar o gancho para auditoria (T-03.05.01) como ponto de extensão (sem implementar).
+
+TESTES
+- Criação preenche datas e versao=1; update incrementa versao.
+- Conflito de versão retorna erro 409.
+- Registro excluído não aparece em buscar(); familia diferente não acessa.
+- Valor float rejeitado.
+
+CRITÉRIOS DE ACEITE: base usada por pelo menos um modelo de exemplo; cobertura dos testes acima.

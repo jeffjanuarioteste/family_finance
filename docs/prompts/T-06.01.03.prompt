@@ -1,0 +1,12 @@
+TAREFA: T-06.01.03 – POST /profissoes/{id}/renda-realizada e média de 6 meses
+ÉPICO/ESTÓRIA: EP-06 / US-06.01 | Prioridade: Must | Depende de: T-06.01.02, T-03.02.02
+
+PASSOS
+1. POST {competencia, valor_realizado_centavos, data?, conta_id?} com Idempotency-Key: marca a receita da competência como recebida e cria lançamento de entrada (origem "profissao", categoria de renda, membro). Reenvio não duplica; correção atualiza o lançamento existente.
+2. Média móvel: media_6m = média dos valores realizados dos últimos 6 meses com dados (inteiro, arredondamento half-up); expor em GET /profissoes/{id}/resumo junto com previsto × realizado.
+3. Para renda variável, atualizar sugestão de renda_mensal com a média (sem alterar automaticamente sem confirmação).
+4. Validar competência não futura distante e valor >= 0.
+
+TESTES: cálculo da média com 2, 6 e 8 meses; idempotência; correção; isolamento.
+
+ACEITE: RF-MOD10-03 atendido.

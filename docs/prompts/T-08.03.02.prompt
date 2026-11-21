@@ -1,0 +1,13 @@
+TAREFA: T-08.03.02 – POST /necessidades/{id}/comprar com confirmação gerando lançamento
+ÉPICO/ESTÓRIA: EP-08 / US-08.03 | Prioridade: Should | Depende de: T-08.03.01, T-03.02.02
+
+PASSOS
+1. POST {gerar_lancamento:bool, valor_centavos?, data?, conta_id?, categoria_id?, confirmar:true} com Idempotency-Key: status "comprado"; se gerar_lancamento, cria saída (origem "necessidade", origem_id).
+2. Exigir `confirmar=true` (confirmação explícita do usuário); o frontend mostra modal com valor, conta e categoria editáveis.
+3. Idempotente: já comprado não cria novo lançamento.
+4. Desfazer exclui o lançamento logicamente.
+5. Transação e auditoria.
+
+TESTES: comprar com/sem lançamento, duplo envio, sem confirmar 422, desfazer.
+
+ACEITE: RF-MOD03-02; telas de lista por urgência com ação Comprar.

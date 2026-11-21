@@ -1,0 +1,13 @@
+TAREFA: T-14.01.02 – Rate limit 100 req/min/IP e CORS restrito
+ÉPICO/ESTÓRIA: EP-14 / US-14.01 | Prioridade: Must | Depende de: T-00.01.03
+
+PASSOS
+1. Rate limit global de 100 req/min/IP (slowapi ou middleware próprio com armazenamento compartilhado se houver mais de uma instância); respostas 429 com Retry-After no formato padrão de erro.
+2. Limites mais estritos em /auth/login, /registrar, /recuperar-senha e exportação.
+3. Obter IP real corretamente atrás de proxy (X-Forwarded-For confiável apenas do proxy configurado).
+4. CORS: lista exata de origens por ambiente (CORS_ORIGINS), métodos e cabeçalhos explícitos, allow_credentials apenas se necessário; nunca "*" com credenciais.
+5. Excluir o webhook de limites inadequados, mantendo validação de assinatura.
+
+TESTES: 101ª requisição retorna 429; origem não permitida bloqueada; limites de login.
+
+ACEITE: comportamento conforme RNF de segurança.

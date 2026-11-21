@@ -1,0 +1,13 @@
+TAREFA: T-07.02.02 – Gráficos e alertas do Dashboard 1
+ÉPICO/ESTÓRIA: EP-07 / US-07.02 | Prioridade: Must | Depende de: T-07.02.01
+
+PASSOS
+1. Tela com cartões KPI (entradas, saídas, saldo do mês, saldo projetado), barras entradas×saídas por mês, linha do saldo projetado, lista de vencimentos (7 dias) e atrasadas.
+2. Biblioteca leve de gráficos (ex.: Chart.js ou uPlot) com carregamento sob demanda (code splitting) para respeitar carga inicial <= 3 s.
+3. Acessibilidade: alternativa em tabela/texto para cada gráfico, cores com contraste e padrões, aria-label.
+4. Faixa de alertas no topo (saldo projetado negativo, conta atrasada) com link para a lista.
+5. Skeletons de carregamento, estado vazio e erro; filtros do T-07.01.01.
+
+TESTES: renderização com dados mock; alertas condicionais.
+
+ACEITE: Dashboard 1 completo em iOS e Android.

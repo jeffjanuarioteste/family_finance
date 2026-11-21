@@ -1,0 +1,12 @@
+TAREFA: T-02.04.01 – Coleções `notificacoes` e `dispositivos_push`
+ÉPICO/ESTÓRIA: EP-02 / US-02.04 | Prioridade: Must | Depende de: T-00.01.05
+
+PASSOS
+1. Notificacao: familia_id, membro_id?, tipo (vencimento|orcamento|mercado|limite|meta|sistema|open_finance), titulo, mensagem, link (rota interna), chave_dedup (ex.: "orcamento:{id}:{AAAA-MM}:80"), lida(bool), lida_em, canais_enviados[], criado_em. Índices: {familia_id, lida, criado_em:-1}; único esparso {familia_id, chave_dedup} (suporta RN-014); TTL de 180 dias.
+2. DispositivoPush: familia_id, sessao_id, endpoint (único), chaves{p256dh, auth}, plataforma, user_agent, ativo, criado_em, ultimo_envio_ok. Índice único em endpoint.
+3. Serviço `notificar(familia_id, tipo, titulo, mensagem, link, chave_dedup)` que cria (ignorando duplicata por chave) e dispara canais (T-02.04.02/04).
+4. Remover assinaturas inválidas (410/404 do push).
+
+TESTES: dedup impede segunda notificação; TTL e índices; isolamento por família.
+
+ACEITE: modelos e serviço prontos para consumo pelos alertas.

@@ -1,0 +1,10 @@
+TAREFA: T-15.02.02 – Conta Apple (US$ 99/ano) e submissão
+ÉPICO/ESTÓRIA: EP-15 / US-15.02 | Prioridade: Won't (MVP) | Depende de: T-15.02.01
+
+PASSOS
+1. Inscrever-se no Apple Developer Program (US$ 99/ano; confirmar valor vigente) e configurar certificados, identifiers e provisioning.
+2. Criar o app no App Store Connect: nome, descrição pt-BR, ícones, capturas por tamanho de tela, classificação etária, política de privacidade, App Privacy (rótulos de dados), conta de demonstração para a revisão.
+3. Enviar build via TestFlight para testes internos e depois submeter à revisão; responder a eventuais rejeições (especialmente a diretriz 4.2).
+4. Planejar o ciclo de revisão a cada versão nativa.
+
+ACEITE: app aprovado na App Store ou decisão documentada de não publicar.

@@ -1,0 +1,13 @@
+TAREFA: T-05.05.03 – PATCH /itens-mensais/{id}/checklist/{competencia} gerando lançamento
+ÉPICO/ESTÓRIA: EP-05 / US-05.05 | Prioridade: Must | Depende de: T-05.05.01, T-03.02.02
+
+PASSOS
+1. PATCH {comprado:true, valor_real_centavos, data_compra?, conta_id?} com Idempotency-Key: marca a competência como comprada e cria lançamento de saída (origem "todo_mes", origem_id, categoria do item, membro) guardando lancamento_id.
+2. Reenvio idempotente: se já comprado, não cria novo lançamento; alteração de valor atualiza o lançamento existente.
+3. Desmarcar (comprado:false) exclui logicamente o lançamento vinculado.
+4. valor_real padrão = estimado; validar > 0.
+5. Operação transacional; auditoria.
+
+TESTES: marcar, remarcar, desmarcar, valor diferente, competência inexistente 404, isolamento.
+
+ACEITE: um lançamento por item/mês, sem duplicidade.

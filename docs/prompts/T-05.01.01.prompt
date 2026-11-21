@@ -1,0 +1,13 @@
+TAREFA: T-05.01.01 – CRUD /contas-mes com recorrência e lembrete (padrão 3 dias)
+ÉPICO/ESTÓRIA: EP-05 / US-05.01 | Prioridade: Must | Depende de: T-03.02.01
+
+PASSOS
+1. Modelo ContaMes: descricao, tipo (fixa|variavel), valor_centavos, moeda, vencimento (data), competencia (AAAA-MM), status (pendente|paga|atrasada), data_pagamento?, valor_pago_centavos?, categoria_id, conta_id?, recorrencia {tipo: mensal|anual|nenhuma, dia, recorrencia_id (UUID da série)}, lembrete_dias_antes=3, lancamento_id?, membro_id. Índices: {familia_id, vencimento, status}; único parcial {familia_id, recorrencia_id, competencia}.
+2. Rotas GET (filtro competência, status, membro), POST, GET {id}, PATCH {id} (versao), DELETE. Editar uma série pergunta escopo: apenas esta, esta e próximas, todas.
+3. Criar com recorrência gera a ocorrência atual e define recorrencia_id.
+4. Encerrar recorrência (POST /contas-mes/{id}/encerrar-recorrencia).
+5. Dia 29-31 em meses curtos usa o último dia do mês.
+
+TESTES: criação com recorrência, dia 31 em fevereiro, escopos de edição, unicidade por competência.
+
+ACEITE: OpenAPI e testes ok.

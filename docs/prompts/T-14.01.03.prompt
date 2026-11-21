@@ -1,0 +1,10 @@
+TAREFA: T-14.01.03 – Revisão OWASP Top 10 por fase
+ÉPICO/ESTÓRIA: EP-14 / US-14.01 | Prioridade: Must | Recorrente ao final de cada fase
+
+PASSOS
+1. Criar checklist docs/seguranca/owasp-top10.txt mapeando cada categoria (A01 controle de acesso/isolamento por familia_id, A02 criptografia, A03 injeção NoSQL — usar modelos Pydantic e nunca operadores vindos do cliente, A04 design inseguro, A05 configuração, A06 componentes vulneráveis — pip-audit/npm audit, A07 autenticação, A08 integridade — assinaturas de webhook e supply chain, A09 logs e monitoramento, A10 SSRF — validar URLs externas) a controles implementados e testes.
+2. Revisar o código da fase: entradas não validadas, rotas sem contexto de família, segredos, mensagens de erro vazando detalhes.
+3. Rodar SAST (bandit, semgrep) e DAST básico (OWASP ZAP baseline) em homologação.
+4. Registrar achados, severidade e correção; bloquear a entrega com achados críticos/altos abertos.
+
+ACEITE: relatório por fase sem vulnerabilidades críticas/altas.

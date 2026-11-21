@@ -1,0 +1,12 @@
+TAREFA: T-05.04.03 – Alertas 80%/100% e telas de "Posso gastar"
+ÉPICO/ESTÓRIA: EP-05 / US-05.04 | Prioridade: Must | Depende de: T-05.04.02, T-05.03.03
+
+PASSOS
+1. Reutilizar o serviço de alertas (T-05.03.03) para limites de gasto: chave_dedup "limite:{id}:{competencia}:{pct}", uma vez por limite/mês (RN-014), pct 80 e 100.
+2. Tela: lista de limites com barra de progresso e restante, atalho para registrar gasto já vinculado ao limite, criação/edição, filtro por membro.
+3. No formulário de lançamento, campo opcional "Vincular a limite" com sugestão.
+4. Acessibilidade (estado em texto), pt-BR.
+
+TESTES: disparo único por limite; componente e e2e.
+
+ACEITE: alertas visíveis no app, push e e-mail conforme preferências.

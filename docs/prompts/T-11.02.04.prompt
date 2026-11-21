@@ -1,0 +1,13 @@
+TAREFA: T-11.02.04 – Webhook /open-finance/webhook
+ÉPICO/ESTÓRIA: EP-11 / US-11.02 | Prioridade: Should | Depende de: T-11.02.01
+
+PASSOS
+1. POST /api/v1/open-finance/webhook (sem JWT): autenticar pela assinatura/segredo do agregador (HMAC com comparação em tempo constante) e validar timestamp para evitar replay; rejeitar sem assinatura (401).
+2. Eventos tratados: novos dados disponíveis (disparar sync da conexão), erro de conexão (status erro + notificação), consentimento revogado/expirado (atualizar status).
+3. Idempotência por id do evento (coleção com TTL); responder 200 rapidamente e processar de forma assíncrona.
+4. Não confiar no payload: sempre reconsultar o agregador; mapear conexão por item_id_externo (sem expor familia_id).
+5. Rate limit e logging sem dados sensíveis.
+
+TESTES: assinatura inválida, replay, evento duplicado, cada tipo de evento.
+
+ACEITE: webhook seguro e idempotente.

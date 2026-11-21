@@ -1,0 +1,15 @@
+TAREFA: T-03.02.02 – CRUD /lancamentos com Idempotency-Key
+ÉPICO/ESTÓRIA: EP-03 / US-03.02 | Prioridade: Must | Depende de: T-03.02.01
+
+PASSOS
+1. Serviço LancamentoService (única fonte de regras, reutilizado por /sync/lote, contas do mês, mercado etc.): criar, atualizar, excluir_logico, obter, listar.
+2. POST /lancamentos exige/aceita cabeçalho Idempotency-Key (UUID): chave repetida devolve a resposta original (201/200 idêntico) sem duplicar; corpo diferente com mesma chave -> 422.
+3. PATCH com `versao` (409 em conflito); DELETE soft delete.
+4. Ao criar em moeda != base chamar o serviço de cotação (T-03.03.02).
+5. GET lista paginada (ver T-03.02.05).
+6. Auditoria de criação/edição/exclusão (T-03.05.01).
+7. Efeitos colaterais: recalcular consumo de orçamento sob demanda (RN-007) e disparar verificação de alertas (T-05.03.03) de forma assíncrona.
+
+TESTES: criação, idempotência, conflito, exclusão lógica, isolamento, validação de categoria alheia.
+
+ACEITE: OpenAPI documenta Idempotency-Key; testes passam.

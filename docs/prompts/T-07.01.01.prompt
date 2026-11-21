@@ -1,0 +1,13 @@
+TAREFA: T-07.01.01 – Componente de filtro: período, membro, moeda de exibição
+ÉPICO/ESTÓRIA: EP-07 / US-07.01 | Prioridade: Must | Depende de: T-01.04.03
+
+PASSOS
+1. Componente FiltroDashboard reutilizável: período (mês atual padrão, trimestre, ano, personalizado dd/mm/aaaa), membro (individual/Família/consolidado, sincronizado com o seletor global), moeda de exibição (BRL padrão).
+2. Estado na URL (query string) para compartilhar/recarregar; persistência da última escolha.
+3. Backend: dependência FiltroDashboardParams (periodo_inicio, periodo_fim, membro_id, incluir_familia, moeda_exibicao) com validação (início <= fim, máx. 5 anos) e conversão de período pelo fuso America/Sao_Paulo.
+4. Conversão para a moeda de exibição pela cotação atual (RN-017, RF-DASH-03) em função utilitária única.
+5. Acessibilidade, alvos >= 44 px, pt-BR.
+
+TESTES: validação de parâmetros; componente altera query; conversão de moeda.
+
+ACEITE: todos os dashboards respondem aos três filtros (RF-DASH-01).

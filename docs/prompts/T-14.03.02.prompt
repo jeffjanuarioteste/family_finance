@@ -1,0 +1,10 @@
+TAREFA: T-14.03.02 – Lighthouse PWA ≥ 90 e carga inicial ≤ 3 s em 4G
+ÉPICO/ESTÓRIA: EP-14 / US-14.03 | Prioridade: Must | Depende de: T-02.01.01, T-02.02.01
+
+PASSOS
+1. Rodar Lighthouse (mobile, throttling 4G) nas telas principais e no instalado; metas: PWA >= 90, Desempenho, Acessibilidade e Boas práticas >= 90.
+2. Otimizar: code splitting por rota, lazy loading de gráficos, compressão (brotli), imagens/fontes otimizadas, cache de ativos com hash, preload do essencial.
+3. Orçamento de desempenho (bundle inicial, LCP <= 2,5 s) validado no CI com Lighthouse CI.
+4. Corrigir itens de instalação (manifest, SW, ícones) e documentar o resultado.
+
+ACEITE: critérios do MVP "Lighthouse PWA >= 90" e carga inicial <= 3 s, com relatório.

@@ -1,0 +1,12 @@
+TAREFA: T-01.05.02 – Teste automatizado de acesso cruzado (RNF-007)
+ÉPICO/ESTÓRIA: EP-01 / US-01.05 | Prioridade: Must | Depende de: T-01.05.01 | Recorrente: reexecutar a cada novo recurso
+
+PASSOS
+1. Fixture com duas famílias (A e B), cada uma com dados em todas as coleções disponíveis.
+2. Teste parametrizado que percorre TODAS as rotas registradas no OpenAPI com {id} e verifica que o token da família A obtém 404 ao GET/PATCH/DELETE/ações em ids da família B.
+3. Listagens da família A nunca contêm ids da B; agregações/dashboards não somam dados de B.
+4. Referências cruzadas em POST/PATCH (membro_id, categoria_id, conta_id de B) são rejeitadas.
+5. Teste falha se surgir uma nova rota autenticada sem entrada na lista de cobertura (garantir que novos épicos incluam o caso).
+6. Executar no CI como gate obrigatório.
+
+ACEITE: zero vazamentos; gate ativo no pipeline.

@@ -1,0 +1,19 @@
+TAREFA: T-00.01.04 – Configurar variáveis de ambiente e secrets (chave AES, JWT)
+ÉPICO/ESTÓRIA: EP-00 / US-00.01 | Prioridade: Must | Depende de: T-00.01.03
+
+OBJETIVO
+Gerenciar configuração e segredos com segurança (OWASP A02/A05), sem segredos no repositório.
+
+PASSOS
+1. Estender Settings (pydantic-settings) com: JWT_SECRET (mín. 32 bytes), JWT_ALGORITHM=HS256, ACCESS_TOKEN_MINUTES=15, REFRESH_TOKEN_DAYS, AES_KEY (32 bytes em base64), VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, VAPID_SUBJECT, SMTP_* (e-mail), CORS_ORIGINS, RATE_LIMIT, TZ=America/Sao_Paulo.
+2. Validar na inicialização: falhar se segredos ausentes ou curtos em ENV != "dev".
+3. Criar .env.example com placeholders (nunca valores reais) e script scripts/gerar_segredos.py que gera JWT_SECRET (secrets.token_urlsafe(48)), AES_KEY (os.urandom(32) base64) e par VAPID.
+4. Utilitário app/core/crypto.py: encrypt(texto)->str e decrypt(str)->texto com AES-256-GCM (nonce aleatório de 12 bytes, formato base64(nonce+cipher+tag)); lançar erro em adulteração.
+5. Documentar no README configuração por ambiente (dev/homolog/prod) e rotação de chaves (versionar chave com prefixo "v1:").
+6. Configurar secrets no provedor e no CI (nunca em logs).
+
+TESTES
+- encrypt/decrypt ida e volta; texto adulterado falha; nonce diferente a cada chamada.
+- Settings falha sem JWT_SECRET em prod.
+
+CRITÉRIOS DE ACEITE: nenhum segredo no git; testes passam; .env.example completo.

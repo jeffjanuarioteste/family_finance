@@ -1,0 +1,15 @@
+TAREFA: T-01.04.03 – Pseudo-membro "Família" e seletor global de membro (RN-019)
+ÉPICO/ESTÓRIA: EP-01 / US-01.04 | Prioridade: Must | Depende de: T-01.04.02, T-00.01.06
+
+REGRAS
+- membro_id=null significa Família. Consolidado = membros + Família. Visão de um membro exclui Família salvo filtro incluir_familia=true.
+- Query: membro_id=<id> | membro_id=familia | omitido = consolidado.
+
+PASSOS
+1. Backend: função única filtro_membro(membro_id, incluir_familia) em app/core/filtros.py usada por todas as listagens e dashboards; validar que o membro pertence à família.
+2. GET /membros inclui pseudo-item virtual {id:"familia", nome:"Família"} quando solicitado (?com_familia=true) sem persistir documento.
+3. Frontend: store global `membroSelecionado` (individual | familia | consolidado) persistido localmente; componente SeletorMembro no cabeçalho, com chips coloridos e opção "Incluir Família" quando individual.
+4. Todas as requisições de listagem anexam o filtro automaticamente.
+5. Testes de regra: consolidado soma tudo; membro exclui Família; incluir_familia soma.
+
+ACEITE: comportamento consistente em listagens e dashboards; testes unitários da função de filtro.

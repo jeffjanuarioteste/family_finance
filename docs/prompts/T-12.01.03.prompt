@@ -1,0 +1,12 @@
+TAREFA: T-12.01.03 – Relatório Resumo mensal (PDF)
+ÉPICO/ESTÓRIA: EP-12 / US-12.01 | Prioridade: Should | Depende de: T-12.01.01, T-07.02.01, T-07.03.01, T-07.04.03
+
+PASSOS
+1. Reutilizar os serviços dos dashboards 1, 2 e 6 (sem duplicar cálculo) para o mês e membro escolhidos.
+2. Conteúdo: KPIs (entradas, saídas, saldo, saldo projetado), gastos por categoria (tabela e gráfico gerado como imagem), orçado × realizado, saldo livre com cascata, contas atrasadas.
+3. Layout A4 limpo, cabeçalho com família/mês, rodapé com data de geração (America/Sao_Paulo).
+4. Gráficos renderizados no servidor (matplotlib ou SVG) com paleta acessível.
+
+TESTES: valores do PDF conferem com os endpoints dos dashboards (comparação por extração de texto).
+
+ACEITE: resumo de 1-2 páginas consistente com o app.

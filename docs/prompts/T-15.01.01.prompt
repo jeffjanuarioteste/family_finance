@@ -1,0 +1,11 @@
+TAREFA: T-15.01.01 – Gerar AAB (Bubblewrap/PWABuilder) e assetlinks.json
+ÉPICO/ESTÓRIA: EP-15 / US-15.01 | Prioridade: Won't (MVP) | Fase 6
+
+PASSOS
+1. Pré-requisitos: PWA com Lighthouse PWA >= 90, manifest completo, HTTPS e política de privacidade pública.
+2. Gerar o projeto TWA com Bubblewrap (ou PWABuilder): package id, nome, URLs, ícones, cores, versão; gerar chave de assinatura (guardar fora do repositório) e usar Play App Signing.
+3. Publicar /.well-known/assetlinks.json no domínio com o fingerprint SHA-256 correto (upload e Play) e validar com a ferramenta Digital Asset Links.
+4. Gerar o AAB, testar em dispositivo (sem barra de URL = verificação OK).
+5. Documentar processo de atualização (web atualiza sozinho; mudança de pacote exige novo AAB).
+
+ACEITE: AAB assinado e verificação de links válida.

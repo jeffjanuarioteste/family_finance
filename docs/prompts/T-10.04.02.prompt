@@ -1,0 +1,13 @@
+TAREFA: T-10.04.02 – Dashboard 5: Ganhar mais (receitas, negócios, previsto × realizado)
+ÉPICO/ESTÓRIA: EP-10 / US-10.04 | Prioridade: Should | Depende de: T-06.01.03, T-06.02.03, T-10.03.02
+
+PASSOS
+1. GET /dashboards/ganhar-mais: receita por membro, extras previstas × realizadas, margem/lucro e ponto de equilíbrio dos negócios, série de receita mensal, tabela de negócios.
+2. Alerta: receita realizada < 80% da prevista (notificação única por mês).
+3. Gráficos: barras por membro, linha de receita, tabela de negócios (com alternativas em tabela).
+4. Filtros comuns (período, membro, moeda); <= 3 s.
+5. Estados vazio/erro; pt-BR; acessibilidade.
+
+TESTES: caso de referência do alerta (prevista 100000, realizada 70000), consolidado vs membro.
+
+ACEITE: Dashboard 5 conforme análise; critério de saída do M3.

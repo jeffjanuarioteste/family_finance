@@ -1,0 +1,13 @@
+TAREFA: T-05.05.02 – Job de geração do checklist no dia 1º
+ÉPICO/ESTÓRIA: EP-05 / US-05.05 | Prioridade: Must | Depende de: T-05.05.01, T-00.03.02
+
+PASSOS
+1. Job 00:05 (RN-015): no dia 1º, para cada item ativo adicionar ao checklist a competência do mês atual {comprado:false}. Executa também diariamente verificando ausências (recuperação de execução perdida).
+2. Atualização idempotente: update_one com filtro {_id, "checklist.competencia": {$ne: comp}} e $push; nunca duplicar.
+3. Fuso America/Sao_Paulo; virada de ano.
+4. Notificação opcional "Checklist do mês disponível" (chave_dedup por competência).
+5. Log por família.
+
+TESTES: executar 2x, virada de mês/ano, item inativo, item criado no meio do mês.
+
+ACEITE: critério "itens mensais gerados automaticamente".

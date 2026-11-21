@@ -1,0 +1,12 @@
+TAREFA: T-03.02.01 – Modelo `lancamentos` e índices (Análise 5.3)
+ÉPICO/ESTÓRIA: EP-03 / US-03.02 | Prioridade: Must | Depende de: T-00.01.05, T-01.04.02, T-03.01.02
+
+PASSOS
+1. Modelo Lancamento (herda DocumentoBase): tipo (entrada|saida), valor_centavos (int>0), moeda, cotacao_na_data (Decimal128?), valor_base_centavos (int), data (UTC; interpretar dia em America/Sao_Paulo), descricao (<=200), categoria_id, conta_id?, membro_id (null=Família), status (efetivado|pendente), origem (manual|open_finance|conta_mes|mercado|todo_mes|necessidade|aporte), origem_id?, id_externo?, id_cliente?, recorrencia_id?, competencia (AAAA-MM), mesclado_em?, mesclado_com?.
+2. Índices: {familia_id, data:-1}; {familia_id, membro_id, data:-1}; {familia_id, categoria_id, data}; único esparso {familia_id, id_externo}; único esparso {familia_id, id_cliente}.
+3. Validações: valor inteiro, moeda ISO suportada, data não nula, categoria e conta da mesma família, tipo compatível com a categoria.
+4. Saldo da conta: decidir e documentar se lançamento efetivado altera saldo_centavos da conta (recomendado: não alterar saldo manual; saldo é atualizado por T-04.02.01).
+
+TESTES: validações, índices criados, unicidade de id_externo/id_cliente por família.
+
+ACEITE: modelo estável usado por todos os módulos.

@@ -1,0 +1,13 @@
+TAREFA: T-05.05.04 – Tela de checklist (estimado × real)
+ÉPICO/ESTÓRIA: EP-05 / US-05.05 | Prioridade: Must | Depende de: T-05.05.03
+
+PASSOS
+1. Tela "Todo mês": navegação por mês, lista de itens com checkbox grande (>= 44 px), valor estimado e campo para valor real ao marcar.
+2. Rodapé com total estimado × total real e diferença; progresso (n de m comprados).
+3. CRUD de itens (adicionar, editar, inativar).
+4. Marcar offline enfileira e mostra pendente.
+5. Filtro por membro (RN-019); acessibilidade e pt-BR.
+
+TESTES: componentes (totais, marcar/desmarcar) e e2e.
+
+ACEITE: critério "comprado gera lançamento" verificável na listagem de lançamentos.

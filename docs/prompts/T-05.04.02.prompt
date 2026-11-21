@@ -1,0 +1,12 @@
+TAREFA: T-05.04.02 – GET /limites-gasto/resumo?competencia=
+ÉPICO/ESTÓRIA: EP-05 / US-05.04 | Prioridade: Must | Depende de: T-05.04.01
+
+PASSOS
+1. Retornar por limite: {id, descricao, limite, gasto_mes (soma de lançamentos vinculados na competência), restante (RN-007), percentual, status} e totais gerais (soma dos limites, usada em RN-001).
+2. Filtro membro_id conforme RN-019.
+3. Agregação única por limite_gasto_id; valores em valor_base_centavos.
+4. Competência padrão = mês atual (America/Sao_Paulo).
+
+TESTES: caso de referência (limite 5000, gasto 3500 → restante 1500, 70%); sem lançamentos; estouro; soma total.
+
+ACEITE: totais corretos e resposta rápida.

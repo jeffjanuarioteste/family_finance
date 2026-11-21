@@ -1,0 +1,13 @@
+TAREFA: T-11.01.05 – DELETE /open-finance/conexoes/{id} (revogação)
+ÉPICO/ESTÓRIA: EP-11 / US-11.01 | Prioridade: Should | Depende de: T-11.01.02
+
+PASSOS
+1. Revogar consentimento no agregador (chamada idempotente), apagar token_cifrado, marcar status "revogada" e interromper jobs de sincronização.
+2. Contas vinculadas passam a origem "manual" mantendo o último saldo e histórico; lançamentos importados permanecem.
+3. Falha ao revogar no agregador: manter registro com status "revogando" e retentar; informar o usuário.
+4. Auditoria e confirmação explícita no frontend (modal com explicação do impacto).
+5. Direito de revogação disponível a qualquer momento (LGPD).
+
+TESTES: revogação, falha do agregador com retentativa, contas viram manuais, isolamento.
+
+ACEITE: nenhum acesso ao banco após a revogação.

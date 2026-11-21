@@ -1,0 +1,11 @@
+TAREFA: T-14.03.04 – Monitoramento, alertas e meta de 99% de disponibilidade
+ÉPICO/ESTÓRIA: EP-14 / US-14.03 | Prioridade: Must | Depende de: T-00.02.02
+
+PASSOS
+1. Monitor externo de uptime (ex.: UptimeRobot/Better Stack) em /api/v1/saude e no frontend com alerta por e-mail/push.
+2. Rastreamento de erros (Sentry) no backend e frontend, sem dados financeiros nem PII nos eventos (scrubbing).
+3. Logs estruturados com request id; métricas básicas (latência, taxa de erro, uso de memória, falhas de jobs, falhas de sync).
+4. Alertas: indisponibilidade > 2 min, taxa de erro elevada, job diário não executado, backup ausente.
+5. Painel de SLO mensal (meta 99%) e runbook de incidentes.
+
+ACEITE: alertas disparam em teste simulado; SLO medido.

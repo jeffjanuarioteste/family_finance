@@ -1,0 +1,11 @@
+TAREFA: T-03.05.02 – Retenção de 12 meses da auditoria
+ÉPICO/ESTÓRIA: EP-03 / US-03.05 | Prioridade: Must | Depende de: T-03.05.01
+
+PASSOS
+1. Índice TTL em `criado_em` com expireAfterSeconds = 365 dias (31536000), ou job diário idempotente de limpeza se for preciso retenção configurável.
+2. Garantir que a criação do índice ocorra na inicialização e documentar a mudança de TTL.
+3. Registros de exclusão de família/LGPD seguem política própria (T-14.02.02).
+4. Teste: inserir registro com data antiga e verificar remoção (usar job de limpeza em teste, pois o TTL do Mongo roda a cada 60 s).
+5. Documentar no README a política de retenção.
+
+ACEITE: registros > 12 meses removidos; índice presente.

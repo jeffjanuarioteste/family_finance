@@ -1,0 +1,13 @@
+TAREFA: T-01.03.03 – Suporte a WebAuthn quando disponível
+ÉPICO/ESTÓRIA: EP-01 / US-01.03 | Prioridade: Should | Depende de: T-01.03.02
+
+PASSOS
+1. Detectar suporte (PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable). Se ausente, ocultar a opção e manter o PIN.
+2. Backend: biblioteca `webauthn` (py_webauthn); endpoints POST /auth/webauthn/registro/opcoes, /registro/verificar, /autenticacao/opcoes, /autenticacao/verificar; challenge aleatório de uso único com expiração curta; guardar credential_id, public_key, sign_count, dispositivo em `credenciais_webauthn` (por família/sessão).
+3. rp_id e origin vindos de configuração (HTTPS); validar sign_count crescente.
+4. Frontend: botão "Usar biometria" na tela de bloqueio e em Configurações > Segurança para cadastrar; fallback sempre para PIN.
+5. A biometria desbloqueia a sessão local já autenticada; não emite novos tokens sem a sessão existente.
+
+TESTES: unitários com vetores de teste da biblioteca; fluxo sem suporte cai no PIN.
+
+ACEITE: funcional em ao menos Safari iOS ou Chrome Android real; sem regressão do PIN.

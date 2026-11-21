@@ -1,0 +1,13 @@
+TAREFA: T-03.03.02 – Gravar cotacao_na_data e valor_base_centavos (RN-017)
+ÉPICO/ESTÓRIA: EP-03 / US-03.03 | Prioridade: Must | Depende de: T-03.03.01, T-03.02.02
+
+PASSOS
+1. No LancamentoService: se moeda == moeda_base da família, cotacao_na_data=1 e valor_base=valor. Caso contrário, obter cotação da data do lançamento (T-03.03.01) e calcular valor_base_centavos = round_half_up(valor_centavos * cotacao) usando Decimal (nunca float).
+2. Gravar cotacao_na_data e valor_base_centavos no lançamento; histórico permanece estável mesmo se a cotação mudar (somente recalcular se o usuário editar valor, moeda ou data).
+3. Permitir informar cotação manual opcional (campo cotacao_manual) com flag.
+4. Toda agregação/dashboards usa valor_base_centavos.
+5. Documentar a regra: saldos/metas convertem pela cotação atual, lançamentos pela cotação na data.
+
+TESTES: USD->BRL com arredondamento; edição de data recalcula; BRL sem consulta; sem float.
+
+ACEITE: critério do MVP "multi-moeda grava cotação no lançamento".

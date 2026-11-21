@@ -1,0 +1,13 @@
+TAREFA: T-13.02.02 – Telas do simulador
+ÉPICO/ESTÓRIA: EP-13 / US-13.02 | Prioridade: Could | Depende de: T-13.01.03, T-13.02.01
+
+PASSOS
+1. Lista de cenários e criação guiada ("E se eu cortar X?", "E se eu investir Y?"): escolher tipo, alvo, valor e período, horizonte.
+2. Simulação em tempo real ao ajustar (debounce) e comparação base × cenário.
+3. Ação "Aplicar" com pré-visualização e confirmação modal; mensagem clara de que só então os dados reais mudam.
+4. Atalho a partir do Dashboard 6 (saldo livre e sugestões de corte).
+5. pt-BR, acessibilidade, estados de carregamento/erro.
+
+TESTES: componentes e e2e (criar, simular, aplicar).
+
+ACEITE: critério de saída do M5 (simulador funcional).

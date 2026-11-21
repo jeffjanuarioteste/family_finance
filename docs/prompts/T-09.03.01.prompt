@@ -1,0 +1,14 @@
+TAREFA: T-09.03.01 – Reserva de emergência: meta em meses, média de saídas 3 meses (RN-012), cobertura
+ÉPICO/ESTÓRIA: EP-09 / US-09.03 | Prioridade: Should | Depende de: T-09.01.03
+
+PASSOS
+1. Meta tipo reserva com detalhes {meta_meses (padrão 6), contas_vinculadas[], investimentos_vinculados[]}; uma reserva por família (ou por membro, documentar).
+2. RN-012: despesa_mensal_base = média das saídas dos últimos 3 meses completos (valor_base, efetivadas, excluindo transferências/aportes); valor_meta = meta_meses × despesa_mensal_base; cobertura_meses = valor_atual / despesa_mensal_base.
+3. valor_atual = soma dos saldos das contas/investimentos vinculados convertidos pela cotação atual (ou valor manual se sem vínculo).
+4. Progresso % e data prevista (RN-003) com o aporte mensal configurado.
+5. GET /reserva-emergencia com todos os campos calculados; PUT para configurar meses/vínculos.
+6. Histórico insuficiente (< 1 mês) retorna aviso.
+
+TESTES: caso de referência (média 500000, 6 meses → meta 3000000; atual 1500000 → cobertura 3 meses, 50%); sem histórico; vínculos em moedas diferentes.
+
+ACEITE: RF-MOD18-01 e 02.

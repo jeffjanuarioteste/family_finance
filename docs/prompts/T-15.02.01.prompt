@@ -1,0 +1,11 @@
+TAREFA: T-15.02.01 – Empacotar com Capacitor e recursos nativos (push/biometria)
+ÉPICO/ESTÓRIA: EP-15 / US-15.02 | Prioridade: Won't (MVP) | Executar somente com necessidade nativa comprovada
+
+PASSOS
+1. Justificar por escrito a necessidade nativa (diretriz Apple 4.2: o app não pode ser apenas um site empacotado): push nativo (APNs) confiável e biometria nativa.
+2. Adicionar Capacitor ao frontend (ios), configurar app id, ícones, splash e safe areas.
+3. Implementar plugins: Push Notifications (APNs) integrando ao backend (novo canal em notificar()), Biometria (Face ID) para desbloqueio, armazenamento seguro (Keychain) do refresh token.
+4. Manter o PWA como base única; evitar divergência de código.
+5. Build em Mac/Xcode e testes em dispositivo.
+
+ACEITE: app iOS funcional com push e biometria nativos.

@@ -1,0 +1,12 @@
+TAREFA: T-11.01.04 – Vincular contas importadas ao membro
+ÉPICO/ESTÓRIA: EP-11 / US-11.01 | Prioridade: Should | Depende de: T-11.01.02, T-04.01.01
+
+PASSOS
+1. Após ativar a conexão, importar contas do agregador e criar/atualizar `contas` com origem_dados="open_finance", conexao_id, membro_id da conexão (ou Família), tipo/moeda mapeados, id_externo da conta (único por família).
+2. Permitir ao usuário revisar o vínculo (alterar membro/Família, ocultar conta) numa tela de confirmação.
+3. Reconexão não duplica contas (upsert por id externo).
+4. Saldo da conta passa a ser somente leitura/sincronizado (T-04.02.01 retorna 409).
+
+TESTES: importação, reconexão sem duplicar, alteração de membro, isolamento.
+
+ACEITE: cada conta importada tem membro definido.

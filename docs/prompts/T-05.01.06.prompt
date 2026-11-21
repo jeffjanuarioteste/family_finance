@@ -1,0 +1,14 @@
+TAREFA: T-05.01.06 – Telas: lista do mês, pagar, criar recorrência
+ÉPICO/ESTÓRIA: EP-05 / US-05.01 | Prioridade: Must | Depende de: T-05.01.01..05
+
+PASSOS
+1. Tela "Contas do mês": navegação entre meses, resumo (total, pago, a pagar, atrasado), lista agrupada por status com destaque visual e textual para atrasadas.
+2. Ação "Pagar": folha com valor pago (padrão previsto), data, conta de origem; confirmação e feedback; opção desfazer.
+3. Formulário criar/editar com recorrência (mensal/anual/nenhuma), dia, lembrete, categoria, membro; ao editar série perguntar escopo.
+4. Respeitar seletor de membro; filtros por status.
+5. Offline: leitura do cache; pagar offline enfileira (reutilizar fila).
+6. Acessibilidade, alvos >= 44 px, pt-BR.
+
+TESTES: componentes e e2e (criar recorrência, pagar, ver atrasada).
+
+ACEITE: fluxo completo em iOS e Android.

@@ -1,0 +1,13 @@
+TAREFA: T-03.01.02 – CRUD /categorias com hierarquia e seed inicial
+ÉPICO/ESTÓRIA: EP-03 / US-03.01 | Prioridade: Must | Depende de: T-03.01.01, T-00.01.05
+
+PASSOS
+1. Modelo Categoria: nome (<=60), tipo (entrada|saida), pai_id?, icone, cor, sistema(bool), ativa. Índice único {familia_id, pai_id, nome}. Hierarquia de no máximo 2 níveis.
+2. Rotas GET (lista plana + ?arvore=true), POST, GET {id}, PATCH {id} (com versao), DELETE {id} (soft delete). Categorias de sistema não podem ser excluídas nem renomeadas.
+3. Excluir categoria com lançamentos/orçamentos: 409 sugerindo mover (POST /categorias/{id}/mover-lancamentos {destino_id}) ou inativar.
+4. Seed: ao registrar família (T-01.01.01), carregar categorias_padrao.json de forma idempotente.
+5. Validar que pai pertence à família e tem o mesmo tipo; evitar ciclos.
+
+TESTES: seed idempotente; hierarquia; exclusão bloqueada; isolamento por família.
+
+ACEITE: OpenAPI e testes ok.

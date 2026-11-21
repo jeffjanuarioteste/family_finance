@@ -1,0 +1,14 @@
+TAREFA: T-12.01.01 – GET /relatorios/{tipo}?formato= com limite de 100 mil linhas
+ÉPICO/ESTÓRIA: EP-12 / US-12.01 | Prioridade: Should | Depende de: T-03.02.05
+
+PASSOS
+1. GET /api/v1/relatorios/{tipo}?formato=pdf|xlsx&periodo_inicio=&periodo_fim=&membro_id=&categoria_id=&conta_id=: tipos extrato, resumo-mensal, orcamento-realizado, patrimonio, metas.
+2. Arquitetura: interface Relatorio (coletar_dados, gerar_xlsx, gerar_pdf) com registro por tipo; geração sob demanda, em streaming, sem persistir arquivos (RF-EXP-01).
+3. Limite de 100 mil linhas: contar antes; se exceder retornar 422 pedindo restringir filtros; geração em memória controlada (xlsx em modo write-only/streaming).
+4. Headers Content-Disposition com nome seguro (relatorio-tipo-AAAA-MM.ext), Content-Type correto, sem cache.
+5. Apenas titular autenticado; filtro familia_id; auditoria da exportação; rate limit (ex.: 5/min).
+6. Formatação pt-BR (R$ 1.234,56, dd/mm/aaaa) e proteção contra injeção de fórmulas em Excel (prefixar células iniciadas por = + - @ com apóstrofo).
+
+TESTES: tipo inválido 404, limite excedido, injeção de fórmula, cabeçalhos, isolamento.
+
+ACEITE: infraestrutura comum pronta para os relatórios.

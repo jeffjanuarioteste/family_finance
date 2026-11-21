@@ -1,0 +1,13 @@
+TAREFA: T-02.01.01 – manifest.webmanifest e ícones (192, 512, maskable, apple-touch-icon 180)
+ÉPICO/ESTÓRIA: EP-02 / US-02.01 | Prioridade: Must | Depende de: T-00.01.02
+
+PASSOS
+1. Criar public/manifest.webmanifest: name "Financeiro Familiar", short_name, start_url "/?source=pwa", scope "/", display "standalone", orientation "portrait", lang "pt-BR", theme_color, background_color, ícones 192x192 e 512x512 (purpose "any") e versões "maskable" (conteúdo dentro da safe zone de 80%).
+2. Gerar ícones PNG: icon-192, icon-512, maskable-192, maskable-512 e apple-touch-icon 180x180 (sem transparência); favicon.
+3. Referenciar no index.html: <link rel="manifest">, <link rel="apple-touch-icon" href="/apple-touch-icon.png">, <meta name="theme-color">.
+4. Servir o manifesto com Content-Type application/manifest+json e HTTPS.
+5. Validar no DevTools > Application e Lighthouse (installable).
+
+TESTES: teste que lê o manifesto e verifica campos obrigatórios, tamanhos e existência dos arquivos de ícones.
+
+ACEITE: Chrome Android oferece instalação; Lighthouse sem erros de manifesto.

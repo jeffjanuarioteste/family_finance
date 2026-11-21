@@ -1,0 +1,16 @@
+TAREFA: T-01.01.01 – POST /auth/registrar com hash Argon2id e e-mail único
+ÉPICO/ESTÓRIA: EP-01 / US-01.01 | Prioridade: Must | Depende de: T-00.01.05, T-00.01.06
+
+CONTEXTO: uma conta (login único) = uma família. Coleção `familias` guarda e-mail, senha_hash, moeda_base (padrão BRL), configurações, pin_hash, consentimento LGPD.
+
+PASSOS
+1. Modelo Familia (Beanie): email (único, normalizado minúsculo), senha_hash, nome, moeda_base="BRL", config{}, pin_hash?, consentimento{versao, aceito_em, ip}, criado_em, atualizado_em. Índice único em email.
+2. app/core/security.py: hash_senha/verificar_senha com argon2-cffi (Argon2id, parâmetros recomendados OWASP); rehash se parâmetros mudarem.
+3. Schema RegistrarIn: nome, email (EmailStr), senha (mín. 10 caracteres, bloquear senhas comuns), aceite_termos=true obrigatório. Saída sem senha_hash.
+4. POST /api/v1/auth/registrar: normalizar e-mail; se existir retornar 409 com mensagem genérica "Não foi possível concluir o cadastro" (evitar enumeração de contas); criar família e membro titular padrão; registrar consentimento (liga T-14.02.01).
+5. Resposta 201 com dados da família (sem segredos). Rate limit específico.
+6. Nunca logar senha.
+
+TESTES: sucesso; e-mail duplicado (case-insensitive); senha fraca 422; hash começa com $argon2id$; resposta sem senha_hash.
+
+ACEITE: OpenAPI documentado, mensagens pt-BR, testes passando.

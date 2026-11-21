@@ -1,0 +1,13 @@
+TAREFA: T-01.04.04 – Telas de membros e onboarding
+ÉPICO/ESTÓRIA: EP-01 / US-01.04 | Prioridade: Must | Depende de: T-01.04.02, T-01.04.03
+
+PASSOS
+1. Onboarding em etapas após o primeiro login: (1) dados da família e moeda base; (2) cadastrar membros (titular, cônjuge, filhos) com cor; (3) opcional: profissão/renda; (4) convite para cadastrar contas (EP-04); possibilidade de pular e retomar.
+2. Tela Membros: lista, criar/editar (nome, papel, cor, profissão), inativar com confirmação.
+3. UX mobile first, alvos >= 44 px, AA, pt-BR, valores "R$ 1.234,56" e máscara monetária em centavos.
+4. Estados vazio/erro/carregando e tratamento de conflito de versão (409) com aviso.
+5. Marcar onboarding concluído na config da família.
+
+TESTES: componentes e e2e do fluxo de onboarding.
+
+ACEITE: novo usuário completa o onboarding em dispositivo móvel.

@@ -1,0 +1,11 @@
+TAREFA: T-14.03.01 – Testes de carga (listagens P95 ≤ 500 ms; dashboards ≤ 3 s)
+ÉPICO/ESTÓRIA: EP-14 / US-14.03 | Prioridade: Must | Depende de: T-07.01.02
+
+PASSOS
+1. Cenários Locust/k6 com a massa de 50 mil lançamentos: listagem paginada com filtros, dashboards 1, 2 e 6, orçamento/status, login, /sync/lote.
+2. Perfis: usuário único, 5 usuários concorrentes (família), pico; execução em homologação com especificações equivalentes ao plano de produção.
+3. Metas: P95 de listagens <= 500 ms; dashboards <= 3 s; taxa de erro < 1%.
+4. Coletar explain das consultas lentas, ajustar índices/cache e repetir.
+5. Pipeline manual/agendado com relatório versionado.
+
+ACEITE: metas comprovadas e relatório anexado.

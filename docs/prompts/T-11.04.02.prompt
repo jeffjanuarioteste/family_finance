@@ -1,0 +1,13 @@
+TAREFA: T-11.04.02 – Alertas 15 e 3 dias antes da expiração
+ÉPICO/ESTÓRIA: EP-11 / US-11.04 | Prioridade: Should | Depende de: T-11.01.02, T-02.04.04
+
+PASSOS
+1. Job diário: para conexões ativas com consentimento_expira_em - hoje == 15 ou 3 dias, chamar notificar(tipo "open_finance", chave_dedup "of_expira:{id}:15|3"), por push/e-mail.
+2. Mensagem pt-BR com ação "Renovar consentimento" que abre o fluxo de reconexão (T-11.01.02) mantendo as contas.
+3. Ao expirar, status "expirada", interromper sync e exibir alerta persistente.
+4. Renovação atualiza a data de expiração e zera dedup do ciclo seguinte.
+5. Alerta também no Dashboard 3.
+
+TESTES: datas simuladas (15, 3, 0 dias), dedup, renovação.
+
+ACEITE: usuário alertado antes da expiração.

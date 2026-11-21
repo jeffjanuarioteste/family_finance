@@ -1,0 +1,12 @@
+TAREFA: T-12.01.06 – Tela de exportação
+ÉPICO/ESTÓRIA: EP-12 / US-12.01 | Prioridade: Should | Depende de: T-12.01.02..05
+
+PASSOS
+1. Tela Mais > Exportar: escolher relatório, formato (PDF/Excel conforme suportado), período, membro e filtros pertinentes.
+2. Download via fetch com token (blob) e salvar/compartilhar (Web Share API quando disponível, importante no iOS); indicador de progresso e cancelamento.
+3. Tratar 422 de limite (mensagem para restringir filtros) e erros de rede.
+4. Visível somente ao titular; pt-BR; acessibilidade.
+
+TESTES: componentes e e2e de download com mock.
+
+ACEITE: exportação funcional em iOS e Android.

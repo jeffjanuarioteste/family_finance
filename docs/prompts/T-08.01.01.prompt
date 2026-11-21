@@ -1,0 +1,13 @@
+TAREFA: T-08.01.01 – CRUD /prioridades (nível, prazo, recorrência) em itens_planejamento
+ÉPICO/ESTÓRIA: EP-08 / US-08.01 | Prioridade: Should | Depende de: T-00.01.05
+
+PASSOS
+1. Modelo ItemPlanejamento (coleção única com `tipo`: prioridade|quero|preciso|consegui) com validação por tipo (union/discriminador). Prioridade: titulo (<=120), nivel (alta|media|baixa), status (pendente|em_andamento|concluido|cancelado, padrão pendente), prazo?, recorrencia (nenhuma|semanal|mensal), membro_id. Índice {familia_id, tipo, membro_id, status}.
+2. Rotas /prioridades: GET (filtros membro, nivel, status; paginada), POST, GET {id}, PATCH {id} (versao), DELETE (soft).
+3. Concluir recorrente gera a próxima ocorrência (idempotente).
+4. Concluir permite sugerir "Consegui" (T-08.04.02).
+5. Atraso: prazo < hoje e status não concluído/cancelado => campo calculado atrasada=true.
+
+TESTES: CRUD, recorrência, atraso, isolamento.
+
+ACEITE: RF-MOD01-01 atendido.

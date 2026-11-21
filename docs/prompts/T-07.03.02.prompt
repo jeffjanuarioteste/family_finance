@@ -1,0 +1,13 @@
+TAREFA: T-07.03.02 – Gráficos (rosca, barras, linha) e alertas do Dashboard 2
+ÉPICO/ESTÓRIA: EP-07 / US-07.03 | Prioridade: Must | Depende de: T-07.03.01
+
+PASSOS
+1. Rosca por categoria (top 8 + "Outras"), barras por membro, linha diária/semanal, barras orçado × realizado.
+2. Toque em uma fatia/barra abre a listagem de lançamentos filtrada (drill-down).
+3. Alertas de orçamento >= 80%/100% destacados.
+4. Acessibilidade (tabela alternativa, rótulos, contraste), skeletons, vazio e erro.
+5. Reutilizar filtros do T-07.01.01 e lazy loading de gráficos.
+
+TESTES: renderização e drill-down.
+
+ACEITE: Dashboard 2 completo e fluido em celular.

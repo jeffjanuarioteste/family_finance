@@ -1,0 +1,19 @@
+TAREFA: T-00.03.02 – Estrutura de jobs idempotentes com log
+ÉPICO/ESTÓRIA: EP-00 / US-00.03 | Prioridade: Must | Depende de: T-00.03.01
+
+OBJETIVO
+Padrão para jobs (geração de contas do mês, checklist, atrasadas, cotações, sync) reexecutáveis sem efeitos duplicados (RN-015).
+
+PASSOS
+1. app/jobs/base.py: classe/decorator `job_idempotente(nome)` que registra execução em coleção `execucoes_jobs` {nome, chave_execucao, inicio, fim, status(ok|erro), itens_processados, erro}.
+2. chave_execucao determinística (ex.: "2026-11-21") com índice único {nome, chave_execucao}; se já concluída com sucesso, pular (permitir force=True).
+3. Jobs iteram por família em lotes; falha em uma família não interrompe as demais (try/except por família, registrar erro).
+4. Idempotência dos efeitos: upsert por chave natural (ex.: recorrencia_id + competencia) em cada job futuro; documentar a regra.
+5. Log estruturado JSON (nome, familia_id, duração, contagem) sem dados sensíveis.
+6. Orquestrador app/jobs/diario.py chamando, em ordem, jobs registrados (stubs: gerar_contas_mes, marcar_atrasadas, gerar_checklist).
+7. Retenção de execucoes_jobs por 90 dias (TTL).
+
+TESTES
+Executar duas vezes no mesmo dia gera um único registro e nenhum efeito duplicado; erro em uma família não afeta outra; force reexecuta.
+
+CRITÉRIOS DE ACEITE: padrão documentado no README; testes passam.

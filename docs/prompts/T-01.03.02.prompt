@@ -1,0 +1,14 @@
+TAREFA: T-01.03.02 – Tela de bloqueio após 1 min de inatividade (configurável)
+ÉPICO/ESTÓRIA: EP-01 / US-01.03 | Prioridade: Must | Depende de: T-01.03.01
+
+PASSOS
+1. Hook de inatividade (eventos de toque/teclado/visibilidade) com tempo configurável (padrão 60 s; opções 1, 5, 15 min, nunca) salvo localmente por aparelho.
+2. Ao expirar ou ao voltar do segundo plano após o tempo, exibir tela de bloqueio sobre o app (sem apagar estado) pedindo PIN (teclado numérico) e opção WebAuthn quando disponível.
+3. Só ativar se o PIN estiver configurado; tela de configuração para ativar/alterar/desativar PIN e tempo.
+4. Erros: contador de tentativas; após o limite, logout e retorno ao login.
+5. Ocultar conteúdo sensível na tela (blur) durante bloqueio; acessibilidade (foco no campo, aria).
+6. Não manter o PIN em memória após validar.
+
+TESTES: bloqueia após tempo simulado; PIN correto desbloqueia; limite derruba sessão; sem PIN não bloqueia.
+
+ACEITE: funciona com app instalado no iOS/Android.

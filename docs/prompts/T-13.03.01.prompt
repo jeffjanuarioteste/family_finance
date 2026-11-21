@@ -1,0 +1,12 @@
+TAREFA: T-13.03.01 – Evoluir RN-021 com novas heurísticas
+ÉPICO/ESTÓRIA: EP-13 / US-13.03 | Prioridade: Could | Depende de: T-07.04.02
+
+PASSOS
+1. Manter o motor baseado em dados (sem IA generativa); adicionar heurísticas: assinaturas recorrentes duplicadas/pouco usadas, categorias com variação sazonal, gastos acima da mediana de meses comparáveis, estabelecimentos com maior concentração de gasto, outliers (> 2 desvios-padrão).
+2. Cada sugestão traz motivo explicável, evidência (valores, meses) e economia potencial estimada; pontuação para ranking; permitir "dispensar" sugestão.
+3. Estrutura extensível (cada heurística uma classe com testes).
+4. Integrar ao Dashboard 6 e ao simulador (criar cenário a partir da sugestão).
+
+TESTES: um conjunto de dados sintético por heurística; sem falsos positivos em dados estáveis.
+
+ACEITE: sugestões explicáveis e reproduzíveis.

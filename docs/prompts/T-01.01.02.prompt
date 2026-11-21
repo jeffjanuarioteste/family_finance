@@ -1,0 +1,15 @@
+TAREFA: T-01.01.02 – POST /auth/login, JWT de 15 min e refresh rotativo
+ÉPICO/ESTÓRIA: EP-01 / US-01.01 | Prioridade: Must | Depende de: T-01.01.01, T-01.02.01
+
+PASSOS
+1. POST /api/v1/auth/login {email, senha, dispositivo{nome, plataforma}} -> {access_token, refresh_token, token_type:"bearer", expira_em}.
+2. Access token JWT (HS256) com claims: sub (familia_id), jti, iat, exp (15 min), sid (id da sessão). Nunca incluir dados sensíveis.
+3. Refresh token opaco aleatório (secrets.token_urlsafe(48)); guardar apenas o hash (SHA-256) na coleção `sessoes` com familia_id, dispositivo, ip, user_agent, criado_em, ultimo_uso, expira_em.
+4. Rotação: a cada /refresh emitir novo refresh e invalidar o anterior; se um refresh já usado for reapresentado, revogar toda a cadeia da sessão (detecção de reuso).
+5. Mensagem de erro genérica para credenciais inválidas (401, "E-mail ou senha inválidos"); tempo de resposta constante (verificar hash mesmo se usuário não existir).
+6. Dependência get_familia_atual(token) que valida assinatura, exp e sessão não revogada, e fornece familia_id às rotas (base de T-01.05.01).
+7. Cabeçalhos: nunca devolver refresh em query string.
+
+TESTES: login ok; senha errada 401; token expirado 401; token adulterado 401; reuso de refresh revoga sessão.
+
+ACEITE: segurança conforme RNF (JWT 15 min, refresh rotativo), testes passando.
